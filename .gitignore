@@ -6,3 +6,9 @@ node_modules
 .open-next
 node_modules
 .env*
+.next
+.open-next
+node_modules
+.env*
+.DS_Store
+.open-next
