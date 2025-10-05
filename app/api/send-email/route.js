@@ -1,13 +1,15 @@
-// functions/api/send-email.js
-export const onRequestPost = async(context) => {
+// Next.js App Router API (runs on Cloudflare Workers via OpenNext)
+import { NextResponse } from "next/server";
+
+export async function POST(req) {
     try {
-        const data = await context.request.json();
+        const data = await req.json();
         const { name = "", email = "", phone = "", details = "" } = data;
 
-        // Your destination email (change to your own)
+        // change to your inbox:
         const TO = "webtoroonto22@gmail.com";
 
-        // Prepare payload for MailChannels (built into Cloudflare Pages)
+        // MailChannels (built into Cloudflare) — no API key needed
         const payload = {
             personalizations: [{ to: [{ email: TO }] }],
             from: {
@@ -17,8 +19,14 @@ export const onRequestPost = async(context) => {
             subject: "New Quote Request",
             content: [{
                 type: "text/plain",
-                value: `New quote request:\n\n` +
-                    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDetails:\n${details}`,
+                value: `New quote request
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+Details:
+${details}`,
             }, ],
         };
 
@@ -30,11 +38,11 @@ export const onRequestPost = async(context) => {
 
         if (!r.ok) {
             const err = await r.text();
-            return new Response(`Error sending email: ${err}`, { status: 500 });
+            return NextResponse.json({ ok: false, error: err || "Email failed" }, { status: 502 });
         }
 
-        return new Response("OK", { status: 200 });
-    } catch (err) {
-        return new Response(`Bad Request: ${err.message}`, { status: 400 });
+        return NextResponse.json({ ok: true });
+    } catch (e) {
+        return NextResponse.json({ ok: false, error: e && e.message ? e.message : "Bad request" }, { status: 400 });
     }
-};
+}
