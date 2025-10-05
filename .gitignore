@@ -2,3 +2,7 @@
 .open-next
 node_modules
 .env*
+.next
+.open-next
+node_modules
+.env*
