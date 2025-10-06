@@ -1,4 +1,3 @@
-// Next.js App Router API (runs on Cloudflare Workers via OpenNext)
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -6,20 +5,21 @@ export async function POST(req) {
         const data = await req.json();
         const { name = "", email = "", phone = "", details = "" } = data;
 
-        // change to your inbox:
+        // Change this to your inbox:
         const TO = "webtoroonto22@gmail.com";
 
-        // MailChannels (built into Cloudflare) — no API key needed
+        // MailChannels (built into Cloudflare)
         const payload = {
             personalizations: [{ to: [{ email: TO }] }],
             from: {
-                email: "no-reply@wallpaper-final.pages.dev",
+                email: "no-reply@notify.cloudflare.com", // safe sender for Pages
                 name: "Wallpaper Removal Pro",
             },
+            reply_to: email ? [{ email }] : undefined,
             subject: "New Quote Request",
             content: [{
                 type: "text/plain",
-                value: `New quote request
+                value: `New quote request:
 
 Name: ${name}
 Email: ${email}
@@ -36,12 +36,12 @@ ${details}`,
             body: JSON.stringify(payload),
         });
 
+        const result = await r.text();
         if (!r.ok) {
-            const err = await r.text();
-            return NextResponse.json({ ok: false, error: err || "Email failed" }, { status: 502 });
+            return NextResponse.json({ ok: false, error: result || "MailChannels error" }, { status: 502 });
         }
 
-        return NextResponse.json({ ok: true });
+        return NextResponse.json({ ok: true, result });
     } catch (e) {
         return NextResponse.json({ ok: false, error: e && e.message ? e.message : "Bad request" }, { status: 400 });
     }
