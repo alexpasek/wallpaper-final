@@ -5,21 +5,19 @@ export async function POST(req) {
         const data = await req.json();
         const { name = "", email = "", phone = "", details = "" } = data;
 
-        // Change this to your inbox:
-        const TO = "webtoroonto22@gmail.com";
+        const TO = "webtoroonto24@gmail.com";
 
-        // MailChannels (built into Cloudflare)
         const payload = {
             personalizations: [{ to: [{ email: TO }] }],
             from: {
-                email: "no-reply@notify.cloudflare.com", // safe sender for Pages
+                email: "no-reply@wallpaper-final.pages.dev", // ✅ authorized domain
                 name: "Wallpaper Removal Pro",
             },
-            reply_to: email ? [{ email }] : undefined,
+            headers: email ? { "Reply-To": email } : undefined,
             subject: "New Quote Request",
             content: [{
                 type: "text/plain",
-                value: `New quote request:
+                value: `New quote request
 
 Name: ${name}
 Email: ${email}
@@ -36,12 +34,13 @@ ${details}`,
             body: JSON.stringify(payload),
         });
 
-        const result = await r.text();
+        const txt = await r.text();
+
         if (!r.ok) {
-            return NextResponse.json({ ok: false, error: result || "MailChannels error" }, { status: 502 });
+            return NextResponse.json({ ok: false, status: r.status, body: txt }, { status: 502 });
         }
 
-        return NextResponse.json({ ok: true, result });
+        return NextResponse.json({ ok: true, status: r.status, body: txt });
     } catch (e) {
         return NextResponse.json({ ok: false, error: e && e.message ? e.message : "Bad request" }, { status: 400 });
     }
