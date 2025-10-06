@@ -9,7 +9,7 @@ export default function QuoteForm() {
     const data = Object.fromEntries(new FormData(e.currentTarget));
     setStatus("Sending...");
     try {
-      const r = await fetch("/api/send-email", {
+      const r = await fetch("/api/sendmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
