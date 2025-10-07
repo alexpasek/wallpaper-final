@@ -1,25 +1,31 @@
-// Cloudflare Pages Function: POST /api/sendmail
-export const onRequestPost = async({ request }) => {
+// Cloudflare Pages Function: /api/sendmail
+export const onRequestPost = async({ request, env }) => {
     try {
         const data = await request.json();
         const { name = "", email = "", phone = "", details = "" } = data;
 
-        // destination inbox
-        const TO = "webtoroonto22@gmail.com";
+        const RESEND_API_KEY = env.RESEND_API_KEY;
+        const TO = "webtoronto22@gmail.com"; // your inbox
+        const FROM = "no-reply@epfproservices.com"; // your domain sender
 
-        // MailChannels payload (works on Cloudflare)
-        const payload = {
-            personalizations: [{ to: [{ email: TO }] }],
-            from: {
-                // use a domain Cloudflare will allow; your Pages subdomain is safe
-                email: "no-reply@wallpaper-final.pages.dev",
-                name: "Wallpaper Removal Pro",
+        if (!RESEND_API_KEY) {
+            return new Response(
+                JSON.stringify({ ok: false, error: "Missing RESEND_API_KEY" }), { status: 500 }
+            );
+        }
+
+        const r = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${RESEND_API_KEY}`,
+                "Content-Type": "application/json",
             },
-            headers: email ? { "Reply-To": email } : undefined,
-            subject: "New Quote Request",
-            content: [{
-                type: "text/plain",
-                value: `New quote request
+            body: JSON.stringify({
+                from: FROM,
+                to: [TO],
+                reply_to: email || undefined,
+                subject: "New Quote Request from Wallpaper Removal PRO",
+                text: `New quote request
   
   Name: ${name}
   Email: ${email}
@@ -27,26 +33,23 @@ export const onRequestPost = async({ request }) => {
   
   Details:
   ${details}`,
-            }, ],
-        };
-
-        const r = await fetch("https://api.mailchannels.net/tx/v1/send", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(payload),
+            }),
         });
 
-        const body = await r.text();
+        const text = await r.text();
+
         if (!r.ok) {
-            return new Response(JSON.stringify({ ok: false, body }), { status: 502 });
+            return new Response(
+                JSON.stringify({ ok: false, status: r.status, error: text }), { status: 502 }
+            );
         }
-        return new Response(JSON.stringify({ ok: true }), { status: 200 });
+
+        return new Response(
+            JSON.stringify({ ok: true, message: "Email sent successfully!" }), { status: 200 }
+        );
     } catch (e) {
         return new Response(
-            JSON.stringify({
-                ok: false,
-                error: e && e.message ? e.message : "Bad request",
-            }), { status: 400 }
+            JSON.stringify({ ok: false, error: e.message || "Bad request" }), { status: 400 }
         );
     }
 };
