@@ -25,7 +25,7 @@ export default function QuoteForm() {
 
       if (r.ok) {
         // ✅ go to the dedicated thank-you page
-        router.push("/thank-you");
+        router.push("/thank-you/");
         return;
       }
 

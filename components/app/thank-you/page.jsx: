@@ -1,7 +1,7 @@
 // app/thank-you/page.jsx
 export const metadata = {
   title: "Thank You | Wallpaper Removal Pro",
-  robots: { index: false }, // keep this page out of search
+  robots: { index: false },
 };
 
 export default function ThankYou() {
@@ -13,12 +13,10 @@ export default function ThankYou() {
       <p className="mt-4 text-gray-600">
         We’ll reach out shortly. If it’s urgent, call us now.
       </p>
-
-      {/* Use your existing CTA style if you have it; otherwise Tailwind fallback */}
       <div className="mt-10">
         <a
           href="tel:+16479236784"
-          className="btn-cta inline-block px-8 py-4 rounded-2xl shadow-lg
+          className="inline-block px-8 py-4 rounded-2xl shadow-lg
                      bg-gradient-to-b from-blue-500 to-blue-700 text-white
                      hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
