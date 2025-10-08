@@ -1,9 +1,9 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
-module.exports = {
-  output: 'export',
-  trailingSlash: true,
-  images: { unoptimized: true },
-  outputFileTracingRoot: __dirname,
+const nextConfig = {
+    // REMOVE: output: 'export',
+    trailingSlash: true, // ok to keep
+    images: { unoptimized: true }, // ok to keep
+    outputFileTracingRoot: __dirname,
 };
+
+module.exports = nextConfig;
