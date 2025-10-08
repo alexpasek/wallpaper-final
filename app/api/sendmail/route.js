@@ -1,31 +1,32 @@
-// app/api/sendmail/route.js
+export const runtime = "edge";
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
     try {
-        const data = await req.json();
-        const { name = "", email = "", phone = "", details = "" } = data;
+        const {
+            name = "",
+                email = "",
+                phone = "",
+                details = "",
+        } = await req.json();
 
-        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        // receive in Gmail (works fine)
         const TO = "webtoronto22@gmail.com";
-        const FROM = "no-reply@epfproservices.com";
 
-        if (!RESEND_API_KEY) {
-            return NextResponse.json({ ok: false, error: "Missing RESEND_API_KEY" }, { status: 500 });
-        }
-
-        const r = await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${RESEND_API_KEY}`,
-                "Content-Type": "application/json",
+        // MailChannels (built into Cloudflare)
+        const payload = {
+            personalizations: [{ to: [{ email: TO }] }],
+            from: {
+                email: "no-reply@wallpaper-final.pages.dev",
+                name: "Wallpaper Removal Pro",
             },
-            body: JSON.stringify({
-                from: FROM,
-                to: [TO],
-                reply_to: email || undefined,
-                subject: "New Quote Request",
-                text: `New quote request:
+            headers: email ? { "Reply-To": email } : undefined,
+            subject: "New Quote Request",
+            content: [{
+                type: "text/plain",
+                value: `New quote request
 
 Name: ${name}
 Email: ${email}
@@ -33,16 +34,20 @@ Phone: ${phone}
 
 Details:
 ${details}`,
-            }),
+            }, ],
+        };
+
+        const r = await fetch("https://api.mailchannels.net/tx/v1/send", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(payload),
         });
 
-        const text = await r.text();
-        if (!r.ok) {
-            return NextResponse.json({ ok: false, status: r.status, error: text }, { status: 502 });
-        }
-
-        return NextResponse.json({ ok: true, message: "Email sent successfully!" });
+        const txt = await r.text();
+        if (!r.ok)
+            return NextResponse.json({ ok: false, status: r.status, body: txt }, { status: 502 });
+        return NextResponse.json({ ok: true });
     } catch (e) {
-        return NextResponse.json({ ok: false, error: e.message || "Bad request" }, { status: 400 });
+        return NextResponse.json({ ok: false, error: e && e.message ? e.message : "Bad request" }, { status: 400 });
     }
 }
