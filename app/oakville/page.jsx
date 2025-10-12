@@ -12,6 +12,6 @@ export default function City(){
   <p className="mt-1 text-sm">Official site: <a className="underline" href="https://www.oakville.ca/" target="_blank" rel="noopener">https://www.oakville.ca/</a></p>
   <section data-lightbox-scope className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">{images.map((src,i)=>(<img data-lightbox="true" key={i} src={src} alt="Oakville project" className="w-full h-56 object-cover rounded-2xl border shadow"/>))}</section>
   <CityCopy city="Oakville" neighborhoods={["Bronte","Glen Abbey","River Oaks","Kerr Village","Old Oakville","Clearview","Falgarwood","Iroquois Ridge","Uptown Core"]}/>
-  <p className="mt-6 flex gap-3"><a className="btn-cta" href="tel:+16479236784">📞 (647) 923‑6784</a><a className="btn-cta" href="/quote/">Get a fast quote</a></p>
+  <p className="mt-6 flex gap-3"><a className="btn-cta" href="tel:+16479236784">📞 (647) 923‑6784</a><a className="btn-cta" href="/quote/">Get a fast quote!</a></p>
  </div>);
 }
