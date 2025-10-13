@@ -1,5 +1,5 @@
 // ===============================
-// data/cities.js (JavaScript)
+// data/cities.js
 // ===============================
 export const cities = [{
         name: "Toronto",
@@ -41,14 +41,40 @@ export const cities = [{
             { name: "Long Branch", slug: "long-branch" },
             { name: "Humber Bay Shores", slug: "humber-bay-shores" },
             { name: "The Kingsway", slug: "the-kingsway" },
-            { name: "Islington–City Centre West", slug: "islington-city-centre-west" },
+            {
+                name: "Islington–City Centre West",
+                slug: "islington-city-centre-west",
+            },
             { name: "Willowdale", slug: "willowdale" },
             { name: "Don Mills", slug: "don-mills" },
             { name: "Bayview Village", slug: "bayview-village" },
             { name: "Scarborough Bluffs", slug: "scarborough-bluffs" },
             { name: "Guildwood", slug: "guildwood" },
-            { name: "Birch Cliff", slug: "birch-cliff" }
-        ]
+            { name: "Birch Cliff", slug: "birch-cliff" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Benjamin Moore — PAINTSTORE TORONTO",
+                    address: "107 Baldwin St, Toronto, ON M5T 1L5",
+                    url: "https://www.benjaminmoore.com/en-ca/store-locator/10007059/paintstore-toronto",
+                },
+                {
+                    name: "Sherwin-Williams — Danforth",
+                    address: "2944 Danforth Ave, Toronto, ON M4C 1M5",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/toronto/on/768942",
+                },
+                {
+                    name: "The Home Depot — Stockyards",
+                    address: "2121 St Clair Ave W, Toronto, ON M6N 5A8",
+                    url: "https://stores.homedepot.ca/on/toronto/home-improvement-toronto-on-7013.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.toronto.ca/services-payments/building-construction/permits/",
+                hazardousWasteURL: "https://www.toronto.ca/services-payments/recycling-organics-garbage/household-hazardous-waste/",
+                dropOffDepotsURL: "https://www.toronto.ca/services-payments/recycling-organics-garbage/drop-off-depots/locations/",
+            },
+        },
     },
     {
         name: "Mississauga",
@@ -71,8 +97,31 @@ export const cities = [{
             { name: "East Credit", slug: "east-credit" },
             { name: "Meadowvale Village", slug: "meadowvale-village" },
             { name: "Malton", slug: "malton" },
-            { name: "Sheridan", slug: "sheridan" }
-        ]
+            { name: "Sheridan", slug: "sheridan" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Benjamin Moore — The Paint People (Cooksville)",
+                    address: "720 Burnhamthorpe Rd W Unit 21, Mississauga, ON L5C 3G1",
+                    url: "https://www.benjaminmoore.com/en-ca/store-locator/10007235/the-paint-people",
+                },
+                {
+                    name: "Sherwin-Williams — Dundas St E",
+                    address: "1560 Dundas St E, Mississauga, ON L4X 1L4",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/mississauga/on/706432",
+                },
+                {
+                    name: "The Home Depot — Mississauga South",
+                    address: "3065 Mavis Rd, Mississauga, ON L5C 1T7",
+                    url: "https://stores.homedepot.ca/on/mississauga/home-improvement-mississauga-on-7106.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.mississauga.ca/services-and-programs/building-and-renovating/building-permits/",
+                hazardousWasteURL: "https://peelregion.ca/waste/crc/household-hazardous",
+                dropOffDepotsURL: "https://peelregion.ca/waste/crc/locations-drop-off-hours",
+            },
+        },
     },
     {
         name: "Oakville",
@@ -92,8 +141,30 @@ export const cities = [{
             { name: "Iroquois Ridge North", slug: "iroquois-ridge-north" },
             { name: "Iroquois Ridge South", slug: "iroquois-ridge-south" },
             { name: "Falgarwood", slug: "falgarwood" },
-            { name: "Uptown Core", slug: "uptown-core" }
-        ]
+            { name: "Uptown Core", slug: "uptown-core" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Speers Paint & Decor — Benjamin Moore",
+                    address: "275 Speers Rd, Oakville, ON L6K 2G1",
+                    url: "https://www.benjaminmoore.com/en-ca/store-locator/10007907/speers-paint-and-decor-ltd",
+                },
+                {
+                    name: "Sherwin-Williams — Oakville",
+                    address: "510 Speers Rd Unit B, Oakville, ON L6K 2G3",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/oakville/on/708045",
+                },
+                {
+                    name: "The Home Depot — Oakville (South)",
+                    address: "99 Cross Ave, Oakville, ON L6J 2W7",
+                    url: "https://stores.homedepot.ca/on/oakville/home-improvement-oakville-on-7103.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.oakville.ca/home-environment/building-renovations/building-permits-inspections/building-permits/",
+                hazardousWasteURL: "https://www.halton.ca/for-residents/recycling-waste/halton-waste-management-site",
+            },
+        },
     },
     {
         name: "Burlington",
@@ -112,8 +183,30 @@ export const cities = [{
             { name: "Roseland", slug: "roseland" },
             { name: "Elizabeth Gardens", slug: "elizabeth-gardens" },
             { name: "Brant", slug: "brant" },
-            { name: "Alton Village", slug: "alton-village" }
-        ]
+            { name: "Alton Village", slug: "alton-village" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Burlington Paint & Decorating — Benjamin Moore",
+                    address: "3300 Fairview St, Burlington, ON L7N 3N7",
+                    url: "https://www.benjaminmoore.com/en-ca/store-locator/10007338/burlington-paint-decorating",
+                },
+                {
+                    name: "Sherwin-Williams — Burlington South",
+                    address: "3350 Fairview St Unit 10, Burlington, ON L7N 3L5",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/burlington/on/707643",
+                },
+                {
+                    name: "The Home Depot — Burlington",
+                    address: "3050 Davidson Ct, Burlington, ON L7M 4M9",
+                    url: "https://stores.homedepot.ca/on/burlington/home-improvement-burlington-on-7009.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.burlington.ca/en/building-and-renovating/building-permits.aspx",
+                hazardousWasteURL: "https://www.halton.ca/for-residents/recycling-waste/halton-waste-management-site",
+            },
+        },
     },
     {
         name: "Hamilton",
@@ -130,8 +223,30 @@ export const cities = [{
             { name: "Beasley", slug: "beasley" },
             { name: "Hamilton Mountain", slug: "hamilton-mountain" },
             { name: "Binbrook", slug: "binbrook" },
-            { name: "Rosedale", slug: "rosedale" }
-        ]
+            { name: "Rosedale", slug: "rosedale" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Hamilton Decorating Centre — Benjamin Moore",
+                    address: "256 Ottawa St N, Hamilton, ON L8H 3Z7",
+                    url: "https://www.benjaminmoore.com/en-ca/store-locator/10007429/hamilton-decorating-centre",
+                },
+                {
+                    name: "Sherwin-Williams — Upper Ottawa St",
+                    address: "1575 Upper Ottawa St Unit 1, Hamilton, ON L8W 3E2",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/hamilton/on/708281",
+                },
+                {
+                    name: "The Home Depot — Hamilton (Centennial Pkwy)",
+                    address: "350 Centennial Pkwy N, Hamilton, ON L8E 2X4",
+                    url: "https://stores.homedepot.ca/on/hamilton/home-improvement-hamilton-on-7053.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.hamilton.ca/build-invest-grow/construction-renovation/residential-building-renovation/building-permit",
+                hazardousWasteURL: "https://www.hamilton.ca/home-neighbourhood/garbage-recycling/waste-recycling-facilities/household-hazardous-waste",
+            },
+        },
     },
     {
         name: "Milton",
@@ -151,8 +266,30 @@ export const cities = [{
             { name: "Ford", slug: "ford" },
             { name: "Cobban", slug: "cobban" },
             { name: "Walker", slug: "walker" },
-            { name: "Bowes", slug: "bowes" }
-        ]
+            { name: "Bowes", slug: "bowes" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Southside Paint & Wallpaper — Benjamin Moore",
+                    address: "1030 Kennedy Cir, Milton, ON",
+                    url: "https://www.southsidepaint.ca/pages/contact",
+                },
+                {
+                    name: "Sherwin-Williams — Milton",
+                    address: "840 Main St E Unit 7, Milton, ON L9T 0J4",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/milton/on/707665",
+                },
+                {
+                    name: "The Home Depot — Milton",
+                    address: "1013 Maple Ave, Milton, ON L9T 0A5",
+                    url: "https://stores.homedepot.ca/on/milton/home-improvement-milton-on-7029.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.milton.ca/en/business-and-development/building-permits.aspx",
+                hazardousWasteURL: "https://www.halton.ca/for-residents/recycling-waste/halton-waste-management-site",
+            },
+        },
     },
     {
         name: "Etobicoke",
@@ -163,14 +300,39 @@ export const cities = [{
             { name: "Long Branch", slug: "long-branch" },
             { name: "Humber Bay Shores", slug: "humber-bay-shores" },
             { name: "The Queensway", slug: "the-queensway" },
-            { name: "Islington–City Centre West", slug: "islington-city-centre-west" },
+            {
+                name: "Islington–City Centre West",
+                slug: "islington-city-centre-west",
+            },
             { name: "The Kingsway", slug: "the-kingsway" },
             { name: "Sunnylea", slug: "sunnylea" },
             { name: "Markland Wood", slug: "markland-wood" },
             { name: "Princess–Rosethorn", slug: "princess-rosethorn" },
             { name: "Rexdale", slug: "rexdale" },
-            { name: "Richview", slug: "richview" }
-        ]
+            { name: "Richview", slug: "richview" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Village Paint & Wallpaper — Benjamin Moore",
+                    address: "4949 Dundas St W, Etobicoke, ON M9A 1B6",
+                    url: "https://www.benjaminmoore.com/en-ca/store-locator/10003742/village-paint-wallpaper",
+                },
+                {
+                    name: "Sherwin-Williams — The Queensway",
+                    address: "724 The Queensway, Etobicoke, ON M8Y 1L3",
+                    url: "https://industrial.sherwin-williams.com/na/en/canada/store-locator/paint-store/etobicoke/on/707479.html",
+                },
+                {
+                    name: "The Home Depot — Etobicoke South",
+                    address: "193 North Queen St, Etobicoke, ON M9C 4Y1",
+                    url: "https://stores.homedepot.ca/on/etobicoke/home-improvement-etobicoke-on-7011.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.toronto.ca/services-payments/building-construction/permits/",
+                hazardousWasteURL: "https://www.toronto.ca/services-payments/recycling-organics-garbage/household-hazardous-waste/",
+            },
+        },
     },
     {
         name: "North York",
@@ -187,7 +349,29 @@ export const cities = [{
             { name: "Clanton Park", slug: "clanton-park" },
             { name: "Flemingdon Park", slug: "flemingdon-park" },
             { name: "Victoria Village", slug: "victoria-village" },
-            { name: "York University Heights", slug: "york-university-heights" }
-        ]
-    }
+            { name: "York University Heights", slug: "york-university-heights" },
+        ],
+        signals: {
+            paintStores: [{
+                    name: "Monarch Paints — North York (Benjamin Moore)",
+                    address: "3620 Dufferin St, North York, ON M3K 1N7",
+                    url: "https://www.monarchpaints.ca/pages/north-york-benjamin-moore-paint-store-location",
+                },
+                {
+                    name: "Sherwin-Williams — Willowdale",
+                    address: "138 Willowdale Ave, North York, ON M2N 4Y4",
+                    url: "https://www.sherwin-williams.com/store-locator/paint-store/north-york/on/707498",
+                },
+                {
+                    name: "The Home Depot — Yorkdale",
+                    address: "90 Billy Bishop Way, North York, ON M3K 2C8",
+                    url: "https://stores.homedepot.ca/on/toronto/home-improvement-toronto-on-7129.html",
+                },
+            ],
+            authorities: {
+                permitsURL: "https://www.toronto.ca/services-payments/building-construction/permits/",
+                hazardousWasteURL: "https://www.toronto.ca/services-payments/recycling-organics-garbage/household-hazardous-waste/",
+            },
+        },
+    },
 ];
