@@ -1,10 +1,193 @@
-export const cities=[
-  {name:'Toronto',slug:'toronto',url:'https://www.toronto.ca/'},
-  {name:'North York',slug:'north-york',url:'https://www.toronto.ca/'},
-  {name:'Etobicoke',slug:'etobicoke',url:'https://www.toronto.ca/'},
-  {name:'Mississauga',slug:'mississauga',url:'https://www.mississauga.ca/'},
-  {name:'Oakville',slug:'oakville',url:'https://www.oakville.ca/'},
-  {name:'Milton',slug:'milton',url:'https://www.milton.ca/'},
-  {name:'Burlington',slug:'burlington',url:'https://www.burlington.ca/'},
-  {name:'Hamilton',slug:'hamilton',url:'https://www.hamilton.ca/'}
+// ===============================
+// data/cities.js (JavaScript)
+// ===============================
+export const cities = [{
+        name: "Toronto",
+        slug: "toronto",
+        neighborhoods: [
+            { name: "Downtown", slug: "downtown" },
+            { name: "Old Toronto", slug: "old-toronto" },
+            { name: "Yorkville", slug: "yorkville" },
+            { name: "Annex", slug: "annex" },
+            { name: "Kensington Market", slug: "kensington-market" },
+            { name: "Trinity-Bellwoods", slug: "trinity-bellwoods" },
+            { name: "Little Italy", slug: "little-italy" },
+            { name: "Little Portugal", slug: "little-portugal" },
+            { name: "Liberty Village", slug: "liberty-village" },
+            { name: "Parkdale", slug: "parkdale" },
+            { name: "High Park", slug: "high-park" },
+            { name: "Roncesvalles", slug: "roncesvalles" },
+            { name: "The Junction", slug: "the-junction" },
+            { name: "Swansea", slug: "swansea" },
+            { name: "Danforth (Greektown)", slug: "danforth" },
+            { name: "Leslieville", slug: "leslieville" },
+            { name: "Riverside", slug: "riverside" },
+            { name: "The Beaches", slug: "the-beaches" },
+            { name: "Cabbagetown", slug: "cabbagetown" },
+            { name: "St. Lawrence", slug: "st-lawrence" },
+            { name: "Distillery District", slug: "distillery-district" },
+            { name: "Regent Park", slug: "regent-park" },
+            { name: "Midtown (Yonge & Eglinton)", slug: "midtown" },
+            { name: "Forest Hill", slug: "forest-hill" },
+            { name: "Rosedale", slug: "rosedale" },
+            { name: "Leaside", slug: "leaside" },
+            { name: "East York", slug: "east-york" },
+            { name: "York", slug: "york" },
+            { name: "North York", slug: "north-york" },
+            { name: "Etobicoke", slug: "etobicoke" },
+            { name: "Scarborough", slug: "scarborough" },
+            { name: "Mimico", slug: "mimico" },
+            { name: "New Toronto", slug: "new-toronto" },
+            { name: "Long Branch", slug: "long-branch" },
+            { name: "Humber Bay Shores", slug: "humber-bay-shores" },
+            { name: "The Kingsway", slug: "the-kingsway" },
+            { name: "Islington–City Centre West", slug: "islington-city-centre-west" },
+            { name: "Willowdale", slug: "willowdale" },
+            { name: "Don Mills", slug: "don-mills" },
+            { name: "Bayview Village", slug: "bayview-village" },
+            { name: "Scarborough Bluffs", slug: "scarborough-bluffs" },
+            { name: "Guildwood", slug: "guildwood" },
+            { name: "Birch Cliff", slug: "birch-cliff" }
+        ]
+    },
+    {
+        name: "Mississauga",
+        slug: "mississauga",
+        neighborhoods: [
+            { name: "Port Credit", slug: "port-credit" },
+            { name: "Streetsville", slug: "streetsville" },
+            { name: "Clarkson", slug: "clarkson" },
+            { name: "Lorne Park", slug: "lorne-park" },
+            { name: "Erin Mills", slug: "erin-mills" },
+            { name: "Meadowvale", slug: "meadowvale" },
+            { name: "Cooksville", slug: "cooksville" },
+            { name: "Applewood", slug: "applewood" },
+            { name: "Dixie", slug: "dixie" },
+            { name: "Churchill Meadows", slug: "churchill-meadows" },
+            { name: "Lakeview", slug: "lakeview" },
+            { name: "Mineola", slug: "mineola" },
+            { name: "Hurontario", slug: "hurontario" },
+            { name: "City Centre", slug: "city-centre" },
+            { name: "East Credit", slug: "east-credit" },
+            { name: "Meadowvale Village", slug: "meadowvale-village" },
+            { name: "Malton", slug: "malton" },
+            { name: "Sheridan", slug: "sheridan" }
+        ]
+    },
+    {
+        name: "Oakville",
+        slug: "oakville",
+        neighborhoods: [
+            { name: "Downtown Oakville", slug: "downtown-oakville" },
+            { name: "Old Oakville", slug: "old-oakville" },
+            { name: "Kerr Village", slug: "kerr-village" },
+            { name: "Bronte", slug: "bronte" },
+            { name: "Bronte Creek", slug: "bronte-creek" },
+            { name: "Glen Abbey", slug: "glen-abbey" },
+            { name: "River Oaks", slug: "river-oaks" },
+            { name: "West Oak Trails", slug: "west-oak-trails" },
+            { name: "Palermo West", slug: "palermo-west" },
+            { name: "Clearview", slug: "clearview" },
+            { name: "College Park", slug: "college-park" },
+            { name: "Iroquois Ridge North", slug: "iroquois-ridge-north" },
+            { name: "Iroquois Ridge South", slug: "iroquois-ridge-south" },
+            { name: "Falgarwood", slug: "falgarwood" },
+            { name: "Uptown Core", slug: "uptown-core" }
+        ]
+    },
+    {
+        name: "Burlington",
+        slug: "burlington",
+        neighborhoods: [
+            { name: "Aldershot", slug: "aldershot" },
+            { name: "Tyandaga", slug: "tyandaga" },
+            { name: "Brant Hills", slug: "brant-hills" },
+            { name: "Mountainside", slug: "mountainside" },
+            { name: "Headon Forest", slug: "headon-forest" },
+            { name: "Palmer", slug: "palmer" },
+            { name: "Millcroft", slug: "millcroft" },
+            { name: "Tansley", slug: "tansley" },
+            { name: "Orchard", slug: "orchard" },
+            { name: "Shoreacres", slug: "shoreacres" },
+            { name: "Roseland", slug: "roseland" },
+            { name: "Elizabeth Gardens", slug: "elizabeth-gardens" },
+            { name: "Brant", slug: "brant" },
+            { name: "Alton Village", slug: "alton-village" }
+        ]
+    },
+    {
+        name: "Hamilton",
+        slug: "hamilton",
+        neighborhoods: [
+            { name: "Ancaster", slug: "ancaster" },
+            { name: "Dundas", slug: "dundas" },
+            { name: "Stoney Creek", slug: "stoney-creek" },
+            { name: "Waterdown", slug: "waterdown" },
+            { name: "Westdale", slug: "westdale" },
+            { name: "Kirkendall", slug: "kirkendall" },
+            { name: "Durand", slug: "durand" },
+            { name: "Corktown", slug: "corktown" },
+            { name: "Beasley", slug: "beasley" },
+            { name: "Hamilton Mountain", slug: "hamilton-mountain" },
+            { name: "Binbrook", slug: "binbrook" },
+            { name: "Rosedale", slug: "rosedale" }
+        ]
+    },
+    {
+        name: "Milton",
+        slug: "milton",
+        neighborhoods: [
+            { name: "Old Milton", slug: "old-milton" },
+            { name: "Bronte Meadows", slug: "bronte-meadows" },
+            { name: "Dorset Park", slug: "dorset-park" },
+            { name: "Dempsey", slug: "dempsey" },
+            { name: "Clarke", slug: "clarke" },
+            { name: "Beaty", slug: "beaty" },
+            { name: "Coates", slug: "coates" },
+            { name: "Willmott", slug: "willmott" },
+            { name: "Scott", slug: "scott" },
+            { name: "Harrison", slug: "harrison" },
+            { name: "Timberlea", slug: "timberlea" },
+            { name: "Ford", slug: "ford" },
+            { name: "Cobban", slug: "cobban" },
+            { name: "Walker", slug: "walker" },
+            { name: "Bowes", slug: "bowes" }
+        ]
+    },
+    {
+        name: "Etobicoke",
+        slug: "etobicoke",
+        neighborhoods: [
+            { name: "Mimico", slug: "mimico" },
+            { name: "New Toronto", slug: "new-toronto" },
+            { name: "Long Branch", slug: "long-branch" },
+            { name: "Humber Bay Shores", slug: "humber-bay-shores" },
+            { name: "The Queensway", slug: "the-queensway" },
+            { name: "Islington–City Centre West", slug: "islington-city-centre-west" },
+            { name: "The Kingsway", slug: "the-kingsway" },
+            { name: "Sunnylea", slug: "sunnylea" },
+            { name: "Markland Wood", slug: "markland-wood" },
+            { name: "Princess–Rosethorn", slug: "princess-rosethorn" },
+            { name: "Rexdale", slug: "rexdale" },
+            { name: "Richview", slug: "richview" }
+        ]
+    },
+    {
+        name: "North York",
+        slug: "north-york",
+        neighborhoods: [
+            { name: "Willowdale", slug: "willowdale" },
+            { name: "Newtonbrook", slug: "newtonbrook" },
+            { name: "Bayview Village", slug: "bayview-village" },
+            { name: "Don Mills", slug: "don-mills" },
+            { name: "Parkwoods", slug: "parkwoods" },
+            { name: "York Mills", slug: "york-mills" },
+            { name: "Lansing–Westgate", slug: "lansing-westgate" },
+            { name: "Bathurst Manor", slug: "bathurst-manor" },
+            { name: "Clanton Park", slug: "clanton-park" },
+            { name: "Flemingdon Park", slug: "flemingdon-park" },
+            { name: "Victoria Village", slug: "victoria-village" },
+            { name: "York University Heights", slug: "york-university-heights" }
+        ]
+    }
 ];

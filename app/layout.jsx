@@ -29,42 +29,81 @@ function Header(){
     {href:"/services/drywall-installation/",label:"Drywall Installation"},
     {href:"/services/interior-painting/",label:"Interior Painting"}
   ];
-  return(<header className="bg-white border-b sticky top-0 z-40">
-    <div className="container-x py-2 md:py-3 flex items-center gap-3">
-      <Link href="/" className="flex items-center gap-2 min-w-0">
-        <img src="/logo.png" alt="Wallpaper Removal Pro" className="w-auto h-14 md:h-15 object-contain"/>
-        <span className="text-lg md:text-xl font-semibold leading-none whitespace-nowrap truncate">Wallpaper Removal Pro</span>
-      </Link>
-      <div className="hidden md:flex items-center gap-3 ml-auto">
-        <a href={PHONE_HREF} className="btn-cta whitespace-nowrap">📞 {PHONE_NUMBER}</a>
-        <Link href="/quote/" className="btn-cta whitespace-nowrap">Get Quote</Link>
-      </div>
-    </div>
-    <div className="hidden lg:block border-t">
-      <div className="container-x py-2 flex items-center gap-6 text-sm">
-        <Link href="/" className="hover:underline whitespace-nowrap">Home</Link>
-        {services.map(s=>(<Link key={s.href} href={s.href} className="hover:underline whitespace-nowrap">{s.label}</Link>))}
-        <Link href="/blog/" className="hover:underline whitespace-nowrap">Blog</Link>
-        <Link href="/before-after/" className="hover:underline whitespace-nowrap">Before & After</Link>
-      </div>
-    </div>
-    <div className="lg:hidden sticky-subnav">
-      <div className="container-x py-2 space-y-2">
-        <div className="flex items-center justify-between px-1">
-          <a href={PHONE_HREF} className="btn-cta px-4 py-2 text-base">📞 Call</a>
-          <Link href="/quote/" className="btn-cta px-4 py-2 text-base">Get Quote</Link>
+  return (
+    <header className="bg-white border-b md:sticky md:top-0 md:z-40">
+      <div className="container-x py-2 md:py-3 flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2 min-w-0">
+          <img
+            src="/logo.png"
+            alt="Wallpaper Removal Pro"
+            className="w-auto h-14 md:h-15 object-contain"
+          />
+          <span className="text-lg md:text-xl font-semibold leading-none whitespace-nowrap truncate">
+            Wallpaper Removal Pro
+          </span>
+        </Link>
+        <div className="hidden md:flex items-center gap-3 ml-auto">
+          <a href={PHONE_HREF} className="btn-cta whitespace-nowrap">
+            📞 {PHONE_NUMBER}
+          </a>
+          <Link href="/quote/" className="btn-cta whitespace-nowrap">
+            Get Quote
+          </Link>
         </div>
-        <div className="scroller">
-          <Link href="/">Home</Link>
-          <Link href="/services/wallpaper/">Wallpaper</Link>
-          <Link href="/services/popcorn/">Popcorn</Link>
-          <Link href="/services/drywall-installation/">Drywall</Link>
-          <Link href="/services/interior-painting/">Painting</Link>
-        </div>
-        <div className="scroller">{cities.map(c=>(<Link key={c.slug} href={`/${c.slug}/`}>{c.name}</Link>))}</div>
       </div>
-    </div>
-  </header>);
+      <div className="hidden lg:block border-t">
+        <div className="container-x py-2 flex items-center gap-6 text-sm">
+          <Link href="/" className="hover:underline whitespace-nowrap">
+            Home
+          </Link>
+          {services.map((s) => (
+            <Link
+              key={s.href}
+              href={s.href}
+              className="hover:underline whitespace-nowrap"
+            >
+              {s.label}
+            </Link>
+          ))}
+          <Link href="/blog/" className="hover:underline whitespace-nowrap">
+            Blog
+          </Link>
+          <Link
+            href="/before-after/"
+            className="hover:underline whitespace-nowrap"
+          >
+            Before & After
+          </Link>
+        </div>
+      </div>
+      <div className="lg:hidden ">
+        <div className="container-x py-2 space-y-2">
+          <div className="flex items-center justify-between px-1">
+            <a href={PHONE_HREF} className="btn-cta px-4 py-2 text-base">
+              📞 Call
+            </a>
+            <Link href="/quote/" className="btn-cta px-4 py-2 text-base">
+              Get Quote
+            </Link>
+          </div>
+          <div className="scroller">
+            <Link href="/">Home</Link>
+            <Link href="/services/wallpaper/">Wallpaper</Link>
+            <Link href="/services/popcorn/">Popcorn</Link>
+            <Link href="/services/drywall-installation/">Drywall</Link>
+            <Link href="/services/interior-painting/">Painting</Link>
+          </div>
+          <div className="scroller">
+            {cities.map((c) => (
+              <Link key={c.slug} href={`/${c.slug}/`}>
+                {c.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
 
 function Footer(){
