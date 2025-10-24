@@ -249,7 +249,7 @@ export default function Page() {
               </Link>
               {idx < cityLinks.length - 1 ? ", " : ""}
             </span>
-          ))}{" "}
+          ))}{" "} 
           and more.
         </p>
         <div className="mt-4">
