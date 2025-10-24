@@ -17,7 +17,9 @@ export function generateMetadata({ params }) {
     ? {
         title: `Popcorn Ceiling Removal in ${c.name} | Level 5 Skim, Prime & Paint`,
         description: `Popcorn removal in ${c.name}: dust-contained, Level 5 skim-coat, prime & paint. Fast quotes, clear scope, written warranty.`,
-        alternates: { canonical: `/service-areas/popcorn/${c.slug}` },
+        alternates: {
+          canonical: `/service-areas/popcorn/${c.slug}`,
+        },
         openGraph: {
           title: `Popcorn Ceiling Removal in ${c.name}`,
           description: `Dust-controlled removal or encapsulation in ${c.name}. Level 5 skim, prime & paint.`,

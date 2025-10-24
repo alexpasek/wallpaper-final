@@ -20,7 +20,9 @@ export async function generateMetadata({ params }) {
     ? {
         title: `Popcorn Ceiling Removal — ${n.name}, ${c.name} | Level 5 Skim, Prime, Paint`,
         description: `Popcorn removal in ${n.name}, ${c.name}: dust-contained, Level 5 skim-coat, prime & paint. Tidy, condo-friendly workflow.`,
-        alternates: { canonical: `/service-areas/popcorn/${c.slug}/${n.slug}` },
+        alternates: {
+          canonical: `/service-areas/popcorn/${c.slug}/${n.slug}`,
+        },
         openGraph: {
           title: `Popcorn Ceiling Removal — ${n.name}, ${c.name}`,
           description: `Dust-controlled removal or encapsulation in ${n.name}. Level 5 skim, prime & paint.`,
