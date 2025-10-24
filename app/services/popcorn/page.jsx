@@ -33,16 +33,13 @@ function JsonLd() {
           "Ceiling Skim Coat Level 5",
           "Interior Painting",
         ],
-        areaServed: areaServed,
+        areaServed,
         offers: {
           "@type": "Offer",
           priceCurrency: "CAD",
           availability: "https://schema.org/InStock",
         },
-        potentialAction: {
-          "@type": "RequestQuoteAction",
-          target: "/quote/",
-        },
+        potentialAction: { "@type": "RequestQuoteAction", target: "/quote/" },
       },
       {
         "@type": "FAQPage",
@@ -147,7 +144,7 @@ export default function Page() {
           </div>
         </div>
 
-        {/* Local internal linking for SEO */}
+        {/* City pills (internal linking for local SEO) */}
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
           {cities.map((c) => (
             <Link key={c.slug} href={`/${c.slug}/`} className="pill">
@@ -155,10 +152,14 @@ export default function Page() {
             </Link>
           ))}
         </div>
+        {/* Removed the in-page text menu */}
       </header>
 
-      {/* WHY CHOOSE US (conversion) */}
-      <section className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* WHY CHOOSE US */}
+      <section
+        id="proof"
+        className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4"
+      >
         <div className="card p-6 bg-white">
           <h3 className="text-xl font-semibold">Dust-Controlled</h3>
           <p className="text-gray-600 mt-2">
@@ -195,8 +196,11 @@ export default function Page() {
         ))}
       </div>
 
-      {/* PROCESS (SEO + trust) */}
-      <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* PROCESS */}
+      <section
+        id="process"
+        className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8"
+      >
         <div className="card p-6 bg-white">
           <h2 className="text-2xl font-semibold">Our Process</h2>
           <ul className="mt-3 space-y-2 text-gray-700 list-disc pl-5">
@@ -216,7 +220,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* LOCAL KEYWORDS / COVERAGE */}
+      {/* LOCAL KEYWORDS / COVERAGE + SINGLE BOTTOM BUTTON */}
       <section className="mt-10 card p-6 bg-white">
         <h2 className="text-2xl font-semibold">GTA Coverage</h2>
         <p className="mt-2 text-gray-700">
@@ -225,6 +229,11 @@ export default function Page() {
           Mills), Oakville, Burlington, Milton, Hamilton, Stoney Creek,
           Ancaster, Grimsby, Vaughan, Richmond Hill.
         </p>
+        <div className="mt-4">
+          <Link href="/service-areas/popcorn/" className="btn-cta">
+            Browse all service areas →
+          </Link>
+        </div>
       </section>
 
       {/* CONVERSION CTA */}
@@ -247,11 +256,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* LONG-FORM LOCAL SEO COPY (your existing component) */}
+      {/* LONG-FORM LOCAL SEO COPY */}
       <ServiceCopy service="Popcorn Ceiling Removal" />
 
-      {/* FAQ (visible; mirrors JSON-LD) */}
-      <section className="mt-10">
+      {/* FAQ */}
+      <section id="faq" className="mt-10">
         <h2 className="text-2xl font-semibold">FAQ</h2>
         <details className="card p-6 bg-white mt-4">
           <summary className="font-medium">
