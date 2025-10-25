@@ -28,7 +28,7 @@ export default function Page() {
         <p className="mt-3 text-gray-700">
           Pick your <strong>city</strong>, or jump straight to a{" "}
           <strong>neighbourhood</strong> page with {`"`}popcorn ceiling removal
-          in …{`"`} content (SEO-local + sales optimized).
+          in …{`"`} 
         </p>
       </header>
 

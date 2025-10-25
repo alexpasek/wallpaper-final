@@ -7,6 +7,8 @@ import SEOJsonLd from "@/components/SEOJsonLd";
 import { cities } from "@/data/cities";
 import { BRAND_NAME, CONTACT, SERVICE_AREAS, PHONE_NUMBER, PHONE_HREF } from "./config";
 
+
+
 export const metadata={title:{default:"Wallpaper Removal Pro — GTA",template:"%s — Wallpaper Removal Pro"},description:"Wallpaper removal, popcorn ceiling removal, drywall installation & repair, and interior painting across the GTA."};
 
 export default function RootLayout({children}){
