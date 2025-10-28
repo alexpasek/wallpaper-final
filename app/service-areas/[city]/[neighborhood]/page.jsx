@@ -4,6 +4,7 @@ import { CONTACT } from "@/app/config";
 import { cities } from "@/data/cities";
 import { buildPopcornHoodCopy } from "@/lib/seoCopy";
 
+export const dynamic = "force-static";
 export const revalidate = 86400;
 export const dynamicParams = true; // allow any hood slug
 
@@ -12,6 +13,16 @@ function titleCase(slug = "") {
     .split("-")
     .map((s) => (s ? s[0].toUpperCase() + s.slice(1) : s))
     .join(" ");
+}
+
+export function generateStaticParams() {
+  const out = [];
+  for (const c of cities) {
+    for (const n of c.neighborhoods || []) {
+      out.push({ city: c.slug, neighborhood: n.slug });
+    }
+  }
+  return out;
 }
 
 export async function generateMetadata({ params }) {
