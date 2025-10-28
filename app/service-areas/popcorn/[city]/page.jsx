@@ -5,14 +5,28 @@ import { CONTACT } from "@/app/config";
 import LocalSignals from "@/components/LocalSignals";
 import { buildCityCopy } from "@/lib/seoCopy";
 
-export const revalidate = 86400;
-import { cities } from "@/data/cities";
 
 export const dynamic = "force-static";
 
+export const revalidate = 86400;
+
+
+
 
 export function generateStaticParams() {
-  return cities.map((c) => ({ city: c.slug }));
+  // If the file is [city]/page.jsx:
+  if (!("neighborhood" in (arguments[0] || {}))) {
+    // cities is imported from "@/data/cities"
+    return cities.map((c) => ({ city: c.slug }));
+  }
+
+  // If the file is [city]/[neighborhood]/page.jsx:
+  const out = [];
+  for (const c of cities) {
+    for (const n of c.neighborhoods || [])
+      out.push({ city: c.slug, neighborhood: n.slug });
+  }
+  return out;
 }
 
 export async function generateMetadata({ params }) {
