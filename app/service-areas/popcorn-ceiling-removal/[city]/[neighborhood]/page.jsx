@@ -44,7 +44,6 @@ export default async function Page({ params }) {
 
   const hoodName = titleCase(neighborhood);
   const copy = buildPopcornHoodCopy(city, neighborhood);
-
   const nearby = (c.neighborhoods || [])
     .filter((x) => x.slug !== neighborhood)
     .slice(0, 6);

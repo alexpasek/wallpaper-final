@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { CONTACT } from "@/app/config";
 import { ServiceCopy } from "@/components/LocalSEOCopy";
@@ -231,7 +230,10 @@ export default function Page() {
           Ancaster, Grimsby, Vaughan, Richmond Hill.
         </p>
         <div className="mt-4">
-          <Link href="/service-areas/popcorn/" className="btn-cta">
+          <Link
+            href="/service-areas/popcorn-ceiling-removal/"
+            className="btn-cta"
+          >
             Browse all service areas →
           </Link>
         </div>

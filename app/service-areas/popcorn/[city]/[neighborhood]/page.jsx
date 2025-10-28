@@ -45,7 +45,8 @@ export async function generateMetadata({ params }) {
       c.name +
       ": dust-contained, Level 5 skim, prime & paint. Condo-friendly workflow.",
     alternates: {
-      canonical: "/service-areas/popcorn/" + c.slug + "/" + n.slug,
+      canonical:
+        "/service-areas/popcorn-ceiling-removal/" + c.slug + "/" + n.slug,
     },
   };
 }
@@ -155,7 +156,12 @@ export default async function NeighborhoodPopcornPage({ params }) {
               return (
                 <Link
                   key={x.slug}
-                  href={"/service-areas/popcorn/" + c.slug + "/" + x.slug}
+                  href={
+                    "/service-areas/popcorn-ceiling-removal/" +
+                    c.slug +
+                    "/" +
+                    x.slug
+                  }
                   className="pill"
                 >
                   {x.name}
@@ -167,7 +173,10 @@ export default async function NeighborhoodPopcornPage({ params }) {
       )}
 
       <nav className="mt-10 text-sm text-gray-600">
-        <Link href={"/service-areas/popcorn/" + c.slug} className="underline">
+        <Link
+          href={"/service-areas/popcorn-ceiling-removal/" + c.slug}
+          className="underline"
+        >
           ← Back to {c.name}
         </Link>
       </nav>

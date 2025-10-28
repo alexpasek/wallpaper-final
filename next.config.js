@@ -14,5 +14,18 @@ const nextConfig = {
     trailingSlash: true,
     images: { unoptimized: true },
     outputFileTracingRoot: __dirname,
+    async redirects() {
+        return [{
+                source: "/service-areas/popcorn/mississauga/lorne-park",
+                destination: "/service-areas/popcorn-ceiling-removal/mississauga/lorne-park/",
+                permanent: true,
+            },
+            {
+                source: "/service-areas/popcorn/mississauga/lorne-park/",
+                destination: "/service-areas/popcorn-ceiling-removal/mississauga/lorne-park/",
+                permanent: true,
+            },
+        ];
+    },
 };
 module.exports = nextConfig;

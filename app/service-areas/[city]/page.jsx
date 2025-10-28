@@ -10,9 +10,22 @@ export const revalidate = 86400;
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
 }
+//old metadata
+// export function generateMetadata({ params }) {
+//   const c = cities.find((x) => x.slug === params.city);
+//   return c
+//     ? {
+//         title: `${c.name} Wallpaper Removal | Adhesive Wash, Skim-Coat, Paint`,
+//         description: `Wallpaper removal in ${c.name}: clean glue removal, drywall repairs, skim-coat, primer and paint-ready finish. Free onsite estimates.`,
+//         alternates: { canonical: `/service-areas/${c.slug}` },
+//       }
+//     : {};
+// }
 
-export function generateMetadata({ params }) {
-  const c = cities.find((x) => x.slug === params.city);
+// new:
+export async function generateMetadata({ params }) {
+  const { city } = await params;
+  const c = cities.find((x) => x.slug === city);
   return c
     ? {
         title: `${c.name} Wallpaper Removal | Adhesive Wash, Skim-Coat, Paint`,
@@ -23,12 +36,14 @@ export function generateMetadata({ params }) {
 }
 
 const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16479236784";
-
-export default function CityPage({ params: { city } }) {
+// new:
+export default async function CityPage({ params }) {
+  const { city } = await params;
   const c = cities.find((x) => x.slug === city);
   if (!c) return notFound();
 
-  const copy = buildCityCopy(c.slug);
+  const copy = buildCityCopy(c.slug); // keep your original usage
+  // ...everything else in your file stays the same
 
   return (
     <div className="container-x mx-auto px-4 py-10">
