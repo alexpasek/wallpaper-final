@@ -6,6 +6,14 @@ import LocalSignals from "@/components/LocalSignals";
 import { buildCityCopy } from "@/lib/seoCopy";
 
 export const revalidate = 86400;
+import { cities } from "@/data/cities";
+
+export const dynamic = "force-static";
+
+
+export function generateStaticParams() {
+  return cities.map((c) => ({ city: c.slug }));
+}
 
 export async function generateMetadata({ params }) {
   const { city } = await params;

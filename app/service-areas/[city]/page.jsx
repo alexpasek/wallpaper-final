@@ -4,8 +4,22 @@ import { cities } from "@/data/cities";
 import { CONTACT } from "@/app/config";
 import LocalSignals from "@/components/LocalSignals";
 import { buildCityCopy } from "@/lib/seoCopy";
+import { cities } from "@/data/cities";
 
+export const dynamic = "force-static";
 export const revalidate = 86400;
+
+export function generateStaticParams() {
+  const out = [];
+  for (const c of cities) {
+    for (const n of c.neighborhoods || []) {
+      out.push({ city: c.slug, neighborhood: n.slug });
+    }
+  }
+  return out;
+}
+
+
 
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
