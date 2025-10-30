@@ -81,10 +81,16 @@ function Header(){
       <div className="lg:hidden ">
         <div className="container-x py-2 space-y-2">
           <div className="flex items-center justify-between px-1">
-            <a href={PHONE_HREF} className="btn-cta px-4 py-2 text-base">
-              📞 Call
+            <a
+              href={PHONE_HREF}
+              className="btn-cta w-1/2 text-center flex gap-3"
+            >
+              📞 {PHONE_NUMBER}
             </a>
-            <Link href="/quote/" className="btn-cta px-4 py-2 text-base">
+            <Link
+              href="/quote/"
+              className="btn-cta max-w-screen-sm text-center flex gap-3"
+            >
               Get Quote
             </Link>
           </div>
@@ -95,13 +101,13 @@ function Header(){
             <Link href="/services/drywall-installation/">Drywall</Link>
             <Link href="/services/interior-painting/">Painting</Link>
           </div>
-          <div className="scroller">
+          {/* <div className="scroller">
             {cities.map((c) => (
               <Link key={c.slug} href={`/${c.slug}/`}>
                 {c.name}
               </Link>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

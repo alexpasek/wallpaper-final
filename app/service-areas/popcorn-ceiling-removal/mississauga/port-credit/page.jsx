@@ -392,7 +392,6 @@ export default function Page() {
             Simple comms: written scope before start, photo updates during,
             walk-through at handover.
           </li>
-      
         </ul>
       </section>
 
@@ -464,7 +463,7 @@ export default function Page() {
       </nav>
 
       {/* Sticky mobile CTA */}
-      <div className="fixed md:hidden bottom-4 inset-x-4 z-50">
+      <div className=" ">
         <div className="bg-white/95 backdrop-blur border shadow-xl rounded-2xl p-3 flex items-center justify-between gap-3">
           <a href={phoneHref} className="btn-cta flex-1 text-center">
             📞 Call (647) 923-6784

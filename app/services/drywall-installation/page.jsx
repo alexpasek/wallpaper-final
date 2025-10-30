@@ -2,8 +2,7 @@ import Link from "next/link";
 import { CONTACT } from "@/app/config";
 import { ServiceCopy } from "@/components/LocalSEOCopy";
 import { cities } from "@/data/cities";
-import QuoteForm from "@/components/QuoteForm";  
-
+import QuoteForm from "@/components/QuoteForm";
 
 export const revalidate = 86400;
 
@@ -218,11 +217,12 @@ export default function Page() {
         </div>
       </section>
 
-       {/*quote form*/}
-            <section className="mt-10 card p-6 bg-white">
+      {/*quote form*/}
+      <section className="mt-10 card p-6 bg-white">
         <h2 className="text-2xl font-semibold">Get a Fast Quote</h2>
         <p className="mt-2 text-gray-700">
-          Share a few details and we’ll reply quickly with scope, timeline, and a clear estimate.
+          Share a few details and we’ll reply quickly with scope, timeline, and
+          a clear estimate.
         </p>
         <div className="mt-6">
           <QuoteForm />
@@ -301,7 +301,7 @@ export default function Page() {
       </section>
 
       {/* STICKY MOBILE CTA */}
-      <div className="fixed md:hidden bottom-4 inset-x-4 z-50">
+      <div className=" ">
         <div className="bg-white/95 backdrop-blur border shadow-xl rounded-2xl p-3 flex items-center justify-between gap-3">
           <a href={CONTACT.phoneHref} className="btn-cta flex-1 text-center">
             📞 Call (647) 923-6784

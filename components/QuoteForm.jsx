@@ -41,29 +41,29 @@ export default function QuoteForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4"
+      className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 "
     >
       {/* your inputs... */}
       <input
-        className="border rounded-2xl p-3"
+        className=" border shadow-md border-gray-500 rounded-2xl p-3"
         name="name"
         placeholder="Name"
         required
       />
       <input
-        className="border rounded-2xl p-3"
+        className="border shadow-md  border-gray-500 rounded-2xl p-3"
         name="phone"
         placeholder="Phone"
         required
       />
       <input
-        className="border rounded-2xl p-3 md:col-span-2"
+        className="border shadow-md border-gray-500 rounded-2xl p-3 md:col-span-2"
         type="email"
         name="email"
         placeholder="Email"
       />
       <textarea
-        className="border rounded-2xl p-3 md:col-span-2"
+        className="border shadow-md border-gray-500 rounded-2xl p-3 md:col-span-2"
         rows={5}
         name="details"
         placeholder="Project details"

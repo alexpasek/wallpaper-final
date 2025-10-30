@@ -206,7 +206,7 @@ export default function Page() {
         </Link>
       </nav>
 
-      <div className="fixed md:hidden bottom-4 inset-x-4 z-50">
+      <div className=" ">
         <div className="bg-white/95 backdrop-blur border shadow-xl rounded-2xl p-3 flex items-center justify-between gap-3">
           <a href={phoneHref} className="btn-cta flex-1 text-center">
             📞 Call (647) 923-6784

@@ -249,12 +249,12 @@ export default function Page() {
       </section>
 
       {/* STICKY MOBILE CTA */}
-      <div className="fixed md:hidden bottom-4 inset-x-4 z-50">
+     
         <div className="bg-white/95 backdrop-blur border shadow-xl rounded-2xl p-3 flex items-center justify-between gap-3">
           <a href={PHONE_HREF} className="btn-cta flex-1 text-center">📞 Call {PHONE_NUMBER}</a>
           <a href="/quote/" className="btn-cta flex-1 text-center">Get My Quote</a>
         </div>
       </div>
-    </div>
+    
   );
 }
