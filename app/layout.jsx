@@ -6,6 +6,7 @@ import LightboxGlobal from "@/components/LightboxGlobal";
 import SEOJsonLd from "@/components/SEOJsonLd";
 import { cities } from "@/data/cities";
 import { BRAND_NAME, CONTACT, SERVICE_AREAS, PHONE_NUMBER, PHONE_HREF } from "./config";
+import ChatWidgetAgent from "@/components/ChatWidgetAgent";
 
 
 
@@ -19,6 +20,10 @@ export default function RootLayout({children}){
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"/>
       <SEOJsonLd/>
   </head><body className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+
+    {/*ai widget*/}
+    <ChatWidgetAgent />
+
     <Header/><TrustBar/><main className="flex-1">{children}</main><Footer/><StickyCTA/>
     <LightboxGlobal/>
 </body></html>);
@@ -33,7 +38,7 @@ function Header(){
   ];
   return (
     <header className="bg-white border-b md:sticky md:top-0 md:z-40">
-      <div className="container-x py-2 md:py-3 flex items-center gap-3">
+      <div className=" container-x py-2 md:py-3 flex h-16 items-center gap-3">
         <Link href="/" className="flex items-center gap-2 min-w-0">
           <img
             src="/logo.png"
@@ -78,18 +83,18 @@ function Header(){
           </Link>
         </div>
       </div>
-      <div className="lg:hidden ">
+      <div className="lg:hidden">
         <div className="container-x py-2 space-y-2">
-          <div className="flex items-center justify-between px-1">
+          <div className=" hidden sm:hidden  md:hidden  items-center justify-between px-1">
             <a
               href={PHONE_HREF}
-              className="btn-cta w-1/2 text-center flex gap-3"
+              className="  btn-cta w-1/2 text-center flex  gap-3"
             >
               📞 {PHONE_NUMBER}
             </a>
             <Link
+              className="  md:flex btn-cta max-w-screen-sm text-center gap-3"
               href="/quote/"
-              className="btn-cta max-w-screen-sm text-center flex gap-3"
             >
               Get Quote
             </Link>
