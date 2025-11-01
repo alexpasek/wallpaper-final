@@ -119,27 +119,82 @@ function Header(){
   );
 }
 
-function Footer(){
-  return(<footer className="mt-16 border-t bg-white">
-    <div className="container-x py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <div className="font-semibold">Wallpaper Removal Pro</div>
-        <p className="mt-2 text-sm text-gray-600">Serving {SERVICE_AREAS.join(' · ')}</p>
-        <p className="mt-3 text-sm text-gray-600">© 2025</p>
+function Footer() {
+  return (
+    <footer
+      className="mt-16 border-t bg-white"
+      itemScope
+      itemType="https://schema.org/LocalBusiness"
+    >
+      <div className="container-x py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div className="font-semibold" itemProp="name">
+            Wallpaper Removal Pro
+          </div>
+          <p className="mt-2 text-sm text-gray-600">
+            Serving {SERVICE_AREAS.join(" · ")}
+          </p>
+
+          {/* Address */}
+          <address
+            className="mt-3 not-italic text-sm text-gray-700"
+            itemProp="address"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <div className="font-medium text-gray-900">📍 Address</div>
+            <a
+              className="mt-1 block hover:underline"
+              href="https://maps.google.com/?q=736+Dundas+St+E,+Mississauga,+ON+L4Y+2B6"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open address in Google Maps"
+            >
+              <span itemProp="streetAddress">736 Dundas St E</span>,{" "}
+              <span itemProp="addressLocality">Mississauga</span>,{" "}
+              <span itemProp="addressRegion">ON</span>{" "}
+              <span itemProp="postalCode">L4Y 2B6</span>
+            </a>
+            <meta itemProp="addressCountry" content="CA" />
+          </address>
+
+          <p className="mt-3 text-sm text-gray-600">
+            © {new Date().getFullYear()}
+          </p>
+        </div>
+
+        <div>
+          <div className="font-semibold">Company</div>
+          <ul className="mt-3 space-y-2 text-sm">
+            <li>
+              <a href="/contact/" className="hover:underline">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="/blog/" className="hover:underline">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="/before-after/" className="hover:underline">
+                Before &amp; After
+              </a>
+            </li>
+            <li>
+              <a href="/quote/" className="hover:underline">
+                Get Quote
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div className="font-semibold">Legal</div>
+          <p className="mt-3 text-sm text-gray-600">All rights reserved.</p>
+        </div>
       </div>
-      <div>
-        <div className="font-semibold">Company</div>
-        <ul className="mt-3 space-y-2 text-sm">
-          <li><a href="/contact/" className="hover:underline">Contact</a></li>
-          <li><a href="/blog/" className="hover:underline">Blog</a></li>
-          <li><a href="/before-after/" className="hover:underline">Before & After</a></li>
-          <li><a href="/quote/" className="hover:underline">Get Quote</a></li>
-        </ul>
-      </div>
-      <div>
-        <div className="font-semibold">Legal</div>
-        <p className="mt-3 text-sm text-gray-600">All rights reserved.</p>
-      </div>
-    </div>
-  </footer>);
+    </footer>
+  );
 }
+

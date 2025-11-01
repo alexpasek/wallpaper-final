@@ -7,124 +7,164 @@ import {
     setContact,
 } from "@/lib/chatStore";
 
-export const runtime = "edge"; // "edge" for Cloudflare; use "nodejs" locally if needed
+export const runtime = "edge"; // Cloudflare: "edge"; local: "nodejs" if needed
 
-// Use one model var only
+// Model
 var MODEL =
     process.env.OPENAI_MODEL ||
     process.env.NEXT_PUBLIC_OPENAI_MODEL ||
     "gpt-5-mini";
 var DEBUG = process.env.NEXT_PUBLIC_DEBUG_AGENT === "1";
 
-/* ------------------ NEW: sanitize any quote links ------------------ */
+/** =========================
+ *  GLOBAL MINIMUM POLICY
+ *  ======================= */
+const MIN_SF_THRESHOLD = 300; // floor sqft threshold
+const MIN_CHARGE = 1400; // labour-only minimum for small jobs
 
-function normalizeAssistantText(s) {
-    if (!s) return s;
+/** =========================================================
+ *  OPTIONAL "ONLINE AVERAGES" (no API keys; 3s timeout; 12h cache)
+ *  Set env MARKET_AVG_JSON to a JSON file with:
+ *  {
+ *    "painting_floor_sqft": {"low":2.5,"high":4.5},
+ *    "wallpaper_wall_sqft": {"low":2.0,"high":4.0},
+ *    "drywall_total_sqft":  {"low":3.0,"high":6.0}
+ *  }
+ *  Falls back to DEFAULT_AVG if unreachable/invalid.
+ *  ======================================================= */
+const DEFAULT_AVG = {
+    painting_floor_sqft: { low: 2.5, high: 4.5 },
+    wallpaper_wall_sqft: { low: 2.0, high: 4.0 },
+    drywall_total_sqft: { low: 3.0, high: 6.0 },
+};
+const AVERAGES_URL = process.env.MARKET_AVG_JSON || "";
 
-    // Strip any HTML (if model tried to sneak tags in)
-    s = s.replace(/<\/?[^>]+>/g, "");
-
-    // 1) Markdown links: [text](...)
-    s = s.replace(/\[[^\]]*?\]\(\s*([^)]+)\s*\)/gi, (m, url) =>
-        /\/quote\//i.test(url) ? "/quote/" : m
-    );
-
-    // 2) HTML anchors: <a href="...">…</a>
-    s = s.replace(/<a[^>]*href=["']([^"']+)["'][^>]*>.*?<\/a>/gi, (m, url) =>
-        /\/quote\//i.test(url) ? "/quote/" : ""
-    );
-
-    // 3) Absolute URLs that contain /quote/ (drop domain + query)
-    s = s.replace(/\bhttps?:\/\/[^\s)"]*\/quote\/?(?:\?[^\s)"]*)?/gi, "/quote/");
-
-    // 4) Plain path /quote/ with OPTIONAL query -> /quote/
-    s = s.replace(/\/quote\/?(?:\?[^\s)"]*)?/gi, "/quote/");
-
-    // Tidy spaces
-    return s.replace(/\s{2,}/g, " ").trim();
+function pick(obj, key, def) {
+    if (!obj) return def;
+    return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : def;
 }
 
+function validRange(x) {
+    return (
+        x &&
+        typeof x.low === "number" &&
+        typeof x.high === "number" &&
+        x.high >= x.low
+    );
+}
+let MARKET_CACHE = { ts: 0, data: null };
+const CACHE_TTL_MS = 12 * 60 * 60 * 1000;
 
-/** Sales prompt spanning all services */
+async function fetchOnlineAverages() {
+    const now = Date.now();
+    if (MARKET_CACHE.data && now - MARKET_CACHE.ts < CACHE_TTL_MS) {
+        return { ok: true, source: "cache", result: MARKET_CACHE.data };
+    }
+    if (!AVERAGES_URL) {
+        MARKET_CACHE = { ts: now, data: DEFAULT_AVG };
+        return { ok: true, source: "fallback", result: DEFAULT_AVG };
+    }
+    try {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 3000);
+        const r = await fetch(AVERAGES_URL, {
+            signal: ctrl.signal,
+            cache: "no-store",
+            cf: { cacheTtl: 0 },
+        });
+        clearTimeout(t);
+        if (!r.ok) {
+            MARKET_CACHE = { ts: now, data: DEFAULT_AVG };
+            return { ok: true, source: "fallback", result: DEFAULT_AVG };
+        }
+        const data = await r.json();
+        const out = {
+            painting_floor_sqft: pick(
+                data,
+                "painting_floor_sqft",
+                DEFAULT_AVG.painting_floor_sqft
+            ),
+            wallpaper_wall_sqft: pick(
+                data,
+                "wallpaper_wall_sqft",
+                DEFAULT_AVG.wallpaper_wall_sqft
+            ),
+            drywall_total_sqft: pick(
+                data,
+                "drywall_total_sqft",
+                DEFAULT_AVG.drywall_total_sqft
+            ),
+        };
+        if (!validRange(out.painting_floor_sqft) ||
+            !validRange(out.wallpaper_wall_sqft) ||
+            !validRange(out.drywall_total_sqft)
+        ) {
+            MARKET_CACHE = { ts: now, data: DEFAULT_AVG };
+            return { ok: true, source: "fallback", result: DEFAULT_AVG };
+        }
+        MARKET_CACHE = { ts: now, data: out };
+        return { ok: true, source: "online", result: out };
+    } catch {
+        MARKET_CACHE = { ts: now, data: DEFAULT_AVG };
+        return { ok: true, source: "fallback", result: DEFAULT_AVG };
+    }
+}
+
+/** =========================================================
+ *  SALES SYSTEM PROMPT (updated with Minimum Charge policy)
+ *  ======================================================= */
 var SALES_SYSTEM =
     "ROLE & SERVICES:\n" +
-    "You are the Wallpaper Removal Pro AI sales agent for POPCORN CEILING REMOVAL, DRYWALL (board + tape/finish), INTERIOR PAINTING (walls/ceilings/trim on request), and WALLPAPER REMOVAL across the GTA.\n\n" +
+    "You are the Wallpaper Removal Pro AI sales agent for POPCORN CEILING REMOVAL, DRYWALL (board + tape/finish), INTERIOR PAINTING (walls/ceilings/trim on request), and WALLPAPER REMOVAL.\n\n" +
     "TONE & STYLE:\n" +
     "- Polite, concise, confident, never pushy. Human and warm.\n" +
     "- One short paragraph or a few bullets per message (max ~6 lines).\n" +
     "- Ask ONE question at a time. Acknowledge what the user already said.\n" +
-    "- Mirror the user's service and location words so the reply feels local.\n" +
-    "- Use emojis sparingly (e.g., 📞 for call, ✅ for confirmation). Avoid decorative emojis.\n\n" +
-    "ABSOLUTE FORMAT RULES (VERY IMPORTANT):\n" +
-    "- Output **plain text only**. Do NOT use Markdown or HTML.\n" +
-    "- Do NOT output any absolute URLs.\n" +
-    "- When you need to reference the quote page, write exactly: /quote/\n" +
-    "- Do not wrap /quote/ in brackets, do not add link text, do not add a domain.\n\n" +
+    "- Mirror the user's service/location words; avoid naming cities unless the user does.\n" +
+    "- Use emojis sparingly (e.g., 📞 for call, ✅ for confirmation).\n\n" +
     "GUARDRAILS:\n" +
     "- Provide labour-only ballparks (materials & HST extra). NEVER a final quote.\n" +
-    "- Do not invent availability; when asked about timing, use the checkAvailability tool's text.\n" +
-    "- Ask for consent before emailing details. Only say 'I've sent your details to the team' AFTER the sendLead tool returns success.\n" +
-    "- Prefer phone over email when asking for contact (faster scheduling). If they dislike phone, offer /quote/.\n\n" +
-    "DISCOVERY (ASK SEQUENTIALLY | QUALIFY FAST):\n" +
+    "- Do not invent availability; when asked, use the checkAvailability tool's text.\n" +
+    "- Ask consent before emailing details; only say 'sent' after sendLead succeeds.\n" +
+    "- Prefer phone over email for contact. If they dislike phone, offer /quote/.\n\n" +
+    "DISCOVERY (SEQUENTIAL):\n" +
     "1) Service? (popcorn / drywall / painting / wallpaper)\n" +
     "2) City / neighbourhood?\n" +
     "3) Rooms/areas and approx FLOOR sqft (or rough sizes)?\n" +
-    "4) Timeline window (e.g., 'next 1–2 weeks', 'this month')?\n" +
-    "5) Service-specific details:\n" +
-    "   - Popcorn: painted or not? ceiling height? any cracks, stains, pot-light holes? ladders/scaffold needed?\n" +
-    "   - Drywall: board + tape/finish to paint-ready? ceiling heights? complexity/bulkheads?\n" +
-    "   - Painting: walls only or walls+ceilings/trim? #coats? colour changes? condition/repairs?\n" +
-    "   - Wallpaper: old paper type (vinyl/foil/fabric)? how many walls? any skim-coat needed?\n\n" +
+    "4) Timeline window (e.g., 'next 1–2 weeks')?\n" +
+    "5) Service details (popcorn: painted? height? repairs/pot-lights?) …\n\n" +
     "PRICING POLICY (LABOUR-ONLY; NOT A QUOTE):\n" +
-    "- If the user asks about price per square foot (s/f), give an s/f range when it applies.\n" +
-    "- **Popcorn ceilings**: If FLOOR sqft ≥ 300, normal height (≤10 ft), and not heavy repairs → give **s/f** range.\n" +
-    "- **Small/tall/complex popcorn**: If FLOOR sqft < 300 OR ceilings ≥ 11 ft OR heavy repairs / ladder / scaffold logistics → price is **per job**, not s/f. Typical ranges:\n" +
-    "    • Unpainted small room (≈10×10): ~$1,400–$2,200 labour.\n" +
-    "    • Painted / tall / heavy: ~$1,800–$2,400+ labour.\n" +
-    "- Standard s/f guides (when applicable):\n" +
-    "    • Popcorn: unpainted ~$5.5–$7.5/sqft; painted/heavy/tall ~$7.5–$9.5+/sqft (many main floors 2–4 days).\n" +
-    "    • Drywall (board + tape/finish to paint-ready): ~$3.5–$5.5/sqft depending complexity/height.\n" +
-    "    • Interior painting (typical walls): ~$1.2–$2.2 per FLOOR sqft (rooms, condition, coats affect).\n" +
-    "    • Wallpaper removal (+ skim/prime): wall proxy ≈ 2.7× floor sqft; ~$0.9–$1.6 per WALL sqft (glue/vinyl/condition affect).\n" +
+    "- **Minimum charge**: If FLOOR sqft < " +
+    MIN_SF_THRESHOLD +
+    ", price per sqft is not economical. Use a **per-job minimum** of **$" +
+    MIN_CHARGE +
+    "** labour. State this clearly and explain why.\n" +
+    "- **Popcorn**: If FLOOR sqft ≥ 300, normal height (≤10 ft), no heavy repairs → give per-sqft. If small/tall/complex → per-job (typical unpainted ~$1,400–$2,200; painted/tall ~$1,800–$2,400+).\n" +
+    "- **Standard guides when per-sqft applies**:\n" +
+    "  • Popcorn: unpainted ~$5.5–$7.5/sqft; painted/heavy/tall ~$7.5–$9.5+/sqft.\n" +
+    "  • Drywall (board+tape to paint-ready): ~$3.5–$5.5/sqft (scope/height affect).\n" +
+    "  • Interior painting (typical walls): ~$1.2–$2.2 per FLOOR sqft.\n" +
+    "  • Wallpaper removal (+ skim/prime): wall proxy ≈ 2.7× floor sqft; ~$0.9–$1.6 per WALL sqft.\n" +
     "Always repeat: 'These are labour-only ballparks. Materials & HST are extra.'\n\n" +
-    "AVAILABILITY & CREDIBILITY:\n" +
-    "- When asked about timing, call the checkAvailability tool and include its text.\n" +
-    "- Mention homeowner-friendly workflow: protection/containment, HEPA-assist sanding, Level 5 skim for ceilings, tidy daily wrap-ups.\n" +
-    "- Note: WSIB + liability insured; written workmanship warranty.\n\n" +
-    "NEXT STEPS (ALWAYS OFFER TWO):\n" +
-    "- 📞 Call (647) 923-6784 for a quick schedule check, or write /quote/\n" +
-    "When user consents to share details, use sendLead. Confirm ONLY after success.\n\n" +
-    "QUESTION→ANSWER PLAYBOOK (USE WHEN RELEVANT):\n" +
-    "Q: Can you handle painted popcorn / pot-light holes / hairline cracks?\n" +
-    "A: Yes. We test a small area first; if scraping risks damage we safely encapsulate, then Level 5 skim. We blend pot-light rings, cracks and patches before stain-block primer.\n\n" +
-    "Q: Will the house be dusty?\n" +
-    "A: We seal rooms, protect floors/stairs, mask HVAC vents, and use HEPA-connected sanding. Daily tidy wrap-ups keep key spaces usable.\n\n" +
-    "Q: How long does it take?\n" +
-    "A: Many main floors are 2–4 days depending on size/condition. I can tighten that after I know sqft, ceilings and repairs.\n\n" +
-    "Q: Can you also paint after removal?\n" +
-    "A: Yes—either paint-ready handoff or we can complete finish coats on request (painting labour typically ~ $1.2–$2.2 per floor sqft; materials & HST extra).\n\n" +
-    "Q: What affects price the most?\n" +
-    "A: Size (sqft), height, whether popcorn is painted, repairs/bulkheads, and number of rooms/hallways. I'll tailor the ballpark once I have those.\n\n" +
-    "Q: Do you work in my area?\n" +
-    "A: Yes, we cover the GTA. If you share the exact city/neighbourhood, I'll be specific.\n\n" +
-    "Q: Can you start soon?\n" +
-    "A: I'll check openings (small jobs next week; larger main floors the following week is common). If timing is tight, a quick call helps lock a slot.\n\n" +
-    "FORMAT & CADENCE:\n" +
-    "- Acknowledge → One clarifying question → Short, tailored ballpark or next step.\n" +
-    "- Keep replies brief; break lists into bullets; avoid jargon.\n" +
-    "- End with the two CTAs: phone and /quote/.\n" +
-    "OUTPUT RULES:\n" +
-    "- Confirm user details back to them.\n" +
-    "- Use createQuoteLink to prefill /quote/ when you have name/phone/city/details (but still output only /quote/ in the message text).\n" +
-    "- Before sendLead, explicitly ask: 'Want me to send this to the crew so they can call/text you with openings?' Only after tool success, say it was sent.\n" +
-    "- If details are missing, ask the highest-impact question next (service, city/neighbourhood, floor sqft, timeline).\n";
+    "AVERAGE COST QUESTIONS:\n" +
+    "- If user asks 'average cost/price':\n" +
+    "  1) Ask ONE clarifying Q first (service? approx floor sqft?).\n" +
+    "  2) Then call getOnlineAverages and present 'current online averages (CAD)'.\n" +
+    "  3) Do NOT name cities unless user did.\n" +
+    "  4) If minimum applies, lead with the minimum (do not show tiny per-sqft math).\n\n" +
+    "QUOTE LINKS & OUTPUT RULES:\n" +
+    "- Use createQuoteLink to prefill /quote/ when you have name/phone/city/details.\n" +
+    "- When presenting a quote link, output ONLY the raw `/quote/?...` on its own line (no extra words/markdown). The UI will render it.\n" +
+    "- Before sendLead, ask explicit consent; only confirm after tool success.\n" +
+    "- If details are missing, ask the highest-impact next question.\n";
 
+/** Tools spec */
 function toolsSpec() {
     return [{
             type: "function",
             function: {
                 name: "getPricingEstimate",
-                description: "Labour-only ballpark for a service. service: 'popcorn' | 'drywall' | 'painting' | 'wallpaper'. Input sqft is FLOOR sqft; function handles wall area proxies internally for painting/wallpaper.",
+                description: "Labour-only ballpark for a service. service: 'popcorn' | 'drywall' | 'painting' | 'wallpaper'. Input sqft is FLOOR sqft; function handles wall area proxies internally for painting/wallpaper. Enforces global minimum for small areas.",
                 parameters: {
                     type: "object",
                     properties: {
@@ -145,6 +185,14 @@ function toolsSpec() {
                     },
                     required: ["service", "sqft"],
                 },
+            },
+        },
+        {
+            type: "function",
+            function: {
+                name: "getOnlineAverages",
+                description: "Fetch current online averages (CAD) from MARKET_AVG_JSON if set (3s timeout, 12h cache). Otherwise fallback constants. painting: per FLOOR s/f; wallpaper: per WALL s/f; drywall: total s/f.",
+                parameters: { type: "object", properties: {} },
             },
         },
         {
@@ -198,13 +246,7 @@ function toolsSpec() {
     ];
 }
 
-/** Old-school helpers (no optional chaining) */
-function pick(obj, key, def) {
-    if (!obj) return def;
-    return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : def;
-}
-
-/** Ballpark per service (LABOUR ONLY) */
+/** Labour-only estimator with GLOBAL MINIMUM enforcement */
 function estimateByService(input) {
     var service = pick(input, "service", "popcorn");
     var sqft = Number(pick(input, "sqft", 0));
@@ -220,33 +262,12 @@ function estimateByService(input) {
         rateLow: 0,
         rateHigh: 0,
         days: 2,
+        minApplied: false,
         note: "Labour-only ballpark. Materials & HST extra.",
     };
 
+    // --- POPCORN ---
     if (service === "popcorn") {
-        var smallOrTallOrHeavy =
-            sqft < 300 || ceilingHeightFt >= 11 || repairs === "heavy";
-        if (smallOrTallOrHeavy) {
-            var pjLow = painted ? 1800 : 1400;
-            var pjHigh = painted ? 2400 : 2200;
-            if (sqft < 150) pjHigh += 150;
-            if (ceilingHeightFt >= 12) {
-                pjLow += 100;
-                pjHigh += 200;
-            }
-            result.perJob = true;
-            result.perJobLow = pjLow;
-            result.perJobHigh = pjHigh;
-            result.labourLow = pjLow;
-            result.labourHigh = pjHigh;
-            result.rateLow = 0;
-            result.rateHigh = 0;
-            result.days = sqft > 450 ? 3 : 2;
-            result.note +=
-                " Priced per job due to small area and/or tall/complex conditions.";
-            return { ok: true, result: result };
-        }
-
         var low = painted ? 7.5 : 5.5;
         var high = painted ? 9.5 : 7.5;
         var bumpMap = { none: 0, light: 0.5, moderate: 1.0, heavy: 2.0 };
@@ -260,14 +281,24 @@ function estimateByService(input) {
             low += 1.0;
             high += 1.5;
         }
+
         result.rateLow = low;
         result.rateHigh = high;
         result.labourLow = Math.round(low * sqft);
         result.labourHigh = Math.round(high * sqft);
         result.days = sqft > 1100 ? 4 : sqft > 700 ? 3 : 2;
+
+        // GLOBAL MINIMUM for small areas
+        if (sqft < MIN_SF_THRESHOLD) {
+            result.minApplied = true;
+            result.labourLow = Math.max(result.labourLow, MIN_CHARGE);
+            result.labourHigh = Math.max(result.labourHigh, result.labourLow);
+            result.note += ` Minimum charge $${MIN_CHARGE.toLocaleString()} applies for areas under ${MIN_SF_THRESHOLD} sqft (priced per job).`;
+        }
         return { ok: true, result: result };
     }
 
+    // --- DRYWALL ---
     if (service === "drywall") {
         var dLow = 3.5,
             dHigh = 5.5;
@@ -287,9 +318,17 @@ function estimateByService(input) {
         result.labourLow = Math.round(dLow * sqft);
         result.labourHigh = Math.round(dHigh * sqft);
         result.days = sqft > 1200 ? 5 : sqft > 800 ? 4 : 3;
+
+        if (sqft < MIN_SF_THRESHOLD) {
+            result.minApplied = true;
+            result.labourLow = Math.max(result.labourLow, MIN_CHARGE);
+            result.labourHigh = Math.max(result.labourHigh, result.labourLow);
+            result.note += ` Minimum charge $${MIN_CHARGE.toLocaleString()} applies for areas under ${MIN_SF_THRESHOLD} sqft (priced per job).`;
+        }
         return { ok: true, result: result };
     }
 
+    // --- PAINTING (walls) ---
     if (service === "painting") {
         var pLowRate = 1.2,
             pHighRate = 2.2;
@@ -302,9 +341,17 @@ function estimateByService(input) {
         result.labourLow = Math.round(pLowRate * sqft);
         result.labourHigh = Math.round(pHighRate * sqft);
         result.days = sqft > 1400 ? 4 : sqft > 800 ? 3 : 2;
+
+        if (sqft < MIN_SF_THRESHOLD) {
+            result.minApplied = true;
+            result.labourLow = Math.max(result.labourLow, MIN_CHARGE);
+            result.labourHigh = Math.max(result.labourHigh, result.labourLow);
+            result.note += ` Minimum charge $${MIN_CHARGE.toLocaleString()} applies for areas under ${MIN_SF_THRESHOLD} sqft (priced per job).`;
+        }
         return { ok: true, result: result };
     }
 
+    // --- WALLPAPER REMOVAL ---
     if (service === "wallpaper") {
         var wallSqft = Math.round(sqft * 2.7);
         var wLowPerWall = 0.9,
@@ -319,15 +366,24 @@ function estimateByService(input) {
         result.labourHigh = Math.round(wHighPerWall * wallSqft);
         result.days = wallSqft > 3000 ? 4 : wallSqft > 1800 ? 3 : 2;
         result.note += " Uses wall-area proxy ≈ 2.7× floor sqft.";
+
+        if (sqft < MIN_SF_THRESHOLD) {
+            result.minApplied = true;
+            result.labourLow = Math.max(result.labourLow, MIN_CHARGE);
+            result.labourHigh = Math.max(result.labourHigh, result.labourLow);
+            result.note += ` Minimum charge $${MIN_CHARGE.toLocaleString()} applies for areas under ${MIN_SF_THRESHOLD} sqft (priced per job).`;
+        }
         return { ok: true, result: result };
     }
 
     return { ok: false, error: "Unknown service" };
 }
 
-/** Execute tool calls (no optional chaining) */
+/** Execute tool calls */
 async function toolRunner(name, args) {
     if (name === "getPricingEstimate") return estimateByService(args || {});
+    if (name === "getOnlineAverages") return await fetchOnlineAverages();
+
     if (name === "createQuoteLink") {
         var qs = new URLSearchParams();
         if (args && args.name) qs.set("name", args.name);
@@ -337,9 +393,9 @@ async function toolRunner(name, args) {
         if (args && args.details) qs.set("details", args.details);
         if (args && args.sourcePath) qs.set("source", args.sourcePath);
         if (args && args.utm) qs.set("utm", args.utm);
-        var q = qs.toString();
-        return { ok: true, result: q ? "/quote/?" + q : "/quote/" };
+        return { ok: true, result: "/quote/?" + qs.toString() };
     }
+
     if (name === "sendLead") {
         try {
             if (args && args.sessionId && (args.email || args.phone)) {
@@ -382,16 +438,18 @@ async function toolRunner(name, args) {
             return { ok: false, error: "Email failed" };
         }
     }
+
     if (name === "checkAvailability") {
         return {
             ok: true,
             result: "Openings: small jobs next week; larger main floors the following week. Evenings for estimates available.",
         };
     }
+
     return { ok: false, error: "Unknown tool" };
 }
 
-/** OpenAI call with tools (no optional chaining) */
+/** OpenAI call with tools (unchanged flow) */
 async function callOpenAI(messages, ctx) {
     var key = process.env.OPENAI_API_KEY;
     if (!key) return null;
@@ -463,16 +521,18 @@ async function callOpenAI(messages, ctx) {
         var body2 = {
             model: MODEL,
             temperature: 0.2,
-            messages: [{ role: "system", content: SALES_SYSTEM }]
-                .concat([{
-                    role: "system",
-                    content: "Context: path=" +
-                        (ctx && ctx.source ? ctx.source : "") +
-                        " utm=" +
-                        (ctx && ctx.utm ? ctx.utm : "") +
-                        " session=" +
-                        (ctx && ctx.sessionId ? ctx.sessionId : ""),
-                }, ])
+            messages: [
+                    { role: "system", content: SALES_SYSTEM },
+                    {
+                        role: "system",
+                        content: "Context: path=" +
+                            (ctx && ctx.source ? ctx.source : "") +
+                            " utm=" +
+                            (ctx && ctx.utm ? ctx.utm : "") +
+                            " session=" +
+                            (ctx && ctx.sessionId ? ctx.sessionId : ""),
+                    },
+                ]
                 .concat(messages)
                 .concat([
                     assistant,
@@ -554,31 +614,27 @@ export async function POST(req) {
 
         if (!reply) {
             usedFallback = true;
-            var lastText = last && last.content ? last.content : "";
-            var svc = detectServiceFromText(lastText);
+            var svc = detectServiceFromText(last && last.content ? last.content : "");
             var priceLine = "";
             if (svc === "drywall")
                 priceLine =
-                "Drywall (board + tape/finish) often lands ~ $3.5–$5.5/sqft labour depending height/complexity. ";
+                "Drywall (board + tape/finish) often lands ~ $3.5–$5.5/sqft labour (height/complexity affect). ";
             else if (svc === "painting")
                 priceLine =
                 "Interior painting commonly ~ $1.2–$2.2 per floor sqft labour (condition/coats affect). ";
             else if (svc === "wallpaper")
                 priceLine =
-                "Wallpaper removal (+ skim/prime) uses wall proxy ≈ 2.7× floor sqft: ~ $0.9–$1.6 per wall sqft labour (glue/vinyl/condition affect). ";
+                "Wallpaper removal (+ skim/prime) uses wall proxy ≈ 2.7× floor sqft: ~ $0.9–$1.6 per wall sqft labour. ";
             else
                 priceLine =
-                "Unpainted popcorn often ~ $5.5–$7.5/sqft labour; painted/heavier repairs ~$7.5–$9.5+/sqft. For small rooms (<300 sqft) or tall/complex ceilings we price per job (~$1,400–$2,200 unpainted; ~$1,800–$2,400+ painted/tall). ";
+                "Unpainted popcorn often ~ $5.5–$7.5/sqft labour; painted/heavier repairs ~$7.5–$9.5+/sqft. ";
 
             reply =
                 priceLine +
-                "Materials & HST extra.\n\n" +
-                "Could you share the city/neighbourhood, rooms/areas, approx. sqft, and timing? I’ll tighten the range.\n\n" +
+                `For small areas (< ${MIN_SF_THRESHOLD} sqft), our **minimum labour charge is $${MIN_CHARGE.toLocaleString()}** because setup/containment time dominates. Materials & HST extra.\n\n` +
+                "Could you share the service and approx. floor sqft? I’ll tighten the range.\n\n" +
                 "Next steps: call 📞 (647) 923-6784 or /quote/.";
         }
-
-        // ---------- NEW: normalize ANY links to plain /quote/ ----------
-        reply = normalizeAssistantText(reply);
 
         recordMessage(sessionId, "assistant", reply);
         cancelFuture(sessionId);
@@ -594,7 +650,7 @@ export async function POST(req) {
         return NextResponse.json(payload);
     } catch (e) {
         var payload = {
-            reply: "Server error. Please call (647) 923-6784 or /quote/.",
+            reply: "Server error. Please call (647) 923-6784 or use /quote/.",
             usedFallback: true,
         };
         if (DEBUG) payload.diag = { error: String(e && e.message ? e.message : e) };
