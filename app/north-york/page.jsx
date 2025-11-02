@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CityCopy } from "@/components/LocalSEOCopy";
 export const metadata={title:"North York — Wallpaper Removal Pro"};
 export default function City(){
- const images=Array.from({length:6},(_,i)=>`/cities/north-york/${i+1}.webp`);
+ const images=Array.from({length:6},(_,i)=>`/home/${i+1}.webp`);
  const hidden=Array.from({length:120}).map((_,i)=>(<span key={i} className="hidden" aria-hidden="true">North York</span>));
  return(<div className="container-x py-10">
   <div className="sr-only" aria-hidden="true">{hidden}</div>

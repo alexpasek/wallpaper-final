@@ -127,6 +127,19 @@ function Footer() {
       itemScope
       itemType="https://schema.org/LocalBusiness"
     >
+
+
+      <section id="reviews" className="mt-10 md:mt-16 scroll-mt-24">
+              <ReviewScroller
+                className="py-4 md:py-6 rounded 3xl"
+                brand="30 64 175"
+                accent="16 185 129"
+                bg="vivid"
+                bgAlpha={0.12}
+                cardAlpha={0.1}
+                hoverAlpha={0.2}
+              />
+            </section>
       <div className="container-x py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <div className="font-semibold" itemProp="name">
@@ -146,15 +159,15 @@ function Footer() {
             <div className="font-medium text-gray-900">📍 Address</div>
             <a
               className="mt-1 block hover:underline"
-              href="https://maps.google.com/?q=736+Dundas+St+E,+Mississauga,+ON+L4Y+2B6"
+              href="https://maps.google.com/?q=2394+Haines+Rd,+Mississauga,+ON+L4Y+1Y6"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open address in Google Maps"
             >
-              <span itemProp="streetAddress">736 Dundas St E</span>,{" "}
+              <span itemProp="streetAddress">2394 Haines Rd</span>,{" "}
               <span itemProp="addressLocality">Mississauga</span>,{" "}
               <span itemProp="addressRegion">ON</span>{" "}
-              <span itemProp="postalCode">L4Y 2B6</span>
+              <span itemProp="postalCode">L4Y 1Y6</span>
             </a>
             <meta itemProp="addressCountry" content="CA" />
           </address>

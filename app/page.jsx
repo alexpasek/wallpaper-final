@@ -305,17 +305,7 @@ export default function Page() {
           Get My Quote
         </a>
       </div>
-      <section id="reviews" className="mt-10 md:mt-16 scroll-mt-24">
-        <ReviewScroller
-          className="py-4 md:py-6 rounded 3xl"
-          brand="30 64 175"
-          accent="16 185 129"
-          bg="vivid"
-          bgAlpha={0.12}
-          cardAlpha={0.1}
-          hoverAlpha={0.2}
-        />
-      </section>
+      
     </div>
   );
 }
