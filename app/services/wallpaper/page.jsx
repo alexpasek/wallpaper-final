@@ -281,16 +281,7 @@ export default function Page() {
       </section>
 
       {/* MOBILE STICKY CTA (matches site button style) */}
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 md:hidden">
-        <div className="bg-white/90 backdrop-blur-sm border shadow-xl rounded-full flex gap-2 p-2">
-          <a className="btn-cta" href="/quote/">
-            Get my quote
-          </a>
-          <a className="btn-cta" href={phoneHref}>
-            📞 Call
-          </a>
-        </div>
-      </div>
+    
 
       {/* JSON-LD (Service + Breadcrumb + FAQ + HowTo) */}
       <script
