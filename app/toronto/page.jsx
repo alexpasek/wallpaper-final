@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { CityCopy } from "@/components/LocalSEOCopy";
-export const metadata={title:"Toronto — Wallpaper Removal Pro"};
-export default function City(){
-  const images = Array.from(
-    { length: 6 },
-    (_, i) => `/home/${i + 1}.webp`
-  ); //cities/toronto path for images for this page 
+export const metadata = { title: "Toronto — Wallpaper Removal Pro" };
+export default function City() {
+  const images = Array.from({ length: 6 }, (_, i) => `/home/${i + 1}.webp`); //cities/toronto path for images for this page
   const hidden = Array.from({ length: 120 }).map((_, i) => (
     <span key={i} className="hidden" aria-hidden="true">
       Toronto
@@ -68,7 +65,7 @@ export default function City(){
         ]}
       />
       <p className="mt-6 flex gap-3">
-        <a className="btn-cta" href="tel:+16479236784">
+        <a className="btn-cta" href="tel:+16478129135">
           📞 (647) 923‑6784
         </a>
         <a className="btn-cta" href="/quote/">

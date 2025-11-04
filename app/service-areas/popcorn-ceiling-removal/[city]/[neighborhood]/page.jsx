@@ -4,11 +4,7 @@ import { CONTACT } from "@/app/config";
 import { cities } from "@/data/cities";
 import { buildPopcornHoodCopy } from "@/lib/seoCopy";
 
-
-
-
 export const dynamic = "force-static";
-
 
 export function generateStaticParams() {
   const out = [];
@@ -19,7 +15,6 @@ export function generateStaticParams() {
   }
   return out;
 }
-
 
 export const revalidate = 86400;
 export const dynamicParams = true; // allow any hood slug
@@ -52,7 +47,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16479236784";
+const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16478129135";
 
 export default async function Page({ params }) {
   const { city, neighborhood } = await params; // Next 15 requires await
@@ -81,7 +76,7 @@ export default async function Page({ params }) {
               className="inline-flex items-center h-11 px-4 rounded-xl bg-gradient-to-b from-blue-600 to-blue-700 text-white font-medium shadow-sm hover:shadow-md transition"
             >
               <span className="mr-2">📞</span>
-              <span className="whitespace-nowrap">(647) 923-6784</span>
+              <span className="whitespace-nowrap">(647) 812-9135</span>
             </a>
             <a
               href="/quote/"
@@ -176,7 +171,7 @@ export default async function Page({ params }) {
         </div>
         <div className="flex gap-3">
           <a className="btn-cta" href={phoneHref}>
-            📞 (647) 923-6784
+            📞 (647) 812-9135
           </a>
           <a className="btn-cta" href="/quote/">
             Get my quote

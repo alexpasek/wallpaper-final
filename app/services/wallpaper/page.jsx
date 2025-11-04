@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 const PAGE_URL = "https://wallpaper-final.pages.dev/services/wallpaper/"; // set your custom domain when ready
-const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16479236784";
+const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16478129135";
 
 export default function Page() {
   const images = Array.from(
@@ -45,7 +45,7 @@ export default function Page() {
         </p>
         <div className="mt-6 flex gap-3 flex-wrap">
           <a className="btn-cta" href={phoneHref}>
-            📞 (647) 923-6784
+            📞 (647) 812-9135
           </a>
           <a className="btn-cta" href="/quote/">
             Get my quote
@@ -249,7 +249,7 @@ export default function Page() {
               </Link>
               {idx < cityLinks.length - 1 ? ", " : ""}
             </span>
-          ))}{" "} 
+          ))}{" "}
           and more.
         </p>
         <div className="mt-4">
@@ -272,7 +272,7 @@ export default function Page() {
         </div>
         <div className="flex gap-3">
           <a className="btn-cta" href={phoneHref}>
-            📞 (647) 923-6784
+            📞 (647) 812-9135
           </a>
           <a className="btn-cta" href="/quote/">
             Get my quote
@@ -281,7 +281,6 @@ export default function Page() {
       </section>
 
       {/* MOBILE STICKY CTA (matches site button style) */}
-    
 
       {/* JSON-LD (Service + Breadcrumb + FAQ + HowTo) */}
       <script

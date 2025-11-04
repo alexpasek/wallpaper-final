@@ -17,12 +17,12 @@ export default function ThankYou() {
       </p>
       <div className="mt-10">
         <a
-          href= {PHONE_HREF}
+          href={PHONE_HREF}
           className="inline-block px-8 py-4 rounded-2xl shadow-lg
                        bg-gradient-to-b from-blue-500 to-blue-700 text-white
                        hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
-          Call (647) 923-6784
+          Call (647) 812-9135
         </a>
       </div>
     </main>

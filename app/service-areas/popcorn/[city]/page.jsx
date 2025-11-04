@@ -5,13 +5,9 @@ import { CONTACT } from "@/app/config";
 import LocalSignals from "@/components/LocalSignals";
 import { buildCityCopy } from "@/lib/seoCopy";
 
-
 export const dynamic = "force-static";
 
 export const revalidate = 86400;
-
-
-
 
 export function generateStaticParams() {
   // If the file is [city]/page.jsx:
@@ -41,7 +37,7 @@ export async function generateMetadata({ params }) {
     : {};
 }
 
-const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16479236784";
+const phoneHref = (CONTACT && CONTACT.phoneHref) || "tel:+16478129135";
 
 export default async function CityPage({ params }) {
   const { city } = await params;
@@ -79,7 +75,7 @@ export default async function CityPage({ params }) {
 
       <div className="mt-10 flex gap-3">
         <a className="btn-cta" href={phoneHref}>
-          📞 (647) 923-6784
+          📞 (647) 812-9135
         </a>
         <a className="btn-cta" href="/quote/">
           Get my quote
