@@ -76,7 +76,7 @@ export default function City() {
     "@type": ["HomeAndConstructionBusiness", "HousePainter"],
     name: "Wallpaper Removal Pro",
     url: "https://your-domain.com/",
-    telephone: "+1-647-923-6784",
+    telephone: "+1-647-812-9135",
     priceRange: "$$",
     image: "https://your-domain.com/logo.png",
     address: {

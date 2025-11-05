@@ -20,7 +20,7 @@ export default function HeaderNav() {
   return (
     <header className="sticky top-0 z-40">
       {/* Row 1: Logo + CTAs (CTAs visible md+ only) */}
-      <div className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b shadow-[0_8px_28px_-18px_rgba(0,0,0,0.45)]">
+      <div className="bg-white"> 
         <div className="container-x py-2 md:py-3 flex h-16 items-center gap-3">
           <Link href="/" className="flex items-center gap-2 min-w-0">
             <img
