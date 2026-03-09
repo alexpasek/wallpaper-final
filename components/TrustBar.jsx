@@ -1,8 +1,9 @@
-export default function TrustBar(){
-  return(<div className=" border-b bg-white/80">
-    <div className=" hidden container-x py-3 md:grid sm:grid-cols-3 gap-3 text-sm text-gray-700">
-      <div>Trusted since <b>2005</b></div>
-      <div>Fully <b>insured</b> • Dust control</div>
-      <div><b>3-year</b> warranty</div>
-    </div></div>);
+export default function TrustBar() {
+  return (
+    <div className="bg-[var(--reno-band)] text-[var(--reno-band-ink)]">
+      <div className="container-x py-[7px] text-center font-extrabold text-[12px] md:text-[13px] tracking-[0.18em] uppercase leading-none">
+        Free Same-Day Quote • Bathroom-Friendly Planning • Clean & Controlled Renovation
+      </div>
+    </div>
+  );
 }

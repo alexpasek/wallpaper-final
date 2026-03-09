@@ -17,12 +17,12 @@ export async function POST(req) {
             return NextResponse.json({ ok: false, error: "Missing RESEND_API_KEY" }, { status: 500 });
         }
 
-        const to = (process.env.QUOTE_TO_EMAIL || "webtoronto22@gmail.com").trim();
+        const to = (process.env.QUOTE_TO_EMAIL || "info@epfproservices.com").trim();
 
         // For first tests use Resend sandbox sender.
         // After you verify epfproservices.com in Resend, switch to e.g. no-reply@epfproservices.com
         const from = (
-            process.env.RESEND_FROM || "Wallpaper Removal Pro <onboarding@resend.dev>"
+            process.env.RESEND_FROM || "EPF Pro Services <onboarding@resend.dev>"
         ).trim();
 
         // Build payload

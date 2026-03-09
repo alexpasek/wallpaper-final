@@ -2,21 +2,200 @@
 @tailwind components;
 @tailwind utilities;
 
-.container-x{@apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;}
-.card{@apply rounded-2xl border border-gray-200 bg-white shadow;}
-.pill{@apply inline-flex items-center justify-center rounded-2xl border px-5 py-3 font-medium shadow-sm bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100;}
-.btn-cta{@apply inline-flex items-center justify-center rounded-2xl px-6 py-3 text-lg font-semibold text-white bg-gradient-to-b from-blue-500 to-blue-700 border-b-4 border-blue-800 shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5;}
-.prose-custom{@apply prose prose-neutral max-w-none;}
-.sticky-subnav{@apply sticky top-[120px] z-20 bg-white border-t border-gray-200;}
-.scroller{@apply flex gap-3 overflow-x-auto py-2 -mx-4 px-4 snap-x snap-mandatory;}
-.scroller>a{@apply pill shrink-0 snap-start;}
+:root {
+  --reno-bg: #edf2f1;
+  --reno-surface: #ffffff;
+  --reno-ink: #255a52;
+  --reno-ink-soft: #4f7a72;
+  --reno-band: #2a6b63;
+  --reno-band-ink: #f6eee4;
+  --reno-accent: #d5824e;
+  --reno-accent-dark: #bf6d3d;
+  --reno-border: #c9d7d3;
+}
 
-/* Compare Slider */
-.compare-track{ position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; border-radius:0.75rem; cursor:ew-resize; }
-.compare-overlay{ position:absolute; inset:0; z-index:5; }
-.handle-line{ position:absolute; top:0; bottom:0; width:2px; background:rgba(255,255,255,.95); z-index:10; transform:translateX(-50%); }
-.handle-knob{ position:absolute; top:50%; width:28px; height:28px; border-radius:9999px; background:white; border:2px solid #2563eb; box-shadow:0 2px 6px rgba(0,0,0,.25); transform:translate(-50%,-50%); z-index:20; }
-/* Full overlay control so dragging works anywhere */
-.range{ -webkit-appearance:none; appearance:none; position:absolute; inset:0; width:100%; height:100%; background:transparent; z-index:30; opacity:0; }
-.range::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:9999px; background:#fff; border:2px solid #2563eb; box-shadow:0 1px 3px rgba(0,0,0,.25); }
-.range::-moz-range-thumb{ width:20px; height:20px; border-radius:9999px; background:#fff; border:2px solid #2563eb; box-shadow:0 1px 3px rgba(0,0,0,.25); }
+body {
+  background: var(--reno-bg);
+  color: #173a33;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+.container-x {
+  @apply mx-auto max-w-[1260px] px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply rounded-2xl border bg-white shadow-sm;
+  border-color: var(--reno-border);
+}
+
+.pill {
+  @apply inline-flex items-center justify-center rounded-xl border px-4 py-2 font-semibold text-sm shadow-sm transition;
+  background: #f9fcfb;
+  color: #29554d;
+  border-color: #c4d7d0;
+}
+
+.pill:hover {
+  background: #edf6f3;
+}
+
+.btn-cta {
+  @apply inline-flex items-center justify-center rounded-2xl px-7 py-3 text-[22px] md:text-[24px] font-extrabold text-white shadow-lg transition transform hover:-translate-y-0.5;
+  background: linear-gradient(180deg, var(--reno-accent) 0%, var(--reno-accent-dark) 100%);
+  border: 2px solid #efb086;
+  border-bottom: 3px solid #a8562b;
+  letter-spacing: 0.01em;
+}
+
+.btn-cta-outline {
+  @apply inline-flex items-center justify-center rounded-2xl px-6 py-3 text-base font-bold transition;
+  border: 2px solid #b8d2ca;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.field-input {
+  @apply w-full rounded-xl border px-4 py-3 text-[16px] md:text-[17px] bg-white;
+  border-color: #bccfc8;
+  color: #264e46;
+}
+
+.field-input::placeholder {
+  color: #73887f;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: #4e9e8c;
+  box-shadow: 0 0 0 3px rgba(78, 158, 140, 0.2);
+}
+
+.reno-hero-photo {
+  position: relative;
+  min-height: clamp(430px, 52vw, 620px);
+  background-size: cover;
+  background-position: center center;
+}
+
+.reno-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 107, 99, 0.8) 0%,
+    rgba(42, 107, 99, 0.68) 38%,
+    rgba(42, 107, 99, 0.22) 70%,
+    rgba(42, 107, 99, 0.06) 100%
+  );
+}
+
+.reno-hero-title {
+  @apply font-black leading-[0.94] tracking-tight text-white;
+  font-size: clamp(2.15rem, 5.3vw, 5.05rem);
+}
+
+.reno-subline {
+  @apply leading-tight text-white/90;
+  font-size: clamp(1.35rem, 2.35vw, 2.2rem);
+}
+
+.hero-panel {
+  @apply rounded-3xl p-6 border;
+  border-color: #c4d9d2;
+  background: #f6fbf9;
+  color: #2b5b52;
+}
+
+.hero-form {
+  @apply rounded-3xl p-6 border;
+  border-color: #bfd6cf;
+  background: #eef8f4;
+}
+
+.prose-custom {
+  @apply prose prose-neutral max-w-none;
+}
+
+.sticky-subnav {
+  @apply sticky top-[120px] z-20 bg-white border-t;
+  border-color: var(--reno-border);
+}
+
+.scroller {
+  @apply flex gap-3 overflow-x-auto py-2 -mx-4 px-4 snap-x snap-mandatory;
+}
+
+.scroller > a {
+  @apply pill shrink-0 snap-start;
+}
+
+.compare-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  cursor: ew-resize;
+}
+
+.compare-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.handle-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.handle-knob {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: white;
+  border: 2px solid #0f7760;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 30;
+  opacity: 0;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid #0f7760;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid #0f7760;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}

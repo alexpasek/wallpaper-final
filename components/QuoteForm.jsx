@@ -22,14 +22,11 @@ export default function QuoteForm() {
       });
 
       const txt = await r.text();
-
       if (r.ok) {
-        // ✅ go to the dedicated thank-you page
         router.push("/thank-you/");
         return;
       }
 
-      // Show server error text if any
       setStatus(`Error: ${txt || "Email failed"}`);
     } catch {
       setStatus("Network error. Please try again.");
@@ -39,47 +36,47 @@ export default function QuoteForm() {
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 "
-    >
-      {/* your inputs... */}
+    <form onSubmit={onSubmit} className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+      <select className="field-input" name="projectType" defaultValue="">
+        <option value="" disabled>
+          Project Type
+        </option>
+        <option>Bathroom Renovation</option>
+        <option>Basement Renovation</option>
+        <option>Home Renovation</option>
+        <option>Other Service</option>
+      </select>
+
+      <select className="field-input" name="timeline" defaultValue="">
+        <option value="" disabled>
+          Timeline
+        </option>
+        <option>As soon as possible</option>
+        <option>Within 1 month</option>
+        <option>1-3 months</option>
+        <option>Planning only</option>
+      </select>
+
+      <input className="field-input" name="name" placeholder="Your Name" required />
+      <input className="field-input" name="phone" placeholder="Phone Number" required />
       <input
-        className=" border shadow-md border-gray-500 rounded-2xl p-3"
-        name="name"
-        placeholder="Name"
-        required
-      />
-      <input
-        className="border shadow-md  border-gray-500 rounded-2xl p-3"
-        name="phone"
-        placeholder="Phone"
-        required
-      />
-      <input
-        className="border shadow-md border-gray-500 rounded-2xl p-3 md:col-span-2"
+        className="field-input md:col-span-2"
         type="email"
         name="email"
-        placeholder="Email"
+        placeholder="Email (Optional)"
       />
       <textarea
-        className="border shadow-md border-gray-500 rounded-2xl p-3 md:col-span-2"
+        className="field-input md:col-span-2"
         rows={5}
         name="details"
-        placeholder="Project details"
+        placeholder="Your notes (rooms, rough sizes, preferred start)"
       />
 
-      <button
-        type="submit"
-        disabled={sending}
-        className="btn-cta md:col-span-2 w-full px-6 py-4 rounded-2xl text-white
-                   bg-gradient-to-b from-blue-500 to-blue-700 shadow-lg
-                   disabled:opacity-70"
-      >
-        {sending ? "Sending..." : "Send"}
+      <button type="submit" disabled={sending} className="btn-cta md:col-span-2 w-full disabled:opacity-70">
+        {sending ? "Sending..." : "GET FREE QUOTE"}
       </button>
 
-      {status && <p className="text-sm md:col-span-2 text-red-600">{status}</p>}
+      {status && <p className="text-sm md:col-span-2 text-red-700">{status}</p>}
     </form>
   );
 }
