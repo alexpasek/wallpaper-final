@@ -1,4 +1,5 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
+import { buildBathroomGallery } from "@/data/bathroomGallery";
 
 export const metadata = {
   title: "Bathroom, Basement & Home Renovation | EPF Pro Services",
@@ -50,10 +51,15 @@ const faqItems = [
   },
 ];
 
-const gallery = Array.from({ length: 6 }, (_, i) => ({
-  src: `/home/${i + 1}.webp`,
-  alt: `GTA renovation project ${i + 1}`,
-}));
+const baseGallery = buildBathroomGallery("Bathroom, Basement & Home Renovation");
+const gallery = [
+  {
+    src: "/bathrooms%20/IMG_4876.JPG",
+    alt: "Bathroom, Basement & Home Renovation - bright bathroom with tub and glass shower screen",
+    badge: "Featured Room",
+  },
+  ...baseGallery.filter((item) => !item.src.includes("IMG_4876.JPG")),
+].filter(Boolean);
 
 const keywordLinks = [
   { href: "/bathroom-renovation/", label: "Bathroom Renovation" },
@@ -67,14 +73,15 @@ export default function Page() {
   return (
     <RenoLandingPage
       title="Bathroom, Basement & Home Renovation"
-      description="Elegant, practical renovation solutions for GTA homes with clear scope, clean execution, and predictable timelines."
+      description="We transform GTA bathrooms into polished, functional spaces with clean work, protected homes, and clear communication from start to finish."
       canonicalPath="/"
       kicker="EPF Pro Services"
       highlights={highlights}
       process={process}
-      localCopy="We work across Toronto, Mississauga, Oakville, Burlington, Hamilton, Milton, Etobicoke, and North York with keyword-focused local pages and unique content for each location."
+      localCopy="We work across Toronto, Mississauga, Oakville, Burlington, Hamilton, Milton, Etobicoke, and North York with city-specific renovation pages, representative postal code targeting, and localized copy built around real GTA service areas."
       faqItems={faqItems}
       gallery={gallery}
+      heroImagePosition="75% center"
       keywordLinks={keywordLinks}
     />
   );

@@ -1,6 +1,5 @@
 import "./globals.css";
 import StickyCTA from "@/components/StickyCTA";
-import TrustBar from "@/components/TrustBar";
 import LightboxGlobal from "@/components/LightboxGlobal";
 import SEOJsonLd from "@/components/SEOJsonLd";
 import ChatWidgetAgent from "@/components/ChatWidgetAgent";
@@ -26,10 +25,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
         <SEOJsonLd />
       </head>
-      <body className="min-h-screen flex flex-col bg-[var(--reno-bg)] text-slate-900">
+      <body className="min-h-screen flex flex-col bg-[var(--reno-bg)] text-[var(--reno-band-ink)]">
         <ChatWidgetAgent />
         <HeaderNav />
-        <TrustBar />
         <main className="flex-1">{children}</main>
         <Footer />
         <StickyCTA />

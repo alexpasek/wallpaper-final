@@ -13,6 +13,10 @@ export const SERVICE_AREAS = [
   "Etobicoke",
   "Milton",
   "North York",
+  "Ancaster",
+  "Dundas",
+  "Stoney Creek",
+  "Waterdown",
 ];
 export const ADDRESS = "2394 Haines Rd, Mississauga, ON L4Y 1Y6";
 export const CONTACT = {

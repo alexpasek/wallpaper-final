@@ -1,79 +1,163 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PHONE_HREF, PHONE_NUMBER } from "@/app/config";
+import { BRAND_NAME, PHONE_HREF, PHONE_NUMBER } from "@/app/config";
 
 const primaryNav = [
   { href: "/", label: "Home" },
-  { href: "/services/", label: "Services" },
-  { href: "/before-after/", label: "Gallery" },
-  { href: "/#reviews", label: "Reviews" },
-  { href: "/about-us/", label: "About" },
-  { href: "/contact/", label: "Contact" },
-];
-
-const serviceLinks = [
   { href: "/bathroom-renovation/", label: "Bathroom Renovation" },
   { href: "/basement-renovation/", label: "Basement Renovation" },
-  { href: "/home-renovation/", label: "Home Renovation" },
-  { href: "/other-services/wallpaper-removal/", label: "Wallpaper Removal" },
-  { href: "/other-services/popcorn-ceiling-removal/", label: "Popcorn Ceiling Removal" },
-  { href: "/other-services/drywall-installation/", label: "Drywall Installation" },
-  { href: "/other-services/interior-painting/", label: "Interior Painting" },
+  { href: "/services/", label: "Services" },
+  { href: "/before-after/", label: "Gallery" },
+  { href: "/about-us/", label: "About" },
+];
+
+const mobileLinks = [
+  ...primaryNav,
+  { href: "/contact/", label: "Contact" },
 ];
 
 export default function HeaderNav() {
   const pathname = usePathname();
+  const [isCompact, setIsCompact] = useState(false);
+
+  useEffect(() => {
+    const syncCompactState = () => {
+      setIsCompact(window.scrollY > 48);
+    };
+
+    syncCompactState();
+    window.addEventListener("scroll", syncCompactState, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", syncCompactState);
+    };
+  }, []);
+
   const isActive = (href) => {
-    if (href === "/#reviews") return false;
+    if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(href);
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--reno-border)] bg-white">
-      <div className="container-x h-[88px] flex items-center gap-4">
-        <Link href="/" className="shrink-0 flex items-center">
-          <img src="/logo.png" alt="EPF Pro Services" className="w-auto h-11 md:h-12 object-contain" />
-        </Link>
-
-        <nav className="hidden lg:flex flex-1 items-center justify-center text-[17px] font-semibold text-[#264f46]">
-          {primaryNav.map((item, index) => (
-            <div key={item.href} className="flex items-center">
-              {index > 0 && <span className="mx-4 h-6 w-px bg-[#d3ddd8]" aria-hidden="true" />}
-              <Link
-                href={item.href}
+    <header className="sticky top-0 z-50 px-4 transition-all duration-300 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="overflow-hidden rounded-[18px] border border-[#3a3328] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_32%),linear-gradient(90deg,rgba(8,10,14,0.98)_0%,rgba(31,27,24,0.96)_48%,rgba(10,12,16,0.98)_100%)] shadow-[0_22px_48px_rgba(0,0,0,0.42)] backdrop-blur-xl">
+          <div
+            className={[
+              "flex flex-col px-5 transition-all duration-300 md:px-7 lg:flex-row lg:items-center",
+              isCompact ? "gap-3 py-3 md:py-4 lg:gap-6" : "gap-5 py-5 md:py-6 lg:gap-8",
+            ].join(" ")}
+          >
+            <Link href="/" className="flex min-w-0 items-center gap-4">
+              <img
+                src="/logo.png"
+                alt={`${BRAND_NAME} logo`}
                 className={[
-                  "leading-none transition-colors",
-                  isActive(item.href) ? "text-[var(--reno-ink)]" : "hover:text-[var(--reno-ink)]",
+                  "w-auto shrink-0 object-contain transition-all duration-300",
+                  isCompact ? "h-11 md:h-[56px]" : "h-14 md:h-[70px]",
+                ].join(" ")}
+              />
+
+              <span className="min-w-0">
+                <span
+                  className={[
+                    "block truncate leading-none text-white transition-all duration-300",
+                    isCompact ? "text-[22px] md:text-[34px]" : "text-[28px] md:text-[42px]",
+                  ].join(" ")}
+                  style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                >
+                  {BRAND_NAME}
+                </span>
+                <span
+                  className={[
+                    "mt-1 block truncate leading-none text-[#d9d0c3] transition-all duration-300",
+                    isCompact ? "text-[11px] md:text-[13px]" : "text-[13px] md:text-[15px]",
+                  ].join(" ")}
+                >
+                  Renovation Specialists in the GTA
+                </span>
+              </span>
+            </Link>
+
+            <nav className="hidden flex-1 items-center justify-center gap-8 lg:flex">
+              {primaryNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={[
+                    "relative pb-3 text-[18px] font-semibold text-white/92 transition hover:text-white",
+                    isActive(item.href) ? "text-white" : "",
+                  ].join(" ")}
+                >
+                  {item.label}
+                  <span
+                    className={[
+                      "absolute inset-x-0 bottom-0 mx-auto h-[3px] w-[72%] rounded-full transition",
+                      isActive(item.href) ? "bg-[#d8aa4a]" : "bg-transparent",
+                    ].join(" ")}
+                    aria-hidden="true"
+                  />
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex flex-col gap-3 lg:items-end">
+              <Link
+                href="/quote/"
+                className={[
+                  "inline-flex items-center justify-center rounded-[10px] border border-[#f0d79f]/70 bg-[linear-gradient(180deg,#d9b25d_0%,#bf8d33_100%)] font-bold text-[#fff8eb] shadow-[0_12px_24px_rgba(168,119,29,0.34)] transition-all duration-300 hover:brightness-105",
+                  isCompact ? "px-5 py-2.5 text-[14px] md:px-6 md:text-[15px]" : "px-6 py-3 text-[15px] md:px-7 md:py-3.5 md:text-[17px]",
                 ].join(" ")}
               >
-                {item.label}
+                Get a Free Quote
               </Link>
+              <a
+                href={PHONE_HREF}
+                className={[
+                  "text-white/74 transition-all duration-300 hover:text-white",
+                  isCompact ? "text-[13px]" : "text-[15px]",
+                ].join(" ")}
+              >
+                Call or text: {PHONE_NUMBER}
+              </a>
             </div>
-          ))}
-        </nav>
+          </div>
 
-        <a
-          href={PHONE_HREF}
-          className="ml-auto shrink-0 inline-flex items-center whitespace-nowrap rounded-[14px] bg-[var(--reno-accent)] px-6 py-3 text-white font-black text-[18px] md:text-[20px] leading-none hover:bg-[var(--reno-accent-dark)]"
-        >
-          {PHONE_NUMBER}
-        </a>
+          <div
+            className={[
+              "overflow-hidden border-t border-[#8a6731] px-5 transition-all duration-300 md:px-7",
+              isCompact
+                ? "max-h-0 border-t-0 py-0 opacity-0"
+                : "max-h-24 py-4 opacity-100 md:py-5",
+            ].join(" ")}
+          >
+            <div className="text-center text-[18px] text-[#f0e5d6] md:text-[24px]">
+              Trusted Bathroom, Basement &amp; Interior Renovation Experts Across the GTA
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="lg:hidden border-t border-[var(--reno-border)] bg-[#f7faf9]">
-        <div className="container-x py-2">
-          <nav className="flex gap-2 overflow-x-auto pb-1">
-            {primaryNav.concat(serviceLinks).map((item) => (
+      <div
+        className={[
+          "mx-auto max-w-[1440px] transition-all duration-300 lg:hidden",
+          isCompact ? "mt-2" : "mt-3",
+        ].join(" ")}
+      >
+        <div className="overflow-x-auto rounded-[16px] border border-white/10 bg-[rgba(10,12,16,0.72)] px-3 py-3 backdrop-blur-xl">
+          <nav className="flex gap-2 pb-1">
+            {mobileLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={[
-                  "shrink-0 rounded-xl px-3 py-2 text-sm font-semibold",
+                  "shrink-0 rounded-full border px-4 py-2 text-[12px] font-semibold",
                   isActive(item.href)
-                    ? "bg-[var(--reno-ink)] text-white"
-                    : "bg-white text-[#264a42] border border-[var(--reno-border)]",
+                    ? "border-[#d8aa4a]/80 bg-[#d8aa4a]/12 text-[#f4dcaa]"
+                    : "border-white/12 bg-white/5 text-white/82",
                 ].join(" ")}
               >
                 {item.label}

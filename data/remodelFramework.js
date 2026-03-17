@@ -1,3 +1,5 @@
+import { CURATED_BATHROOM_GALLERY } from "@/data/bathroomGallery";
+
 export const TRUST_ITEMS = [
   {
     title: "Free Same-Day Quote",
@@ -21,22 +23,22 @@ export const SERVICE_LIBRARY = {
     {
       title: "Custom Design",
       text: "Layouts and finish plans aligned to how your household uses the space.",
-      image: "/home/1.webp",
+      image: CURATED_BATHROOM_GALLERY[0].src,
     },
     {
       title: "Bathtubs & Showers",
       text: "Practical fixture upgrades with waterproofing-first detailing.",
-      image: "/home/2.webp",
+      image: CURATED_BATHROOM_GALLERY[1].src,
     },
     {
       title: "Vanities & Countertops",
       text: "Storage-focused vanity and counter combinations with clean installation.",
-      image: "/home/3.webp",
+      image: CURATED_BATHROOM_GALLERY[2].src,
     },
     {
       title: "Flooring & Tiling",
       text: "Durable, stylish tile systems with accurate leveling and alignment.",
-      image: "/home/4.webp",
+      image: CURATED_BATHROOM_GALLERY[4].src,
     },
   ],
   basement: [

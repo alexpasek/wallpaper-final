@@ -1,4 +1,5 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
+import { buildBathroomGallery } from "@/data/bathroomGallery";
 
 export const metadata = {
   title: "Bathroom Renovation | EPF Pro Services",
@@ -61,10 +62,7 @@ const faqItems = [
   },
 ];
 
-const gallery = Array.from({ length: 6 }, (_, i) => ({
-  src: `/home/${((i + 2) % 8) + 1}.webp`,
-  alt: `Bathroom renovation project ${i + 1}`,
-}));
+const gallery = buildBathroomGallery("Bathroom Renovation");
 
 export default function Page() {
   return (
