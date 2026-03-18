@@ -640,25 +640,38 @@ const groups = [
 
 export default function LocationsPage() {
   return (
-    <div className="container-x py-10">
-      <header className="max-w-5xl">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
-          GTA Renovation Locations
+    <div className="container-x py-8 md:py-10">
+      <header className="dark-card px-6 py-7 md:px-8 md:py-8">
+        <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
+          GTA Location Pages
+        </p>
+        <h1 className="mt-3 max-w-[12ch] text-[38px] font-black uppercase leading-[0.92] text-white display-title md:text-[60px]">
+          Renovation Service Areas Across The GTA
         </h1>
-        <p className="mt-3 text-lg text-slate-700">
-          Every location page targets a specific keyword and contains unique local copy.
+        <p className="mt-5 max-w-[48rem] text-[17px] leading-8 text-white/74">
+          Browse city and neighbourhood pages for bathroom renovation, basement
+          renovation, and home renovation coverage across Mississauga, Toronto,
+          Oakville, Burlington, Hamilton, Milton, Etobicoke, and North York.
         </p>
       </header>
 
-      <section className="mt-10 space-y-8">
+      <section className="mt-8 space-y-6">
         {groups.map((g) => (
-          <div key={g.citySlug} className="card p-6 bg-white">
-            <h2 className="text-2xl font-semibold text-slate-900">{g.cityName}</h2>
+          <div key={g.citySlug} className="card px-6 py-6 md:px-7">
+            <h2 className="text-[30px] font-black uppercase leading-[0.95] text-[var(--reno-ink)] display-title md:text-[38px]">
+              {g.cityName}
+            </h2>
 
-            <h3 className="mt-5 font-semibold text-slate-900">Core Service Keywords</h3>
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <h3 className="mt-5 text-[13px] font-black uppercase tracking-[0.16em] text-[var(--reno-accent-dark)]">
+              Core Service Pages
+            </h3>
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {g.core.map((p) => (
-                <Link key={p.slug} href={"/locations/" + p.slug + "/"} className="pill text-center">
+                <Link
+                  key={p.slug}
+                  href={"/locations/" + p.slug + "/"}
+                  className="border border-black/10 bg-[var(--reno-paper-soft)] px-4 py-4 text-center text-[14px] font-bold leading-6 text-[var(--reno-ink)] transition hover:bg-white"
+                >
                   {p.title}
                 </Link>
               ))}
@@ -666,12 +679,16 @@ export default function LocationsPage() {
 
             {g.neighborhoods.length > 0 && (
               <>
-                <h3 className="mt-6 font-semibold text-slate-900">
-                  Neighborhood Bathroom Renovation Keywords
+                <h3 className="mt-6 text-[13px] font-black uppercase tracking-[0.16em] text-[var(--reno-accent-dark)]">
+                  Neighbourhood Bathroom Renovation Pages
                 </h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {g.neighborhoods.map((p) => (
-                    <Link key={p.slug} href={"/locations/" + p.slug + "/"} className="pill">
+                    <Link
+                      key={p.slug}
+                      href={"/locations/" + p.slug + "/"}
+                      className="border border-black/10 bg-[var(--reno-paper-soft)] px-3 py-2 text-[13px] font-bold leading-6 text-[var(--reno-ink)] transition hover:bg-white"
+                    >
                       {p.title}
                     </Link>
                   ))}

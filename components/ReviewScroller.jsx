@@ -124,6 +124,7 @@ export default function ReviewScroller({
   bgAlpha = 0.1,
   cardAlpha = 0.08,
   hoverAlpha = 0.16,
+  showHeader = true,
 }) {
   const { ref, by } = useScroller();
 
@@ -197,49 +198,51 @@ export default function ReviewScroller({
 
       {/* === Foreground content === */}
       <div className="relative mx-auto max-w-6xl px-4">
-        <div className="flex items-end justify-between mb-3">
-          <div>
-            <h2 className="text-xl md:text-2xl font-semibold tracking-tight">
-              Why Customers Love Us
-            </h2>
-            <p className="text-sm text-zinc-600">
-              Real projects across Mississauga, Oakville, Burlington, Milton,
-              and Stoney Creek.
-            </p>
+        {showHeader && (
+          <div className="mb-3 flex items-end justify-between">
+            <div>
+              <h2 className="text-xl md:text-2xl font-semibold tracking-tight">
+                Why Customers Love Us
+              </h2>
+              <p className="text-sm text-zinc-600">
+                Real projects across Mississauga, Oakville, Burlington, Milton,
+                and Stoney Creek.
+              </p>
+            </div>
+            <div className="hidden md:flex items-center gap-2">
+              <button
+                onClick={() => by(-1)}
+                aria-label="Previous reviews"
+                className="h-9 w-9 rounded-full border border-black/10 bg-white hover:bg-zinc-50 grid place-items-center shadow-sm"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4">
+                  <path
+                    d="M15 6l-6 6 6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={() => by(1)}
+                aria-label="Next reviews"
+                className="h-9 w-9 rounded-full border border-black/10 bg-white hover:bg-zinc-50 grid place-items-center shadow-sm"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4">
+                  <path
+                    d="M9 6l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-          <div className="hidden md:flex items-center gap-2">
-            <button
-              onClick={() => by(-1)}
-              aria-label="Previous reviews"
-              className="h-9 w-9 rounded-full border border-black/10 bg-white hover:bg-zinc-50 grid place-items-center shadow-sm"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4">
-                <path
-                  d="M15 6l-6 6 6 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={() => by(1)}
-              aria-label="Next reviews"
-              className="h-9 w-9 rounded-full border border-black/10 bg-white hover:bg-zinc-50 grid place-items-center shadow-sm"
-            >
-              <svg viewBox="0 0 24 24" className="h-4 w-4">
-                <path
-                  d="M9 6l6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
+        )}
 
         {/* One-line scroller */}
         <div

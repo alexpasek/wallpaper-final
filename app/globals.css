@@ -1,34 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
-  --reno-bg: #111317;
-  --reno-bg-elevated: #171a20;
-  --reno-surface: #f3ede1;
-  --reno-surface-strong: #ffffff;
-  --reno-ink: #16191f;
-  --reno-ink-soft: #59606b;
-  --reno-band: #191c22;
-  --reno-band-ink: #f2ece1;
-  --reno-accent: #d79a2b;
-  --reno-accent-dark: #a76d12;
-  --reno-accent-soft: #f0d7a3;
-  --reno-border: #2f343d;
-  --reno-border-soft: #d7c8aa;
+    --reno-bg: #111317;
+    --reno-bg-elevated: #171a20;
+    --reno-surface: #f3ede1;
+    --reno-surface-strong: #ffffff;
+    --reno-paper-soft: #edf2ef;
+    --reno-ink: #16191f;
+    --reno-ink-soft: #59606b;
+    --reno-band: #191c22;
+    --reno-band-ink: #f2ece1;
+    --reno-accent: #5f8278;
+    --reno-accent-dark: #40645b;
+    --reno-accent-soft: #d7e4e0;
+    --reno-border: #2f343d;
+    --reno-border-soft: #d7c8aa;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(215, 154, 43, 0.16), transparent 28%),
-    linear-gradient(180deg, #101216 0%, #15191f 48%, #111317 100%);
-  color: #f3ede1;
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background: radial-gradient(circle at top left, rgba(95, 130, 120, 0.24), transparent 24%), radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 18%), linear-gradient(180deg, #14171d 0%, #191e26 42%, #12151b 100%);
+    color: #f3ede1;
+    font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 h1,
@@ -38,265 +36,342 @@ h4,
 h5,
 h6,
 .display-title {
-  font-family: "Arial Narrow", "Avenir Next Condensed", "Franklin Gothic Medium", "Avenir Next", sans-serif;
-  font-stretch: condensed;
-  letter-spacing: -0.03em;
+    font-family: "Arial Narrow", "Avenir Next Condensed", "Franklin Gothic Medium", "Avenir Next", sans-serif;
+    font-stretch: condensed;
+    letter-spacing: -0.03em;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }
 
 .container-x {
-  @apply mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-[1560px] px-4 sm:px-6 lg:px-8;
 }
 
 .card {
-  @apply rounded-[28px] border shadow-[0_18px_45px_rgba(0,0,0,0.18)];
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 237, 225, 0.98));
-  border-color: rgba(215, 200, 170, 0.9);
-  color: var(--reno-ink);
+    @apply rounded-[10px] border;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 243, 235, 0.985));
+    border-color: rgba(221, 212, 192, 0.92);
+    color: var(--reno-ink);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.16);
 }
 
 .dark-card {
-  @apply rounded-[28px] border shadow-[0_18px_45px_rgba(0,0,0,0.3)];
-  background: linear-gradient(180deg, rgba(24, 27, 33, 0.98), rgba(18, 20, 25, 0.98));
-  border-color: rgba(255, 255, 255, 0.08);
+    @apply rounded-[10px] border;
+    background: linear-gradient(180deg, rgba(28, 32, 39, 0.985), rgba(20, 24, 31, 0.985));
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.28);
 }
 
 .pill {
-  @apply inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] transition;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f3ede1;
-  border-color: rgba(255, 255, 255, 0.14);
+    @apply inline-flex items-center justify-center rounded-[8px] border px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] transition;
+    background: rgba(255, 255, 255, 0.08);
+    color: #f3ede1;
+    border-color: rgba(255, 255, 255, 0.14);
 }
 
 .pill:hover {
-  background: rgba(215, 154, 43, 0.16);
-  border-color: rgba(215, 154, 43, 0.5);
+    background: rgba(95, 130, 120, 0.14);
+    border-color: rgba(95, 130, 120, 0.5);
 }
 
 .btn-cta {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-black uppercase tracking-[0.08em] text-[#15181d] transition;
-  background: linear-gradient(180deg, #f3be55 0%, var(--reno-accent) 48%, var(--reno-accent-dark) 100%);
-  border: 1px solid rgba(255, 243, 220, 0.82);
-  box-shadow:
-    0 18px 30px rgba(167, 109, 18, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    @apply inline-flex items-center justify-center rounded-[8px] px-6 py-3 text-base font-black uppercase tracking-[0.08em] text-[#f7fbfa] transition;
+    background: linear-gradient( 180deg, #7ea196 0%, var(--reno-accent) 48%, var(--reno-accent-dark) 100%);
+    border: 1px solid rgba(226, 237, 233, 0.72);
+    box-shadow: 0 18px 30px rgba(64, 100, 91, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .btn-cta:hover {
-  transform: translateY(-1px);
-  filter: saturate(1.05);
+    transform: translateY(-1px);
+    filter: saturate(1.05);
 }
 
 .btn-cta-outline {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] transition;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  color: #f7f2e8;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+    @apply inline-flex items-center justify-center rounded-[8px] px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] transition;
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    color: #f7f2e8;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
 }
 
 .btn-cta-outline:hover {
-  background: rgba(255, 255, 255, 0.11);
-  border-color: rgba(255, 255, 255, 0.38);
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.38);
 }
 
 .field-input {
-  @apply w-full rounded-[18px] border px-4 py-3 text-[16px] md:text-[17px];
-  border-color: rgba(38, 42, 49, 0.12);
-  background: rgba(255, 255, 255, 0.96);
-  color: #171a1f;
+    @apply w-full rounded-[8px] border px-4 py-3 text-[16px] md:text-[17px];
+    border-color: rgba(38, 42, 49, 0.12);
+    background: rgba(255, 255, 255, 0.96);
+    color: #171a1f;
 }
 
 .field-input::placeholder {
-  color: #6d7480;
+    color: #6d7480;
 }
 
 .field-input:focus {
-  outline: none;
-  border-color: rgba(215, 154, 43, 0.82);
-  box-shadow: 0 0 0 4px rgba(215, 154, 43, 0.16);
+    outline: none;
+    border-color: rgba(95, 130, 120, 0.82);
+    box-shadow: 0 0 0 4px rgba(95, 130, 120, 0.16);
 }
 
 .reno-hero-photo {
-  position: relative;
-  min-height: clamp(520px, 72vw, 760px);
-  background-size: cover;
-  background-position: center center;
+    position: relative;
+    min-height: clamp(520px, 72vw, 760px);
+    background-size: cover;
+    background-position: center center;
 }
 
 .reno-hero-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(12, 13, 16, 0.88) 0%, rgba(12, 13, 16, 0.72) 38%, rgba(12, 13, 16, 0.26) 74%, rgba(12, 13, 16, 0.16) 100%),
-    linear-gradient(180deg, rgba(12, 13, 16, 0.1) 0%, rgba(12, 13, 16, 0.56) 100%);
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient( 90deg, rgba(12, 13, 16, 0.88) 0%, rgba(12, 13, 16, 0.72) 38%, rgba(12, 13, 16, 0.26) 74%, rgba(12, 13, 16, 0.16) 100%), linear-gradient( 180deg, rgba(12, 13, 16, 0.1) 0%, rgba(12, 13, 16, 0.56) 100%);
 }
 
 .reno-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at top left, rgba(215, 154, 43, 0.22), transparent 25%),
-    linear-gradient(180deg, transparent 0%, rgba(17, 19, 23, 0.32) 100%);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient( circle at top left, rgba(95, 130, 120, 0.22), transparent 25%), linear-gradient(180deg, transparent 0%, rgba(17, 19, 23, 0.32) 100%);
 }
 
 .reno-hero-title {
-  @apply font-black uppercase leading-[0.88] text-white;
-  font-size: clamp(3.1rem, 8vw, 6.75rem);
-  text-wrap: balance;
+    @apply font-black uppercase leading-[0.88] text-white;
+    font-size: clamp(3.1rem, 8vw, 6.75rem);
+    text-wrap: balance;
 }
 
 .reno-subline {
-  color: rgba(255, 255, 255, 0.82);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
 }
 
 .hero-panel {
-  @apply rounded-[28px] border p-5 md:p-6;
-  background: rgba(19, 22, 28, 0.78);
-  border-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(16px);
+    @apply rounded-[10px] border p-5 md:p-6;
+    background: rgba(19, 22, 28, 0.78);
+    border-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
 }
 
 .hero-form {
-  @apply rounded-[28px] border p-5 md:p-6;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 237, 225, 0.98));
-  border-color: rgba(215, 200, 170, 0.88);
+    @apply rounded-[10px] border p-5 md:p-6;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.992), rgba(247, 243, 235, 0.985));
+    border-color: rgba(215, 200, 170, 0.88);
+    box-shadow: 0 26px 56px rgba(0, 0, 0, 0.14);
 }
 
 .prose-custom {
-  @apply prose prose-invert max-w-none;
+    @apply prose prose-invert max-w-none;
 }
 
 .sticky-subnav {
-  @apply sticky top-[124px] z-20 border-y;
-  background: rgba(17, 19, 23, 0.94);
-  border-color: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+    @apply sticky top-[124px] z-20 border-y;
+    background: rgba(17, 19, 23, 0.94);
+    border-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
 }
 
 .scroller {
-  @apply flex gap-3 overflow-x-auto py-2 -mx-4 px-4 snap-x snap-mandatory;
+    @apply flex gap-3 overflow-x-auto py-2 -mx-4 px-4 snap-x snap-mandatory;
 }
 
-.scroller > a {
-  @apply pill shrink-0 snap-start;
+.scroller>a {
+    @apply pill shrink-0 snap-start;
 }
 
 .compare-track {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  border-radius: 1.5rem;
-  cursor: ew-resize;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: ew-resize;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .compare-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
 }
 
 .handle-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.95);
-  z-index: 10;
-  transform: translateX(-50%);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 10;
+    transform: translateX(-50%);
 }
 
 .handle-knob {
-  position: absolute;
-  top: 50%;
-  width: 34px;
-  height: 34px;
-  border-radius: 9999px;
-  background: #fff;
-  border: 2px solid var(--reno-accent);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  transform: translate(-50%, -50%);
-  z-index: 20;
+    position: absolute;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background: #fff;
+    border: 2px solid var(--reno-accent);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transform: translate(-50%, -50%);
+    z-index: 20;
 }
 
 .range {
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  z-index: 30;
-  opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 30;
+    opacity: 0;
 }
 
 .range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-  background: #fff;
-  border: 2px solid var(--reno-accent);
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    background: #fff;
+    border: 2px solid var(--reno-accent);
 }
 
 .range::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-  background: #fff;
-  border: 2px solid var(--reno-accent);
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    background: #fff;
+    border: 2px solid var(--reno-accent);
 }
 
 .gold-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
 .gold-glow {
-  box-shadow:
-    0 0 0 1px rgba(215, 154, 43, 0.2),
-    0 20px 45px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 1px rgba(95, 130, 120, 0.2), 0 20px 45px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.reno-image-pop {
+    position: relative;
+    transform: perspective(1400px) translateZ(0) scale(1.01);
+    transform-origin: center center;
+    filter: saturate(1.1) contrast(1.07) brightness(1.06);
+    box-shadow: 0 26px 56px rgba(0, 0, 0, 0.24), 0 12px 26px rgba(0, 0, 0, 0.15);
+    transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+}
+
+.reno-image-pop:hover {
+    transform: perspective(1400px) translateY(-4px) translateZ(0) scale(1.025);
+    filter: saturate(1.14) contrast(1.09) brightness(1.08);
+    box-shadow: 0 34px 66px rgba(0, 0, 0, 0.28), 0 16px 30px rgba(0, 0, 0, 0.18);
+}
+
+[class*="rounded-full"],
+[class*="rounded-[34px]"],
+[class*="rounded-[30px]"],
+[class*="rounded-[28px]"],
+[class*="rounded-[26px]"],
+[class*="rounded-[24px]"],
+[class*="rounded-[22px]"],
+[class*="rounded-[18px]"],
+[class*="rounded-[12px]"],
+[class*="rounded-2xl"] {
+    border-radius: 10px !important;
 }
 
 @keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes soft-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
 
-  50% {
-    transform: translateY(-6px);
-  }
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(95, 130, 120, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(95, 130, 120, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(95, 130, 120, 0);
+    }
 }
 
 .animate-fade-up {
-  animation: fade-up 0.6s ease-out both;
+    animation: fade-up 0.6s ease-out both;
 }
 
 .animate-soft-float {
-  animation: soft-float 5s ease-in-out infinite;
+    animation: soft-float 5s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+    animation: pulse-ring 2s infinite;
+}
+
+
+/* Process Timeline Styles */
+
+.process-step-badge {
+    position: relative;
+    width: 96px;
+    height: 96px;
+}
+
+.process-step-badge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: linear-gradient( 135deg, rgba(95, 130, 120, 0.16), rgba(95, 130, 120, 0.06));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(8px);
+}
+
+.process-step-badge:hover::before {
+    opacity: 1;
+}
+
+.process-step-badge-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: linear-gradient( 180deg, var(--reno-accent-soft) 0%, var(--reno-accent) 100%);
+    border: 2px solid var(--reno-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.process-step-badge:hover .process-step-badge-inner {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(95, 130, 120, 0.2);
 }

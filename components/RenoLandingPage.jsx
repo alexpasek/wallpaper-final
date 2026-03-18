@@ -1,13 +1,18 @@
 import Link from "next/link";
 import QuoteForm from "@/components/QuoteForm";
 import { PHONE_HREF, PHONE_NUMBER } from "@/app/config";
-import { buildBathroomGallery, hasPlaceholderHomeGallery } from "@/data/bathroomGallery";
+import {
+  buildBathroomGallery,
+  hasPlaceholderHomeGallery,
+} from "@/data/bathroomGallery";
 import {
   TRUST_ITEMS,
   SERVICE_LIBRARY,
   FRAMEWORK_PILLARS,
   detectServiceFamily,
 } from "@/data/remodelFramework";
+
+import ProcessTimeline from "./ProcessTimeline";
 
 function JsonLd({ title, description, canonicalPath, faqItems }) {
   const graph = [
@@ -98,23 +103,31 @@ export default function RenoLandingPage({
   kicker,
   highlights,
   process,
+  processSection,
   localCopy,
   faqItems,
   gallery = [],
   keywordLinks = [],
   heroImagePosition = "center center",
+  localSection,
+  serviceAreaSection,
+  postServiceAreaSection,
+  finalSection,
 }) {
   const isHomepage = canonicalPath === "/";
   const family = detectServiceFamily(title, canonicalPath);
   const serviceCards = SERVICE_LIBRARY[family] || SERVICE_LIBRARY.general;
   const effectiveGallery =
-    family === "bathroom" && (gallery.length === 0 || hasPlaceholderHomeGallery(gallery))
+    family === "bathroom" &&
+    (gallery.length === 0 || hasPlaceholderHomeGallery(gallery))
       ? buildBathroomGallery(title)
       : gallery;
   const hero = heroCopy(title);
-  const heroImage = effectiveGallery[0]?.src || serviceCards[0]?.image || "/home/1.webp";
+  const heroImage =
+    effectiveGallery[0]?.src || serviceCards[0]?.image || "/home/1.webp";
   const featureLeft = effectiveGallery[1] || effectiveGallery[0];
-  const featureRight = effectiveGallery[2] || effectiveGallery[1] || effectiveGallery[0];
+  const featureRight =
+    effectiveGallery[2] || effectiveGallery[1] || effectiveGallery[0];
   const remainingGallery = effectiveGallery.slice(3);
   const servicesHeading = title.toLowerCase().includes("services")
     ? `Our ${title}`
@@ -130,38 +143,40 @@ export default function RenoLandingPage({
       />
 
       <section className="pt-3 md:pt-4">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 md:px-6 lg:px-8">
           {isHomepage ? (
-            <div className="relative h-[520px] overflow-hidden rounded-[26px] border border-white/10 bg-[linear-gradient(135deg,#080b10_0%,#121722_100%)] shadow-[0_28px_70px_rgba(0,0,0,0.42)] md:h-[580px] lg:h-[620px]">
+            <div className="relative h-[660px] overflow-hidden rounded-[26px] border border-white/10 bg-[linear-gradient(135deg,#0d1117_0%,#1b2230_100%)] shadow-[0_34px_86px_rgba(0,0,0,0.4)] md:h-[760px] lg:h-[820px]">
               <div className="absolute inset-0">
                 <img
                   src={heroImage}
                   alt={`${title} featured bathroom`}
-                  className="h-full w-full object-cover contrast-[1.04] brightness-[1.22] saturate-[1.06] scale-[1.02]"
+                  className="reno-image-pop h-full w-full object-cover contrast-[1.06] brightness-[1.16] saturate-[1.08] scale-[1.03]"
                   style={{ objectPosition: heroImagePosition }}
                 />
               </div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_16%,rgba(255,255,255,0.18),transparent_26%),linear-gradient(90deg,rgba(8,10,14,0.78)_0%,rgba(8,10,14,0.54)_32%,rgba(8,10,14,0.18)_62%,rgba(8,10,14,0.14)_100%),linear-gradient(180deg,rgba(8,10,14,0.06)_0%,rgba(8,10,14,0.34)_100%)]" />
-              <div className="relative z-10 flex h-full items-start px-6 py-8 md:px-8 md:py-9 lg:px-12 lg:py-8">
-                <div className="grid w-full gap-6 lg:grid-cols-[1.16fr_0.84fr] lg:items-end">
-                  <div className="max-w-[760px] animate-fade-up">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_15%,rgba(255,255,255,0.18),transparent_22%),linear-gradient(90deg,rgba(8,10,14,0.9)_0%,rgba(8,10,14,0.72)_34%,rgba(8,10,14,0.3)_64%,rgba(8,10,14,0.24)_100%),linear-gradient(180deg,rgba(8,10,14,0.16)_0%,rgba(8,10,14,0.34)_100%)]" />
+              <div className="relative z-10 flex h-full items-end px-6 py-8 md:px-8 md:py-10 lg:px-12 lg:py-12">
+                <div className="grid w-full gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
+                  <div className="max-w-[1040px] animate-fade-up">
                     <p className="text-[12px] font-black uppercase tracking-[0.26em] text-[var(--reno-accent-soft)] md:text-[13px]">
                       {kicker} • GTA Renovation Team
                     </p>
                     <h1
-                      className="mt-4 max-w-[8.6ch] text-[clamp(3rem,5vw,5.2rem)] font-semibold leading-[0.92] text-white"
-                      style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                      className="mt-4 max-w-[10ch] text-[clamp(3rem,5vw,5.3rem)] font-semibold leading-[0.98] text-white [text-shadow:0_6px_24px_rgba(0,0,0,0.52)]"
+                      style={{
+                        fontFamily: 'Georgia, "Times New Roman", serif',
+                      }}
                     >
                       <span className="block">{hero.line1}</span>
                       <span className="block">{hero.line2}</span>
                     </h1>
-                    <p className="mt-4 max-w-[19ch] text-[clamp(1.08rem,1.55vw,1.55rem)] leading-[1.42] text-white/92">
+                    <p className="mt-5 max-w-[34ch] text-[clamp(1.05rem,1.3vw,1.45rem)] leading-[1.5] text-white [text-shadow:0_4px_18px_rgba(0,0,0,0.5)]">
                       {description || hero.lead}
                     </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
+                    <div className="mt-7 flex flex-wrap gap-3">
                       <a
                         href="/quote/"
-                        className="inline-flex items-center justify-center rounded-[12px] border border-[#f0d79f]/75 bg-[linear-gradient(180deg,#ddb865_0%,#c18f35_100%)] px-6 py-3 text-[15px] font-bold text-[#fff8eb] shadow-[0_14px_26px_rgba(168,119,29,0.34)] transition hover:brightness-105"
+                        className="inline-flex items-center justify-center rounded-[12px] border border-[rgba(215,228,224,0.72)] bg-[linear-gradient(180deg,#7ea196_0%,#5f8278_52%,#40645b_100%)] px-6 py-3 text-[15px] font-bold text-[#f7fbfa] shadow-[0_14px_26px_rgba(64,100,91,0.3)] transition hover:brightness-105"
                       >
                         Get Your Free Estimate
                       </a>
@@ -172,10 +187,12 @@ export default function RenoLandingPage({
                         Call Alex: {PHONE_NUMBER}
                       </a>
                     </div>
-                    <ul className="mt-6 space-y-2.5 text-[16px] text-white/92 md:text-[18px]">
+                    <ul className="mt-6 grid gap-2.5 text-[15px] text-white/92 md:grid-cols-2 md:text-[17px]">
                       {promiseItems.map((item) => (
                         <li key={item} className="flex items-start gap-3">
-                          <span className="mt-0.5 text-[22px] leading-none text-[var(--reno-accent)]">✓</span>
+                          <span className="mt-0.5 text-[22px] leading-none text-[var(--reno-accent)]">
+                            ✓
+                          </span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -183,15 +200,17 @@ export default function RenoLandingPage({
                   </div>
 
                   <div className="flex justify-start lg:justify-end">
-                    <div className="w-full max-w-[360px] animate-fade-up rounded-[28px] border border-[#b68a3e]/55 bg-[rgba(19,21,27,0.56)] p-5 shadow-[0_24px_50px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-6">
+                    <div className="w-full max-w-[360px] animate-fade-up rounded-[28px] border border-[rgba(95,130,120,0.45)] bg-[rgba(13,17,23,0.72)] p-5 shadow-[0_28px_60px_rgba(0,0,0,0.26)] backdrop-blur-md md:p-6">
                       <h2 className="text-[30px] font-black leading-[0.98] text-[var(--reno-accent-soft)] display-title md:text-[38px]">
                         What You Can Expect
                       </h2>
-                      <div className="mt-4 h-px bg-[linear-gradient(90deg,rgba(215,154,43,0.42),rgba(255,255,255,0.16))]" />
+                      <div className="mt-4 h-px bg-[linear-gradient(90deg,rgba(95,130,120,0.42),rgba(255,255,255,0.16))]" />
                       <ul className="mt-5 space-y-3 text-[16px] text-white/92 md:text-[18px]">
                         {expectationItems.map((item) => (
                           <li key={item} className="flex items-start gap-3">
-                            <span className="mt-0.5 text-[22px] leading-none text-[var(--reno-accent)]">✓</span>
+                            <span className="mt-0.5 text-[22px] leading-none text-[var(--reno-accent)]">
+                              ✓
+                            </span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -202,36 +221,38 @@ export default function RenoLandingPage({
               </div>
             </div>
           ) : (
-            <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-[linear-gradient(135deg,#080b10_0%,#121722_100%)] shadow-[0_28px_70px_rgba(0,0,0,0.42)]">
+            <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-[linear-gradient(135deg,#0d1117_0%,#1b2230_100%)] shadow-[0_34px_86px_rgba(0,0,0,0.4)]">
               <div className="absolute inset-0">
                 <img
                   src={heroImage}
                   alt={`${title} hero project`}
-                  className="h-full w-full object-cover contrast-[1.08] brightness-[1.12] saturate-[1.12] scale-[1.035]"
+                  className="reno-image-pop h-full w-full object-cover contrast-[1.08] brightness-[1.17] saturate-[1.12] scale-[1.04]"
                   style={{ objectPosition: heroImagePosition }}
                 />
               </div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.16),transparent_24%),linear-gradient(90deg,rgba(8,10,14,0.86)_0%,rgba(8,10,14,0.58)_40%,rgba(8,10,14,0.16)_72%,rgba(8,10,14,0.46)_100%),linear-gradient(180deg,rgba(8,10,14,0.08)_0%,rgba(8,10,14,0.48)_100%)]" />
-              <div className="relative z-10 px-6 py-6 md:px-8 md:py-8 lg:px-10 lg:pt-7 lg:pb-6">
-                <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-                  <div className="max-w-[860px] animate-fade-up">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.22),transparent_24%),linear-gradient(90deg,rgba(8,10,14,0.8)_0%,rgba(8,10,14,0.48)_40%,rgba(8,10,14,0.12)_72%,rgba(8,10,14,0.34)_100%),linear-gradient(180deg,rgba(8,10,14,0.05)_0%,rgba(8,10,14,0.38)_100%)]" />
+              <div className="relative z-10 px-6 py-7 md:px-8 md:py-9 lg:px-10 lg:pt-8 lg:pb-8">
+                <div className="grid gap-7 lg:grid-cols-[1.22fr_0.78fr] lg:items-end">
+                  <div className="max-w-[920px] animate-fade-up">
                     <p className="text-[12px] font-black uppercase tracking-[0.26em] text-[var(--reno-accent-soft)] md:text-[13px]">
                       {kicker} • GTA Renovation Team
                     </p>
                     <h1
-                      className="mt-4 max-w-[11ch] text-[clamp(2.8rem,5.8vw,5.25rem)] font-semibold leading-[0.92] text-white"
-                      style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                      className="mt-4 max-w-[11ch] text-[clamp(3rem,5.8vw,5.75rem)] font-semibold leading-[0.9] text-white"
+                      style={{
+                        fontFamily: 'Georgia, "Times New Roman", serif',
+                      }}
                     >
                       <span className="block">{hero.line1}</span>
                       <span className="block">{hero.line2}</span>
                     </h1>
-                    <p className="mt-4 max-w-[18ch] text-[clamp(1.08rem,1.72vw,1.7rem)] leading-[1.45] text-white/90">
+                    <p className="mt-4 max-w-[23ch] text-[clamp(1.08rem,1.72vw,1.74rem)] leading-[1.45] text-white/92">
                       {description || hero.lead}
                     </p>
                     <div className="mt-7 flex flex-wrap gap-3">
                       <a
                         href="/quote/"
-                        className="inline-flex items-center justify-center rounded-[12px] border border-[#f0d79f]/75 bg-[linear-gradient(180deg,#ddb865_0%,#c18f35_100%)] px-6 py-3.5 text-[16px] font-bold text-[#fff8eb] shadow-[0_14px_26px_rgba(168,119,29,0.34)] transition hover:brightness-105"
+                        className="inline-flex items-center justify-center rounded-[12px] border border-[rgba(215,228,224,0.72)] bg-[linear-gradient(180deg,#7ea196_0%,#5f8278_52%,#40645b_100%)] px-6 py-3.5 text-[16px] font-bold text-[#f7fbfa] shadow-[0_14px_26px_rgba(64,100,91,0.3)] transition hover:brightness-105"
                       >
                         Get Your Free Estimate
                       </a>
@@ -242,10 +263,12 @@ export default function RenoLandingPage({
                         Call Alex: {PHONE_NUMBER}
                       </a>
                     </div>
-                    <ul className="mt-6 space-y-2.5 text-[17px] text-white/92 md:text-[19px]">
+                    <ul className="mt-7 grid gap-2.5 text-[17px] text-white/92 md:grid-cols-2 md:text-[19px]">
                       {promiseItems.map((item) => (
                         <li key={item} className="flex items-start gap-3">
-                          <span className="mt-0.5 text-[24px] leading-none text-[var(--reno-accent)]">✓</span>
+                          <span className="mt-0.5 text-[24px] leading-none text-[var(--reno-accent)]">
+                            ✓
+                          </span>
                           <span>{item}</span>
                         </li>
                       ))}
@@ -253,15 +276,17 @@ export default function RenoLandingPage({
                   </div>
 
                   <div className="flex justify-start lg:justify-end">
-                    <div className="w-full max-w-[370px] animate-fade-up rounded-[28px] border border-[#b68a3e]/55 bg-[rgba(19,21,27,0.58)] p-5 shadow-[0_24px_50px_rgba(0,0,0,0.28)] backdrop-blur-md md:p-6">
+                    <div className="w-full max-w-[390px] animate-fade-up rounded-[28px] border border-[rgba(95,130,120,0.45)] bg-[rgba(18,22,29,0.5)] p-5 shadow-[0_28px_60px_rgba(0,0,0,0.26)] backdrop-blur-md md:p-6">
                       <h2 className="text-[31px] font-black leading-[0.98] text-[var(--reno-accent-soft)] display-title md:text-[40px]">
                         What You Can Expect
                       </h2>
-                      <div className="mt-4 h-px bg-[linear-gradient(90deg,rgba(215,154,43,0.42),rgba(255,255,255,0.16))]" />
+                      <div className="mt-4 h-px bg-[linear-gradient(90deg,rgba(95,130,120,0.42),rgba(255,255,255,0.16))]" />
                       <ul className="mt-5 space-y-3.5 text-[17px] text-white/92 md:text-[19px]">
                         {expectationItems.map((item) => (
                           <li key={item} className="flex items-start gap-3">
-                            <span className="mt-0.5 text-[24px] leading-none text-[var(--reno-accent)]">✓</span>
+                            <span className="mt-0.5 text-[24px] leading-none text-[var(--reno-accent)]">
+                              ✓
+                            </span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -270,17 +295,21 @@ export default function RenoLandingPage({
                   </div>
                 </div>
 
-                <div className="mt-6 grid gap-4 md:mt-7 md:grid-cols-3">
+                <div className="mt-7 grid gap-4 md:grid-cols-3">
                   {TRUST_ITEMS.map((item) => (
                     <article
                       key={item.title}
-                      className="rounded-[28px] border border-white/12 bg-[rgba(17,18,24,0.62)] px-5 py-5 shadow-[0_18px_42px_rgba(0,0,0,0.22)] backdrop-blur-sm"
+                      className="rounded-[28px] border border-white/12 bg-[rgba(17,18,24,0.56)] px-5 py-5 shadow-[0_22px_48px_rgba(0,0,0,0.2)] backdrop-blur-sm"
                     >
-                      <div className="text-[30px] leading-none text-[var(--reno-accent)]">{item.icon}</div>
+                      <div className="text-[30px] leading-none text-[var(--reno-accent)]">
+                        {item.icon}
+                      </div>
                       <h2 className="mt-4 text-[28px] font-black leading-[0.98] text-white display-title md:text-[34px]">
                         {item.title}
                       </h2>
-                      <p className="mt-3 text-[15px] leading-7 text-white/76">{item.text}</p>
+                      <p className="mt-3 text-[15px] leading-7 text-white/76">
+                        {item.text}
+                      </p>
                     </article>
                   ))}
                 </div>
@@ -291,33 +320,37 @@ export default function RenoLandingPage({
       </section>
 
       <section className="container-x mt-10">
-        <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.22fr_0.78fr]">
           <div className="space-y-6">
             <div className="card px-6 py-7 md:px-8 md:py-8">
-              <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[#8e6a22]">
+              <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-dark)]">
                 Signature Layout
               </p>
               <h2 className="mt-3 text-[38px] font-black uppercase leading-[0.94] text-[var(--reno-ink)] display-title md:text-[58px]">
                 {servicesHeading}
               </h2>
               <p className="mt-4 max-w-[48rem] text-[16px] leading-8 text-[var(--reno-ink-soft)]">
-                Built around practical layouts, sharp detailing, and renovation planning that keeps the work moving cleanly.
+                Built around practical layouts, sharp detailing, and renovation
+                planning that keeps the work moving cleanly.
               </p>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               {serviceCards.map((card, index) => (
-                <article key={card.title} className="overflow-hidden rounded-[30px] border border-white/8 bg-[#171b21] shadow-[0_18px_42px_rgba(0,0,0,0.28)]">
+                <article
+                  key={card.title}
+                  className="overflow-hidden rounded-[30px] border border-white/8 bg-[#171b21] shadow-[0_18px_42px_rgba(0,0,0,0.28)]"
+                >
                   <figure className="relative">
                     <img
                       src={card.image}
                       alt={`${card.title} - ${title}`}
-                      className="h-[260px] w-full object-cover"
+                      className="reno-image-pop h-[320px] w-full object-cover"
                       data-lightbox="true"
                     />
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_24%,rgba(10,12,16,0.9)_100%)]" />
                     <figcaption className="absolute inset-x-0 bottom-0 px-5 py-5">
-                      <span className="inline-flex rounded-full border border-[rgba(215,154,43,0.42)] bg-[rgba(215,154,43,0.12)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--reno-accent-soft)]">
+                      <span className="inline-flex rounded-full border border-[rgba(95,130,120,0.42)] bg-[rgba(95,130,120,0.12)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--reno-accent-soft)]">
                         {(index + 1).toString().padStart(2, "0")}
                       </span>
                       <h3 className="mt-3 text-[30px] font-black uppercase leading-[0.95] text-white display-title md:text-[36px]">
@@ -326,7 +359,9 @@ export default function RenoLandingPage({
                     </figcaption>
                   </figure>
                   <div className="px-5 pb-6 pt-5">
-                    <p className="text-[15px] leading-7 text-white/68">{card.text}</p>
+                    <p className="text-[15px] leading-7 text-white/68">
+                      {card.text}
+                    </p>
                   </div>
                 </article>
               ))}
@@ -338,14 +373,19 @@ export default function RenoLandingPage({
               </p>
               <div className="mt-5 grid gap-5 md:grid-cols-2">
                 {FRAMEWORK_PILLARS.map((item) => (
-                  <article key={item.title} className="rounded-[24px] border border-white/8 bg-white/3 px-5 py-5">
-                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(215,154,43,0.14)] text-[18px] font-black text-[var(--reno-accent)]">
+                  <article
+                    key={item.title}
+                    className="rounded-[24px] border border-white/8 bg-white/3 px-5 py-5"
+                  >
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(95,130,120,0.14)] text-[18px] font-black text-[var(--reno-accent)]">
                       +
                     </div>
                     <h3 className="mt-4 text-[28px] font-black uppercase leading-[0.95] text-white display-title md:text-[34px]">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-[15px] leading-7 text-white/66">{item.text}</p>
+                    <p className="mt-3 text-[15px] leading-7 text-white/66">
+                      {item.text}
+                    </p>
                   </article>
                 ))}
               </div>
@@ -354,14 +394,15 @@ export default function RenoLandingPage({
 
           <aside className="space-y-5 lg:sticky lg:top-[126px] lg:self-start">
             <div className="hero-form shadow-[0_22px_48px_rgba(0,0,0,0.24)]">
-              <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[#8e6a22]">
+              <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-dark)]">
                 Fast Contact
               </p>
               <h3 className="mt-3 text-[34px] font-black uppercase leading-[0.95] text-[var(--reno-ink)] display-title md:text-[46px]">
                 Request A Free Quote
               </h3>
               <p className="mt-3 text-[15px] leading-7 text-[var(--reno-ink-soft)]">
-                Share your scope and timeline. We will follow up with the right next step for the project.
+                Share your scope and timeline. We will follow up with the right
+                next step for the project.
               </p>
               <QuoteForm />
             </div>
@@ -370,9 +411,13 @@ export default function RenoLandingPage({
               <div className="grid grid-cols-2 gap-[1px] bg-white/10">
                 <figure className="relative">
                   <img
-                    src={featureLeft?.src || serviceCards[0]?.image || "/home/1.webp"}
+                    src={
+                      featureLeft?.src ||
+                      serviceCards[0]?.image ||
+                      "/home/1.webp"
+                    }
                     alt={featureLeft?.alt || `${title} featured image 1`}
-                    className="h-[240px] w-full object-cover"
+                    className="reno-image-pop h-[280px] w-full object-cover"
                     data-lightbox="true"
                   />
                   <figcaption className="absolute left-3 top-3 rounded-full bg-[rgba(12,14,18,0.78)] px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-white">
@@ -381,12 +426,16 @@ export default function RenoLandingPage({
                 </figure>
                 <figure className="relative">
                   <img
-                    src={featureRight?.src || serviceCards[1]?.image || "/home/2.webp"}
+                    src={
+                      featureRight?.src ||
+                      serviceCards[1]?.image ||
+                      "/home/2.webp"
+                    }
                     alt={featureRight?.alt || `${title} featured image 2`}
-                    className="h-[240px] w-full object-cover"
+                    className="reno-image-pop h-[280px] w-full object-cover"
                     data-lightbox="true"
                   />
-                  <figcaption className="absolute left-3 top-3 rounded-full bg-[rgba(215,154,43,0.9)] px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-[#17191d]">
+                  <figcaption className="absolute left-3 top-3 rounded-full bg-[rgba(95,130,120,0.92)] px-3 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-[#f7fbfa]">
                     {featureRight?.badge || "Featured 02"}
                   </figcaption>
                 </figure>
@@ -396,7 +445,8 @@ export default function RenoLandingPage({
                   Project Highlights
                 </h3>
                 <p className="mt-3 text-[15px] leading-7 text-white/66">
-                  Featured project images show tile work, fixture detailing, and how the finished space reads in real homes.
+                  Featured project images show tile work, fixture detailing, and
+                  how the finished space reads in real homes.
                 </p>
               </div>
             </div>
@@ -423,13 +473,15 @@ export default function RenoLandingPage({
         <div className="grid gap-4 md:grid-cols-3">
           {highlights.map((item) => (
             <article key={item.title} className="card px-6 py-7 md:px-7">
-              <p className="text-[12px] font-black uppercase tracking-[0.18em] text-[#8e6a22]">
+              <p className="text-[12px] font-black uppercase tracking-[0.18em] text-[var(--reno-accent-dark)]">
                 Project Edge
               </p>
               <h2 className="mt-3 text-[32px] font-black uppercase leading-[0.94] text-[var(--reno-ink)] display-title md:text-[40px]">
                 {item.title}
               </h2>
-              <p className="mt-3 text-[15px] leading-7 text-[var(--reno-ink-soft)]">{item.text}</p>
+              <p className="mt-3 text-[15px] leading-7 text-[var(--reno-ink-soft)]">
+                {item.text}
+              </p>
             </article>
           ))}
         </div>
@@ -448,7 +500,8 @@ export default function RenoLandingPage({
                 </h2>
               </div>
               <p className="max-w-[34rem] text-[15px] leading-7 text-white/66">
-                Extra project images give a clearer feel for finishes, layout decisions, and the level of detail in the work.
+                Extra project images give a clearer feel for finishes, layout
+                decisions, and the level of detail in the work.
               </p>
             </div>
 
@@ -458,7 +511,7 @@ export default function RenoLandingPage({
                   key={img.src + img.alt}
                   src={img.src}
                   alt={img.alt}
-                  className="h-60 w-full rounded-[22px] border border-white/8 object-cover"
+                  className="reno-image-pop h-72 w-full rounded-[22px] border border-white/8 object-cover"
                   data-lightbox="true"
                 />
               ))}
@@ -469,40 +522,52 @@ export default function RenoLandingPage({
 
       <section className="container-x mt-10">
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-          <div id="process" className="card px-6 py-7 md:px-8 md:py-8">
-            <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[#8e6a22]">
-              Renovation Flow
-            </p>
-            <h2 className="mt-3 text-[36px] font-black uppercase leading-[0.95] text-[var(--reno-ink)] display-title md:text-[50px]">
-              Our Process
-            </h2>
-            <ol className="mt-6 space-y-4">
-              {process.map((step, index) => (
-                <li key={step} className="flex gap-4">
-                  <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#191d23] text-[13px] font-black text-[var(--reno-accent-soft)]">
-                    {(index + 1).toString().padStart(2, "0")}
-                  </span>
-                  <p className="text-[16px] leading-7 text-[var(--reno-ink-soft)]">{step}</p>
-                </li>
-              ))}
-            </ol>
+          <div id="process">
+            {processSection || (
+              <div className="card px-6 py-7 md:px-8 md:py-8">
+                <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-dark)]">
+                  Renovation Flow
+                </p>
+                <h2 className="mt-3 text-[36px] font-black uppercase leading-[0.95] text-[var(--reno-ink)] display-title md:text-[50px]">
+                  Our Process
+                </h2>
+                <ol className="mt-6 space-y-4">
+                  {process.map((step, index) => (
+                    <li key={step} className="flex gap-4">
+                      <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#191d23] text-[13px] font-black text-[var(--reno-accent-soft)]">
+                        {(index + 1).toString().padStart(2, "0")}
+                      </span>
+                      <p className="text-[16px] leading-7 text-[var(--reno-ink-soft)]">
+                        {step}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
           </div>
 
           <div id="local" className="dark-card px-6 py-7 md:px-8 md:py-8">
-            <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
-              Local Notes
-            </p>
-            <h2 className="mt-3 text-[36px] font-black uppercase leading-[0.95] text-white display-title md:text-[50px]">
-              GTA Context Matters
-            </h2>
-            <p className="mt-5 text-[16px] leading-8 text-white/68">{localCopy}</p>
+            {localSection || (
+              <>
+                <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
+                  Local Notes
+                </p>
+                <h2 className="mt-3 text-[36px] font-black uppercase leading-[0.95] text-white display-title md:text-[50px]">
+                  GTA Context Matters
+                </h2>
+                <p className="mt-5 text-[16px] leading-8 text-white/68">
+                  {localCopy}
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>
 
       <section id="faq" className="container-x mt-10">
         <div className="card px-6 py-7 md:px-8 md:py-8">
-          <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[#8e6a22]">
+          <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-dark)]">
             Questions
           </p>
           <h2 className="mt-3 text-[38px] font-black uppercase leading-[0.94] text-[var(--reno-ink)] display-title md:text-[54px]">
@@ -517,12 +582,22 @@ export default function RenoLandingPage({
                 <summary className="cursor-pointer list-none pr-7 text-[18px] font-black uppercase tracking-[0.02em] text-[var(--reno-ink)] md:text-[21px]">
                   {item.q}
                 </summary>
-                <p className="mt-3 text-[15px] leading-7 text-[var(--reno-ink-soft)]">{item.a}</p>
+                <p className="mt-3 text-[15px] leading-7 text-[var(--reno-ink-soft)]">
+                  {item.a}
+                </p>
               </details>
             ))}
           </div>
         </div>
       </section>
+
+      {serviceAreaSection && (
+        <section className="container-x mt-10">{serviceAreaSection}</section>
+      )}
+
+      {postServiceAreaSection && (
+        <section className="container-x mt-10">{postServiceAreaSection}</section>
+      )}
 
       <section className="container-x mt-10">
         <div className="dark-card flex flex-col gap-5 px-6 py-7 md:flex-row md:items-center md:justify-between md:px-8 md:py-8">
@@ -534,7 +609,8 @@ export default function RenoLandingPage({
               Ready To Start Your Renovation?
             </h3>
             <p className="mt-3 max-w-[36rem] text-[15px] leading-7 text-white/66">
-              Reach out for a quote, get clarity on scope, and move forward with a renovation team focused on clean execution.
+              Reach out for a quote, get clarity on scope, and move forward with
+              a renovation team focused on clean execution.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -547,6 +623,8 @@ export default function RenoLandingPage({
           </div>
         </div>
       </section>
+
+      {finalSection && <section className="container-x mt-10">{finalSection}</section>}
     </div>
   );
 }

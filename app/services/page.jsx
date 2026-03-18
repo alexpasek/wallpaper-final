@@ -50,7 +50,11 @@ export default function ServicesPage() {
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {cards.map((card) => (
             <article key={card.href} className="card overflow-hidden bg-white">
-              <img src={card.image} alt={card.title} className="w-full h-48 object-cover" />
+              <img
+                src={card.image}
+                alt={card.title}
+                className="reno-image-pop w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <h2 className="text-2xl font-extrabold text-[#1e5a4e] tracking-tight">
                   {card.title}

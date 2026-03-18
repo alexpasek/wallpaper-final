@@ -43,7 +43,7 @@ export default function HeaderNav() {
 
   return (
     <header className="sticky top-0 z-50 px-4 transition-all duration-300 md:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1440px]">
+      <div className="mx-auto max-w-[1600px]">
         <div className="overflow-hidden rounded-[18px] border border-[#3a3328] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_32%),linear-gradient(90deg,rgba(8,10,14,0.98)_0%,rgba(31,27,24,0.96)_48%,rgba(10,12,16,0.98)_100%)] shadow-[0_22px_48px_rgba(0,0,0,0.42)] backdrop-blur-xl">
           <div
             className={[
@@ -96,7 +96,7 @@ export default function HeaderNav() {
                   <span
                     className={[
                       "absolute inset-x-0 bottom-0 mx-auto h-[3px] w-[72%] rounded-full transition",
-                      isActive(item.href) ? "bg-[#d8aa4a]" : "bg-transparent",
+                      isActive(item.href) ? "bg-[var(--reno-accent)]" : "bg-transparent",
                     ].join(" ")}
                     aria-hidden="true"
                   />
@@ -108,7 +108,7 @@ export default function HeaderNav() {
               <Link
                 href="/quote/"
                 className={[
-                  "inline-flex items-center justify-center rounded-[10px] border border-[#f0d79f]/70 bg-[linear-gradient(180deg,#d9b25d_0%,#bf8d33_100%)] font-bold text-[#fff8eb] shadow-[0_12px_24px_rgba(168,119,29,0.34)] transition-all duration-300 hover:brightness-105",
+                  "inline-flex items-center justify-center rounded-[10px] border border-[rgba(215,228,224,0.72)] bg-[linear-gradient(180deg,#7ea196_0%,#5f8278_52%,#40645b_100%)] font-bold text-[#f7fbfa] shadow-[0_12px_24px_rgba(64,100,91,0.3)] transition-all duration-300 hover:brightness-105",
                   isCompact ? "px-5 py-2.5 text-[14px] md:px-6 md:text-[15px]" : "px-6 py-3 text-[15px] md:px-7 md:py-3.5 md:text-[17px]",
                 ].join(" ")}
               >
@@ -143,7 +143,7 @@ export default function HeaderNav() {
 
       <div
         className={[
-          "mx-auto max-w-[1440px] transition-all duration-300 lg:hidden",
+          "mx-auto max-w-[1600px] transition-all duration-300 lg:hidden",
           isCompact ? "mt-2" : "mt-3",
         ].join(" ")}
       >
@@ -156,7 +156,7 @@ export default function HeaderNav() {
                 className={[
                   "shrink-0 rounded-full border px-4 py-2 text-[12px] font-semibold",
                   isActive(item.href)
-                    ? "border-[#d8aa4a]/80 bg-[#d8aa4a]/12 text-[#f4dcaa]"
+                    ? "border-[rgba(95,130,120,0.8)] bg-[rgba(95,130,120,0.14)] text-[var(--reno-accent-soft)]"
                     : "border-white/12 bg-white/5 text-white/82",
                 ].join(" ")}
               >

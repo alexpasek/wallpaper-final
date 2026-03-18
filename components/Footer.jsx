@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ReviewScroller from "@/components/ReviewScroller";
 import { BRAND_NAME, CONTACT, SERVICE_AREAS } from "@/app/config";
 
 const coreLinks = [
@@ -23,36 +22,6 @@ export default function Footer() {
       itemScope
       itemType="https://schema.org/LocalBusiness"
     >
-      <section id="reviews" className="container-x pt-14 md:pt-16">
-        <div className="rounded-[34px] border border-white/8 bg-[linear-gradient(180deg,#1b1f25_0%,#14171c_100%)] p-4 md:p-6">
-          <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
-                Reputation Matters
-              </p>
-              <h2 className="mt-2 text-[34px] font-black uppercase leading-[0.95] text-white md:text-[54px] display-title">
-                Renovation Reviews From Real GTA Clients
-              </h2>
-            </div>
-            <Link href="/quote/" className="btn-cta self-start">
-              Get A Free Estimate
-            </Link>
-          </div>
-
-          <div className="rounded-[26px] bg-[linear-gradient(180deg,#f8f4ec_0%,#efe3cb_100%)] px-2 py-5 text-[var(--reno-ink)]">
-            <ReviewScroller
-              className="py-1"
-              brand="215 154 43"
-              accent="46 53 64"
-              bg="subtle"
-              bgAlpha={0.14}
-              cardAlpha={0.06}
-              hoverAlpha={0.12}
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="container-x py-12 md:py-16">
         <div className="grid gap-8 border-b border-white/8 pb-10 md:grid-cols-[1.3fr_0.9fr_0.9fr_1fr]">
           <div>
