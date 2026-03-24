@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Burlington Basement Renovation | EPF Pro Services",
+  title: "Burlington Basement Renovation | EPF Reno",
   description: "Keyword page for basement renovation in Burlington. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/burlington-basement-renovation/" },
   robots: { index: true, follow: true },

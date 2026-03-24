@@ -26,7 +26,7 @@ export default function GtaServiceAreaMap() {
 
       <div className="relative h-[420px] md:h-[520px]">
         <iframe
-          title="Google map showing EPF Pro Services GTA service area"
+          title="Google map showing EPF Reno GTA service area"
           src="https://www.google.com/maps?q=Hamilton,+Ontario,+Canada&z=9&output=embed"
           className="h-full w-full"
           loading="lazy"

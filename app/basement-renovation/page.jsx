@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Basement Renovation | EPF Pro Services",
+  title: "Basement Renovation | EPF Reno",
   description:
     "Basement renovation in GTA homes with moisture-aware planning, practical layouts, and full finishing coordination.",
   alternates: { canonical: "/basement-renovation/" },

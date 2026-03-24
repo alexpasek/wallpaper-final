@@ -133,7 +133,7 @@ export default function ReviewScroller({
     if (!el) return;
     const id = setTimeout(
       () => el.scrollBy({ left: 120, behavior: "smooth" }),
-      1200
+      1200,
     );
     return () => clearTimeout(id);
   }, [ref]);
@@ -262,23 +262,24 @@ export default function ReviewScroller({
               <article
                 className="
                   min-w-[320px] max-w-[320px]
-                  rounded-[14px] border border-white/30
+                  rounded-[14px] border border-white/35
                   shadow-lg hover:shadow-2xl transition-all duration-300
-                  hover:-translate-y-0.5 relative overflow-hidden
+                  hover:-translate-y-1 relative overflow-hidden
                   p-5 md:p-4
 
                   /* MOBILE: taller, more readable; desktop slightly tighter */
-                  min-h-[250px] md:min-h-[200px]
+                  min-h-[260px] md:min-h-[220px]
 
                   /* Card tint + hover */
                   bg-[rgb(var(--brand)/var(--cardA))]
                   hover:bg-[rgb(var(--brand)/var(--hoverA))]
-                  backdrop-blur-[1px]
+                  backdrop-blur-[2px]
+                  shine-overlay
                 "
               >
                 {/* sheen on hover */}
                 <div className="pointer-events-none absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.18),transparent)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.22),transparent)]" />
                 </div>
 
                 <div className="flex items-center justify-between mb-2">

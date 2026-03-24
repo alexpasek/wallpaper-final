@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "River Oaks Oakville Bathroom Renovation | EPF Pro Services",
+  title: "River Oaks Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in River Oaks, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-river-oaks-bathroom-renovation/" },
   robots: { index: true, follow: true },

@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "City Centre Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "City Centre Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in City Centre, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-city-centre-bathroom-renovation/" },
   robots: { index: true, follow: true },

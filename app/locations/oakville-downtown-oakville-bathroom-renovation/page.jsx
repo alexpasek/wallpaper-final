@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Downtown Oakville Oakville Bathroom Renovation | EPF Pro Services",
+  title: "Downtown Oakville Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Downtown Oakville, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-downtown-oakville-bathroom-renovation/" },
   robots: { index: true, follow: true },

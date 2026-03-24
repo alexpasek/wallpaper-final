@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Hamilton Bathroom Renovation | EPF Pro Services",
+  title: "Hamilton Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Hamilton. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/hamilton-bathroom-renovation/" },
   robots: { index: true, follow: true },

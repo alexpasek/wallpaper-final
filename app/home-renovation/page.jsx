@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Home Renovation | EPF Pro Services",
+  title: "Home Renovation | EPF Reno",
   description:
     "Full home renovation services across GTA cities with practical planning, phased execution, and quality finishing.",
   alternates: { canonical: "/home-renovation/" },

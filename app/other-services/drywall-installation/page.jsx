@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Drywall Installation | EPF Pro Services",
+  title: "Drywall Installation | EPF Reno",
   description:
     "Drywall installation and repair services for renovation projects, including finishing prep and paint-ready results.",
   alternates: { canonical: "/other-services/drywall-installation/" },

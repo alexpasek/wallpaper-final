@@ -1,8 +1,9 @@
 import Link from "next/link";
 import QuoteForm from "@/components/QuoteForm";
+import TrustBar from "@/components/TrustBar";
 
 export const metadata = {
-  title: "Services | EPF Pro Services",
+  title: "Services | EPF Reno",
   description:
     "Bathroom remodeling, basement renovation, home renovation, and interior finishing services across GTA locations.",
   alternates: { canonical: "/services/" },
@@ -45,6 +46,10 @@ export default function ServicesPage() {
           Structured service framework for planning, building, and finishing your renovation project.
         </p>
       </header>
+
+      <div className="relative z-10 -mt-4 md:-mt-5">
+        <TrustBar />
+      </div>
 
       <section className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-5">
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">

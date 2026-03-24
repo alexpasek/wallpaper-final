@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Ancaster Hamilton Bathroom Renovation | EPF Pro Services",
+  title: "Ancaster Hamilton Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Ancaster, Hamilton. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/hamilton-ancaster-bathroom-renovation/" },
   robots: { index: true, follow: true },

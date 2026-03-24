@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "West Oak Trails Oakville Bathroom Renovation | EPF Pro Services",
+  title: "West Oak Trails Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in West Oak Trails, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-west-oak-trails-bathroom-renovation/" },
   robots: { index: true, follow: true },

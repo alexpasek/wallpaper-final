@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Sheridan Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Sheridan Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Sheridan, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-sheridan-bathroom-renovation/" },
   robots: { index: true, follow: true },

@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Bronte Creek Oakville Bathroom Renovation | EPF Pro Services",
+  title: "Bronte Creek Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Bronte Creek, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-bronte-creek-bathroom-renovation/" },
   robots: { index: true, follow: true },

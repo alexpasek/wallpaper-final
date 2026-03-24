@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Mississauga Basement Renovation | EPF Pro Services",
+  title: "Mississauga Basement Renovation | EPF Reno",
   description: "Keyword page for basement renovation in Mississauga. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/mississauga-basement-renovation/" },
   robots: { index: true, follow: true },

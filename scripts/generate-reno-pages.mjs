@@ -166,7 +166,7 @@ function pageContent({ slug, title, description, canonicalPath, kicker, highligh
   return `import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: ${JSON.stringify(`${title} | EPF Pro Services`)},
+  title: ${JSON.stringify(`${title} | EPF Reno`)},
   description: ${JSON.stringify(description)},
   alternates: { canonical: ${JSON.stringify(canonicalPath)} },
   robots: { index: true, follow: true },
@@ -344,7 +344,7 @@ function buildLocationsIndex(entries) {
   const content = `import Link from "next/link";
 
 export const metadata = {
-  title: "Locations | EPF Pro Services",
+  title: "Locations | EPF Reno",
   description: "Keyword-focused renovation location pages with unique content across GTA service areas.",
   alternates: { canonical: "/locations/" },
   robots: { index: true, follow: true },

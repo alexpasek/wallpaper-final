@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Headon Forest Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Headon Forest Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Headon Forest, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-headon-forest-bathroom-renovation/" },
   robots: { index: true, follow: true },

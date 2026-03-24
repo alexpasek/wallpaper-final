@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Uptown Core Oakville Bathroom Renovation | EPF Pro Services",
+  title: "Uptown Core Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Uptown Core, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-uptown-core-bathroom-renovation/" },
   robots: { index: true, follow: true },

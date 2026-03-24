@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Roseland Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Roseland Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Roseland, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-roseland-bathroom-renovation/" },
   robots: { index: true, follow: true },

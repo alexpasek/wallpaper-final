@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Shoreacres Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Shoreacres Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Shoreacres, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-shoreacres-bathroom-renovation/" },
   robots: { index: true, follow: true },

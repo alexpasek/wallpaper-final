@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Malton Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Malton Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Malton, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-malton-bathroom-renovation/" },
   robots: { index: true, follow: true },

@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Lorne Park Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Lorne Park Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Lorne Park, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-lorne-park-bathroom-renovation/" },
   robots: { index: true, follow: true },

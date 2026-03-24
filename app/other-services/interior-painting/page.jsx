@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Interior Painting | EPF Pro Services",
+  title: "Interior Painting | EPF Reno",
   description:
     "Interior painting for renovation projects with prep discipline, clean lines, and durable finish systems.",
   alternates: { canonical: "/other-services/interior-painting/" },

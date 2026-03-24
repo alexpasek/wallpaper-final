@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Mississauga Home Renovation | EPF Pro Services",
+  title: "Mississauga Home Renovation | EPF Reno",
   description: "Keyword page for home renovation in Mississauga. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/mississauga-home-renovation/" },
   robots: { index: true, follow: true },

@@ -8,8 +8,8 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: {
-    default: "EPF Pro Services | GTA Renovations",
-    template: "%s | EPF Pro Services",
+    default: "EPF Reno | GTA Renovations",
+    template: "%s | EPF Reno",
   },
   description:
     "Bathroom renovation, basement renovation, home renovation, and finishing services across GTA locations.",

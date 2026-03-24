@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Port Credit Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Port Credit Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Port Credit, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-port-credit-bathroom-renovation/" },
   robots: { index: true, follow: true },

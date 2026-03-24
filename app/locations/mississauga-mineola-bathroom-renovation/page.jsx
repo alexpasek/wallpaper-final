@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Mineola Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Mineola Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Mineola, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-mineola-bathroom-renovation/" },
   robots: { index: true, follow: true },

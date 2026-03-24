@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Mississauga. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/mississauga-bathroom-renovation/" },
   robots: { index: true, follow: true },

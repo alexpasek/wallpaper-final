@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Etobicoke Basement Renovation | EPF Pro Services",
+  title: "Etobicoke Basement Renovation | EPF Reno",
   description: "Keyword page for basement renovation in Etobicoke. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/etobicoke-basement-renovation/" },
   robots: { index: true, follow: true },

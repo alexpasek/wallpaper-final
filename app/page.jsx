@@ -1,11 +1,27 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 import { PHONE_HREF, PHONE_NUMBER, SERVICE_AREAS } from "@/app/config";
 import GtaServiceAreaMap from "@/components/GtaServiceAreaMap";
-import ReviewScroller from "@/components/ReviewScroller";
 import { buildBathroomGallery } from "@/data/bathroomGallery";
+import ReviewSummaryCard from "@/components/ReviewSummaryCard";
+
+function GoogleStars({ count = 5, size = "h-6 w-6" }) {
+  return (
+    <div className="flex items-center justify-center gap-1" aria-hidden="true">
+      {Array.from({ length: count }).map((_, index) => (
+        <svg
+          key={index}
+          viewBox="0 0 24 24"
+          className={`${size} fill-[#f4b400]`}
+        >
+          <path d="M12 17.27l6.18 3.73-1.64-7.03L21 9.24l-7.19-.61L12 2 10.19 8.63 3 9.24l4.46 4.73L5.82 21z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
 
 export const metadata = {
-  title: "Bathroom, Basement & Home Renovation | EPF Pro Services",
+  title: "Bathroom, Basement & Home Renovation | EPF Reno",
   description:
     "Bathroom renovation contractor serving Mississauga and the GTA with basement renovation, home renovation, and finishing services.",
   alternates: { canonical: "/" },
@@ -54,12 +70,14 @@ const faqItems = [
   },
 ];
 
-const baseGallery = buildBathroomGallery("Bathroom, Basement & Home Renovation");
+const baseGallery = buildBathroomGallery(
+  "Bathroom, Basement & Home Renovation",
+);
 const gallery = [
   {
-    src: "/bathrooms%20/IMG_4876.JPG",
-    alt: "Bathroom, Basement & Home Renovation - bright bathroom with tub and glass shower screen",
-    badge: "Featured Room",
+    src: "/bathrooms%20al/powderroom.png",
+    alt: "Bathroom, Basement & Home Renovation - powder room renovation before and after with a bright finished vanity wall",
+    badge: "Powder Room Feature",
   },
   ...baseGallery.filter((item) => !item.src.includes("IMG_4876.JPG")),
 ].filter(Boolean);
@@ -72,140 +90,191 @@ const keywordLinks = [
   { href: "/other-services/", label: "Other Services" },
 ];
 
+const googleReviewCards = [
+  {
+    name: "Melissa Carver",
+    date: "2026-01-26",
+    initials: "MC",
+    color: "bg-[#bb8c72]",
+    text: "We hired EPF Reno for a bathroom renovation in Mississauga and the whole process felt organized from the first visit. The crew protected the floors, kept the work area clean, and the tile and vanity finish looked exactly the way we hoped.",
+  },
+  {
+    name: "Jordan Bell",
+    date: "2026-01-20",
+    initials: "JB",
+    color: "bg-[#567d34]",
+    text: "Our Oakville ensuite renovation needed better layout planning, not just nicer finishes. EPF Reno explained the scope clearly, kept us updated through each stage, and delivered a bathroom that feels much more functional every day.",
+  },
+  {
+    name: "Priya Sandhu",
+    date: "2026-01-19",
+    initials: "PS",
+    color: "bg-[#7755a8]",
+    text: "We were comparing Burlington bathroom contractors and chose EPF Reno because the quote, schedule, and finishing standards were all clearly laid out. The communication stayed strong and the final shower renovation came out polished and clean.",
+  },
+];
+
 export default function Page() {
   return (
     <RenoLandingPage
       title="Bathroom, Basement & Home Renovation"
       description="We deliver bathroom renovation projects across Mississauga and the GTA with clear planning, clean worksites, and dependable communication from start to finish."
       canonicalPath="/"
-      kicker="EPF Pro Services"
+      kicker="EPF Reno"
       highlights={highlights}
       process={process}
-      processSection={
-        <div className="dark-card h-full px-6 py-7 md:px-8 md:py-8">
-          <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
-            Renovation Flow
-          </p>
-          <h2 className="mt-3 text-[34px] font-black uppercase leading-[0.95] text-white display-title md:text-[44px]">
-            Bathroom Renovation Process
-          </h2>
-          <p className="mt-4 max-w-[36rem] text-[15px] leading-7 text-white/84">
-            The strongest projects feel organized before demolition starts. We
-            plan the scope, sequence, and site setup first so the renovation
-            moves cleanly and homeowners know what happens next.
-          </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {[
-              {
-                step: "01",
-                title: "Discovery And Measure",
-                text: "Initial call, site review, and real measurements for the bathroom.",
-              },
-              {
-                step: "02",
-                title: "Scope And Quote",
-                text: "Layout priorities, finish direction, and clear pricing before work starts.",
-              },
-              {
-                step: "03",
-                title: "Material Planning",
-                text: "Selections, fixture coordination, and pre-construction scheduling.",
-              },
-              {
-                step: "04",
-                title: "Build Execution",
-                text: "Protected worksite, daily updates, and staged renovation progress.",
-              },
-              {
-                step: "05",
-                title: "Final Walkthrough",
-                text: "Completion review, finishing checks, and project handover.",
-              },
-            ].map((item, index) => (
-              <article
-                key={item.step}
-                className={[
-                  "border border-white/10 bg-white/5 px-4 py-4",
-                  index === 4 ? "sm:col-span-2" : "",
-                ].join(" ")}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[var(--reno-accent)]/30 bg-[rgba(95,130,120,0.18)] text-[13px] font-black tracking-[0.14em] text-[var(--reno-accent-soft)]">
-                    {item.step}
-                  </div>
-                  <div>
-                    <h3 className="text-[22px] font-black uppercase leading-[0.95] text-white display-title md:text-[25px]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-[14px] leading-7 text-white/84">
-                      {item.text}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      }
       localCopy="We provide bathroom renovation services across Mississauga, Toronto, Oakville, Burlington, Hamilton, Milton, Etobicoke, and North York, with local service pages built around real GTA neighbourhoods and project coverage."
-      localSection={
-        <>
-          <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
-            Local Bathroom Renovation
-          </p>
-          <h2 className="mt-3 max-w-[14ch] text-[32px] font-black uppercase leading-[0.94] text-white display-title md:text-[42px]">
-            Bathroom Renovation In Mississauga And Nearby Neighbourhoods
-          </h2>
-          <p className="mt-5 text-[16px] leading-8 text-white/84">
-            Homeowners searching for bathroom renovation in Mississauga usually want the
-            same things: a contractor who understands the home, a quote tied to the real
-            scope, and a renovation plan that stays organized from demolition to final
-            walkthrough. EPF Pro Services builds around those basics first with measured
-            layouts, fixture planning, and practical sequencing before the work begins.
-          </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {[
-              "Bathroom renovation planning before demolition starts",
-              "Clear quote guidance tied to layout and finish choices",
-              "Daily cleanup and floor protection in lived-in homes",
-              "Tile, vanity, plumbing, and fixture coordination",
-              "Steady communication through each stage of the renovation",
-              "Mississauga service plus nearby GTA neighbourhood coverage",
-            ].map((item) => (
-              <div
-                key={item}
-                className="border border-white/10 bg-white/5 px-4 py-3 text-[14px] font-semibold leading-6 text-white/88"
-              >
-                {item}
+      seoFeatureSection={
+        <section className="container-x mt-10 md:mt-12">
+          <div className="overflow-hidden border border-[rgba(221,212,192,0.88)] bg-[linear-gradient(180deg,#fcfcfb_0%,#f8f7f4_100%)] shadow-[0_24px_48px_rgba(0,0,0,0.14)]">
+            <div className="grid lg:grid-cols-[1fr_0.96fr]">
+              <figure className="bg-[#ece9e3]">
+                <img
+                  src="/bathrooms%20al/bathroom-renovation-mississauga.png"
+                  alt="Bathroom renovation in Mississauga with marble-look tile walls, tub surround, and warm brass fixtures"
+                  className="h-full min-h-[360px] w-full object-cover md:min-h-[500px] lg:min-h-[700px]"
+                  data-lightbox="true"
+                />
+              </figure>
+
+              <div className="px-5 py-6 md:px-8 md:py-9 lg:px-10 lg:py-10">
+                <p className="max-w-[14ch] text-[clamp(1.45rem,2.2vw,2.35rem)] font-semibold leading-[1.1] text-[#828282]">
+                  Local Bathroom Renovation Contractors &amp; Renovation Planning
+                  by EPF Reno
+                </p>
+
+                <h2 className="mt-5 max-w-[11ch] text-[clamp(2.3rem,3.8vw,3.8rem)] font-extrabold leading-[1] text-[#15181d]">
+                  Bathroom Renovation Services In Mississauga And The GTA
+                </h2>
+
+                <div className="mt-4">
+                  <div className="reno-divider reno-divider-sm" aria-hidden="true" />
+                </div>
+
+                <p className="mt-8 text-[15px] leading-[1.7] text-[#30343b] md:text-[16px]">
+                  Homeowners searching for bathroom renovation in Mississauga
+                  usually want the same things: a contractor who understands the
+                  home, a quote tied to the real scope, and a renovation plan
+                  that stays organized from demolition to final walkthrough. EPF
+                  Reno builds around those basics first with measured layouts,
+                  fixture planning, and practical sequencing before the work
+                  begins.
+                </p>
+
+                <p className="mt-4 text-[15px] leading-[1.7] text-[#30343b] md:text-[16px]">
+                  We work with homeowners in Port Credit, Clarkson, Lorne Park,
+                  Cooksville, City Centre, Erin Mills, Churchill Meadows,
+                  Streetsville, Meadowvale, East Credit, Applewood, Lakeview,
+                  Sheridan, Hurontario, Mineola, and Meadowvale Village. Those
+                  neighbourhoods all have different home layouts, ages, and
+                  access conditions, which is why local planning matters before
+                  a bathroom renovation starts.
+                </p>
+
+                <h3 className="mt-7 max-w-[14ch] text-[clamp(1.9rem,2.8vw,2.8rem)] font-extrabold leading-[1.03] text-[#15181d]">
+                  Why Homeowners Choose EPF Reno For Bathroom Renovations
+                </h3>
+
+                <ul className="mt-4 list-disc space-y-2.5 pl-5 text-[15px] leading-[1.65] text-[#30343b] marker:text-[#15181d] md:text-[16px]">
+                  <li>
+                    Discovery and measurement come first so layout decisions are
+                    tied to the real bathroom.
+                  </li>
+                  <li>
+                    Scope and quote are clarified before work starts, including
+                    finish direction and renovation priorities.
+                  </li>
+                  <li>
+                    Material planning keeps tile, vanity, plumbing, and fixture
+                    coordination aligned.
+                  </li>
+                  <li>
+                    Protected worksites, daily cleanup, and steady communication
+                    help lived-in homes stay manageable.
+                  </li>
+                  <li>
+                    Final walkthrough and finish checks keep the handover clear,
+                    local, and well managed.
+                  </li>
+                </ul>
+
+                <h3 className="mt-7 max-w-[13ch] text-[clamp(1.9rem,2.8vw,2.8rem)] font-extrabold leading-[1.03] text-[#15181d]">
+                  Get Started On Your Bathroom Renovation Today
+                </h3>
+
+                <p className="mt-4 text-[15px] leading-[1.7] text-[#30343b] md:text-[16px]">
+                  When layout decisions, material selections, and site
+                  preparation are handled upfront, bathroom renovation projects
+                  tend to run with fewer surprises, more accurate scheduling,
+                  and a cleaner finish at handover.{" "}
+                  <a
+                    href="/quote/"
+                    className="font-semibold text-[#15181d] underline decoration-[#cf241c] underline-offset-4 transition hover:text-[#cf241c]"
+                  >
+                    Request your free estimate
+                  </a>{" "}
+                  if you are planning a bathroom renovation in Mississauga or a
+                  nearby GTA neighbourhood.
+                </p>
               </div>
-            ))}
+            </div>
           </div>
-          <p className="mt-6 text-[15px] leading-7 text-white/84">
-            We work with homeowners in Port Credit, Clarkson, Lorne Park, Cooksville,
-            City Centre, Erin Mills, Churchill Meadows, Streetsville, Meadowvale, East
-            Credit, Applewood, Lakeview, Sheridan, Hurontario, Mineola, and Meadowvale
-            Village. These neighbourhoods all have different home layouts, ages, and
-            access conditions, which is why local planning matters before a bathroom
-            renovation starts.
-          </p>
-          <p className="mt-5 text-[15px] leading-7 text-white/84">
-            When layout decisions, material selections, and site preparation are handled
-            upfront, bathroom renovation projects tend to run with fewer surprises, more
-            accurate scheduling, and a cleaner finish at handover. The goal is simple:
-            give Mississauga homeowners a bathroom renovation process that feels clear,
-            local, and well managed from the first visit to the final walkthrough.
-          </p>
-          <p className="mt-6 text-[16px] leading-8 text-white/88">
-            <a
-              href="/quote/"
-              className="font-bold text-[var(--reno-accent-soft)] underline decoration-[rgba(95,130,120,0.45)] underline-offset-4 transition hover:text-white"
-            >
-              Request your free estimate
-            </a>{" "}
-            if you are planning a bathroom renovation in Mississauga or a nearby GTA
-            neighbourhood.
-          </p>
-        </>
+        </section>
+      }
+      reviewFeatureSection={
+        <section className="container-x mt-10 md:mt-12">
+          <div className="overflow-hidden rounded-[28px] border border-[rgba(221,212,192,0.88)] bg-[linear-gradient(180deg,#fdfbf8_0%,#f5eee3_100%)] px-5 py-8 shadow-[0_24px_48px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.72)] md:px-8 md:py-10">
+            <div className="text-center">
+              <h2 className="text-[clamp(2.2rem,4vw,3.8rem)] font-medium leading-none tracking-[-0.05em] text-[#31343a]">
+                Read Our Google Reviews
+              </h2>
+              <div className="mt-5">
+                <GoogleStars />
+              </div>
+            </div>
+
+            <div className="mx-auto mt-10 max-w-[760px]">
+              <ReviewSummaryCard />
+            </div>
+
+            <div className="mt-10 grid gap-4 lg:grid-cols-3">
+              {googleReviewCards.map((review) => (
+                <article
+                  key={review.name + review.date}
+                  className="rounded-[18px] border border-black/8 bg-white px-5 py-5 shadow-[0_10px_24px_rgba(0,0,0,0.08)]"
+                >
+                  <div className="flex items-start gap-3">
+                    <div
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[18px] font-semibold text-white ${review.color}`}
+                    >
+                      {review.initials}
+                    </div>
+                    <div>
+                      <p className="text-[15px] font-bold leading-5 text-[#17191d]">
+                        {review.name}
+                      </p>
+                      <p className="mt-1 text-[13px] leading-5 text-[#888888]">
+                        {review.date}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center gap-1">
+                    <GoogleStars size="h-5 w-5" />
+                  </div>
+
+                  <p className="mt-4 text-[15px] leading-8 text-[#24272d]">
+                    {review.text}
+                  </p>
+
+                  <p className="mt-5 text-[15px] leading-6 text-[#8a8a8a]">
+                    Read more
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
       }
       serviceAreaSection={
         <div className="card px-6 py-7 md:px-8 md:py-8">
@@ -215,18 +284,20 @@ export default function Page() {
                 Service Area Map
               </p>
               <h2 className="mt-3 text-[36px] font-black uppercase leading-[0.95] text-[var(--reno-ink)] display-title md:text-[52px]">
-                Areas We Serve               </h2>
+                Areas We Serve{" "}
+              </h2>
               <p className="mt-5 text-[16px] leading-8 text-[var(--reno-ink-soft)]">
-                Homeowners often want to know if we work in their part of the GTA before
-                they spend time planning a renovation. EPF Pro Services serves renovation
-                clients across Mississauga, Toronto, Oakville, Burlington, Hamilton,
-                Caledonia, Brantford, Grimsby, Milton, Etobicoke, North York, and nearby
-                communities where we have location and neighbourhood pages.
+                Homeowners often want to know if we work in their part of the
+                GTA before they spend time planning a renovation. EPF Reno
+                serves renovation clients across Mississauga, Toronto, Oakville,
+                Burlington, Hamilton, Caledonia, Brantford, Grimsby, Milton,
+                Etobicoke, North York, and nearby communities where we have
+                location and neighbourhood pages.
               </p>
               <p className="mt-5 text-[16px] leading-8 text-[var(--reno-ink-soft)]">
-                If you are planning a bathroom renovation, basement renovation, or larger
-                home renovation, we can review your scope, timeline, and location before
-                the next step.
+                If you are planning a bathroom renovation, basement renovation,
+                or larger home renovation, we can review your scope, timeline,
+                and location before the next step.
               </p>
               <div className="mt-6 flex flex-wrap gap-2.5">
                 {SERVICE_AREAS.map((area) => (
@@ -265,25 +336,28 @@ export default function Page() {
                 Best Bathroom Remodelers In Mississauga
               </h2>
               <p className="mt-5 text-[16px] leading-8 text-[var(--reno-ink-soft)]">
-                Some contractors are vague about licensing, site protection, and what
-                happens after the renovation is finished. Before agreeing to a bathroom
-                renovation price, whether it is a full primary bathroom remodel or a
-                smaller bathroom update, it is worth understanding exactly what kind of
-                workmanship coverage and follow-through your contractor offers.
+                Some contractors are vague about licensing, site protection, and
+                what happens after the renovation is finished. Before agreeing
+                to a bathroom renovation price, whether it is a full primary
+                bathroom remodel or a smaller bathroom update, it is worth
+                understanding exactly what kind of workmanship coverage and
+                follow-through your contractor offers.
               </p>
               <p className="mt-5 text-[16px] leading-8 text-[var(--reno-ink-soft)]">
-                Mississauga homeowners deserve a renovation company that respects the
-                home, the schedule, and the budget, not just one that gives a number and
-                disappears once the work is done. Clear scope, protected worksites, and
-                written coverage matter as much as tile, vanities, and fixtures.
+                Mississauga homeowners deserve a renovation company that
+                respects the home, the schedule, and the budget, not just one
+                that gives a number and disappears once the work is done. Clear
+                scope, protected worksites, and written coverage matter as much
+                as tile, vanities, and fixtures.
               </p>
               <p className="mt-5 text-[16px] leading-8 text-[var(--reno-ink-soft)]">
-                EPF Pro Services positions projects around documented scope, insured and
+                EPF Reno positions projects around documented scope, insured and
                 WSIB-backed jobsite standards, and a written{" "}
-                <strong>3-year workmanship warranty</strong>. Manufacturer warranties on
-                fixtures and materials remain specific to the brands and products chosen
-                for the job, but if an issue comes up with our workmanship during the
-                covered period, we address it directly.
+                <strong>3-year workmanship warranty</strong>. Manufacturer
+                warranties on fixtures and materials remain specific to the
+                brands and products chosen for the job, but if an issue comes up
+                with our workmanship during the covered period, we address it
+                directly.
               </p>
               <p className="mt-5 text-[16px] leading-8 text-[var(--reno-ink-soft)]">
                 <a
@@ -292,88 +366,16 @@ export default function Page() {
                 >
                   Speak with a remodel expert
                 </a>{" "}
-                if you are planning a bathroom renovation in Mississauga or nearby
-                neighbourhoods.
+                if you are planning a bathroom renovation in Mississauga or
+                nearby neighbourhoods.
               </p>
-            </div>
-          </div>
-        </div>
-      }
-      finalSection={
-        <div className="card overflow-hidden px-6 py-7 md:px-8 md:py-8">
-          <div className="dark-card px-6 py-7 md:px-8 md:py-8">
-            <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-              <div>
-                <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
-                  Renovation Reviews
-                </p>
-                <h2 className="mt-3 max-w-[13ch] text-[34px] font-black uppercase leading-[0.95] text-white display-title md:text-[46px]">
-                  Homeowners Remember The Process And The Finish
-                </h2>
-                <p className="mt-4 max-w-[42rem] text-[15px] leading-7 text-white/84">
-                  Bathroom renovations get recommended when the workmanship is
-                  strong and the experience stays organized from start to
-                  finish. Homeowners usually mention clean job sites, clear
-                  updates, and bathrooms that feel finished the way they were
-                  promised.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-3">
-                {[
-                  "Cleaner daily wrap-ups",
-                  "Clear schedule and material updates",
-                  "Finished bathrooms that match the plan",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="border border-white/14 bg-white/10 px-4 py-4 text-[14px] font-semibold leading-6 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 rounded-[28px] border border-black/8 bg-[linear-gradient(180deg,#f8f4ec_0%,#efe3cb_100%)] px-3 py-5 md:px-4">
-            <ReviewScroller
-              className="py-1"
-              brand="95 130 120"
-              accent="46 53 64"
-              bg="subtle"
-              bgAlpha={0.14}
-              cardAlpha={0.06}
-              hoverAlpha={0.12}
-              showHeader={false}
-            />
-          </div>
-
-          <div className="mt-8 rounded-[26px] border border-black/8 bg-[linear-gradient(135deg,#171b21_0%,#232932_100%)] px-6 py-6 md:px-8 md:py-7">
-            <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[var(--reno-accent-soft)]">
-              Next Step
-            </p>
-            <h3 className="mt-3 text-[32px] font-black uppercase leading-[0.95] text-white display-title md:text-[44px]">
-              Ready To Remodel Without Regret?
-            </h3>
-            <p className="mt-3 max-w-[42rem] text-[15px] leading-7 text-white/84">
-              Book a time with a remodel expert to review your bathroom goals, layout,
-              finish direction, and the right next step for your project.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a href="/quote/" className="btn-cta">
-                Speak With A Remodel Expert
-              </a>
-              <a href="/bathroom-renovation/" className="btn-cta-outline">
-                Explore Bathroom Renovation
-              </a>
             </div>
           </div>
         </div>
       }
       faqItems={faqItems}
       gallery={gallery}
-      heroImagePosition="75% center"
+      heroImagePosition="78% center"
       keywordLinks={keywordLinks}
     />
   );

@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Clarkson Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Clarkson Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Clarkson, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-clarkson-bathroom-renovation/" },
   robots: { index: true, follow: true },

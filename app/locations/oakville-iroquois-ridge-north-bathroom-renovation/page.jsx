@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Iroquois Ridge North Oakville Bathroom Renovation | EPF Pro Services",
+  title: "Iroquois Ridge North Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Iroquois Ridge North, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-iroquois-ridge-north-bathroom-renovation/" },
   robots: { index: true, follow: true },

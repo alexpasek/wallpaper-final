@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Glen Abbey Oakville Bathroom Renovation | EPF Pro Services",
+  title: "Glen Abbey Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Glen Abbey, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-glen-abbey-bathroom-renovation/" },
   robots: { index: true, follow: true },

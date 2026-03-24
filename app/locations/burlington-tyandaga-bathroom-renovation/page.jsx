@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Tyandaga Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Tyandaga Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Tyandaga, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-tyandaga-bathroom-renovation/" },
   robots: { index: true, follow: true },

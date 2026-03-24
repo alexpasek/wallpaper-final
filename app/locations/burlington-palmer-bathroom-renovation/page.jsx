@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Palmer Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Palmer Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Palmer, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-palmer-bathroom-renovation/" },
   robots: { index: true, follow: true },

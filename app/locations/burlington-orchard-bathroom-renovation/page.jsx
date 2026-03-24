@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Orchard Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Orchard Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Orchard, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-orchard-bathroom-renovation/" },
   robots: { index: true, follow: true },

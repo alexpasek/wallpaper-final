@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Aldershot Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Aldershot Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Aldershot, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-aldershot-bathroom-renovation/" },
   robots: { index: true, follow: true },

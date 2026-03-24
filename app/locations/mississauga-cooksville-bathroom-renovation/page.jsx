@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Cooksville Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Cooksville Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Cooksville, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-cooksville-bathroom-renovation/" },
   robots: { index: true, follow: true },

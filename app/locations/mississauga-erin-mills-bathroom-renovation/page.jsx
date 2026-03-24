@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Erin Mills Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Erin Mills Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Erin Mills, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-erin-mills-bathroom-renovation/" },
   robots: { index: true, follow: true },

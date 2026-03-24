@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "North York Bathroom Renovation | EPF Pro Services",
+  title: "North York Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in North York. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/north-york-bathroom-renovation/" },
   robots: { index: true, follow: true },

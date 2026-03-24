@@ -1,7 +1,8 @@
 import Link from "next/link";
+import TrustBar from "@/components/TrustBar";
 
 export const metadata = {
-  title: "Locations | EPF Pro Services",
+  title: "Locations | EPF Reno",
   description: "Keyword-focused renovation location pages with unique content across GTA service areas.",
   alternates: { canonical: "/locations/" },
   robots: { index: true, follow: true },
@@ -654,6 +655,10 @@ export default function LocationsPage() {
           Oakville, Burlington, Hamilton, Milton, Etobicoke, and North York.
         </p>
       </header>
+
+      <div className="relative z-10 -mt-4 md:-mt-5">
+        <TrustBar />
+      </div>
 
       <section className="mt-8 space-y-6">
         {groups.map((g) => (

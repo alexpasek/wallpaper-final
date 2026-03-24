@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Milton Basement Renovation | EPF Pro Services",
+  title: "Milton Basement Renovation | EPF Reno",
   description: "Keyword page for basement renovation in Milton. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/milton-basement-renovation/" },
   robots: { index: true, follow: true },

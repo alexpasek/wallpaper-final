@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Burlington. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/burlington-bathroom-renovation/" },
   robots: { index: true, follow: true },

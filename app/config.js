@@ -1,5 +1,5 @@
 // Centralized contact & brand config — edit here to update site-wide
-export const BRAND_NAME = "EPF Pro Services";
+export const BRAND_NAME = "EPF Reno";
 export const PRIMARY_CITY = "GTA";
 export const EMAIL = "info@epfproservices.com";
 export const PHONE_NUMBER = "(647) 812-9135";

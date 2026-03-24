@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Milton Bathroom Renovation | EPF Pro Services",
+  title: "Milton Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Milton. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/milton-bathroom-renovation/" },
   robots: { index: true, follow: true },

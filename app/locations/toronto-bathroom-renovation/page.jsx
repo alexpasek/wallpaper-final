@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Toronto Bathroom Renovation | EPF Pro Services",
+  title: "Toronto Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Toronto. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/toronto-bathroom-renovation/" },
   robots: { index: true, follow: true },

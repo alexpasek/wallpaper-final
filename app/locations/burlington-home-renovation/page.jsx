@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Burlington Home Renovation | EPF Pro Services",
+  title: "Burlington Home Renovation | EPF Reno",
   description: "Keyword page for home renovation in Burlington. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/burlington-home-renovation/" },
   robots: { index: true, follow: true },

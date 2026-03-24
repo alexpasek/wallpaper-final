@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Wallpaper Removal | EPF Pro Services",
+  title: "Wallpaper Removal | EPF Reno",
   description:
     "Wallpaper removal with adhesive cleanup, surface correction, and paint-ready finishing across GTA homes.",
   alternates: { canonical: "/other-services/wallpaper-removal/" },

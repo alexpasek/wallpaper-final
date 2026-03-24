@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Churchill Meadows Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Churchill Meadows Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Churchill Meadows, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-churchill-meadows-bathroom-renovation/" },
   robots: { index: true, follow: true },

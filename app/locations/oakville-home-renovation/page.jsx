@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Oakville Home Renovation | EPF Pro Services",
+  title: "Oakville Home Renovation | EPF Reno",
   description: "Keyword page for home renovation in Oakville. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/oakville-home-renovation/" },
   robots: { index: true, follow: true },

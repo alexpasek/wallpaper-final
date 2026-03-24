@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "North York Home Renovation | EPF Pro Services",
+  title: "North York Home Renovation | EPF Reno",
   description: "Keyword page for home renovation in North York. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/north-york-home-renovation/" },
   robots: { index: true, follow: true },

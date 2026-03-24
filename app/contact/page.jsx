@@ -1,11 +1,12 @@
 import Link from "next/link";
 import QuoteForm from "@/components/QuoteForm";
+import TrustBar from "@/components/TrustBar";
 import { BRAND_NAME, CONTACT, PHONE_HREF, PHONE_NUMBER, SERVICE_AREAS } from "@/app/config";
 
 export const metadata = {
-  title: "Contact Us | EPF Pro Services",
+  title: "Contact Us | EPF Reno",
   description:
-    "Contact EPF Pro Services for bathroom renovation, basement renovation, and home renovation projects across Mississauga and the GTA.",
+    "Contact EPF Reno for bathroom renovation, basement renovation, and home renovation projects across Mississauga and the GTA.",
   alternates: { canonical: "/contact/" },
   robots: { index: true, follow: true },
 };
@@ -135,6 +136,10 @@ export default function Page() {
           </aside>
         </div>
       </section>
+
+      <div className="relative z-10 -mt-4 md:-mt-5">
+        <TrustBar />
+      </div>
 
       <section className="mt-8 grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="card px-6 py-7 md:px-8">

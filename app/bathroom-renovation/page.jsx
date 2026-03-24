@@ -2,7 +2,7 @@ import RenoLandingPage from "@/components/RenoLandingPage";
 import { buildBathroomGallery } from "@/data/bathroomGallery";
 
 export const metadata = {
-  title: "Bathroom Renovation | EPF Pro Services",
+  title: "Bathroom Renovation | EPF Reno",
   description:
     "Bathroom renovation across GTA cities with clear scope, waterproof detailing, quality fixtures, and clean project management.",
   alternates: { canonical: "/bathroom-renovation/" },

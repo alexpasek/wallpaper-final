@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Elizabeth Gardens Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Elizabeth Gardens Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Elizabeth Gardens, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-elizabeth-gardens-bathroom-renovation/" },
   robots: { index: true, follow: true },

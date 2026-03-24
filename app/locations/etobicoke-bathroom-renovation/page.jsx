@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Etobicoke Bathroom Renovation | EPF Pro Services",
+  title: "Etobicoke Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Etobicoke. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/etobicoke-bathroom-renovation/" },
   robots: { index: true, follow: true },

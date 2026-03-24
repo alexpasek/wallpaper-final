@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Meadowvale Village Mississauga Bathroom Renovation | EPF Pro Services",
+  title: "Meadowvale Village Mississauga Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Meadowvale Village, Mississauga. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/mississauga-meadowvale-village-bathroom-renovation/" },
   robots: { index: true, follow: true },

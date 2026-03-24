@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Brant Hills Burlington Bathroom Renovation | EPF Pro Services",
+  title: "Brant Hills Burlington Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Brant Hills, Burlington. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/burlington-brant-hills-bathroom-renovation/" },
   robots: { index: true, follow: true },

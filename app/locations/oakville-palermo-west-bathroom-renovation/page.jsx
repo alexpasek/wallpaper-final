@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Palermo West Oakville Bathroom Renovation | EPF Pro Services",
+  title: "Palermo West Oakville Bathroom Renovation | EPF Reno",
   description: "Keyword page for bathroom renovation in Palermo West, Oakville. Unique local process notes, scope guidance, and renovation FAQ.",
   alternates: { canonical: "/locations/oakville-palermo-west-bathroom-renovation/" },
   robots: { index: true, follow: true },

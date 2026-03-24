@@ -1,7 +1,8 @@
 import Link from "next/link";
+import TrustBar from "@/components/TrustBar";
 
 export const metadata = {
-  title: "Other Services | EPF Pro Services",
+  title: "Other Services | EPF Reno",
   description:
     "Wallpaper removal, popcorn ceiling removal, drywall installation, and interior painting under our renovation service stack.",
   alternates: { canonical: "/other-services/" },
@@ -42,6 +43,10 @@ export default function Page() {
           Supporting services that integrate with bathroom, basement, and home renovation projects.
         </p>
       </header>
+
+      <div className="mt-6">
+        <TrustBar />
+      </div>
 
       <section className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
         {services.map((s) => (

@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Popcorn Ceiling Removal | EPF Pro Services",
+  title: "Popcorn Ceiling Removal | EPF Reno",
   description:
     "Popcorn ceiling removal with containment, smoothing, and finish-ready preparation for renovation projects.",
   alternates: { canonical: "/other-services/popcorn-ceiling-removal/" },

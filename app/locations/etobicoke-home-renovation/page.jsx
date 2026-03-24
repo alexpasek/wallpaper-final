@@ -1,7 +1,7 @@
 import RenoLandingPage from "@/components/RenoLandingPage";
 
 export const metadata = {
-  title: "Etobicoke Home Renovation | EPF Pro Services",
+  title: "Etobicoke Home Renovation | EPF Reno",
   description: "Keyword page for home renovation in Etobicoke. Unique local scope, process, pricing factors, and quote support.",
   alternates: { canonical: "/locations/etobicoke-home-renovation/" },
   robots: { index: true, follow: true },
