@@ -6,6 +6,7 @@ const coreLinks = [
   { href: "/basement-renovation/", label: "Basement Renovation" },
   { href: "/home-renovation/", label: "Home Renovation" },
   { href: "/before-after/", label: "Project Gallery" },
+  { href: "/blog/", label: "Blog" },
 ];
 
 const supportLinks = [

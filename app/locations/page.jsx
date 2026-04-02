@@ -47,7 +47,7 @@ const groups = [
       {
         "city": "Mississauga",
         "citySlug": "mississauga",
-        "slug": "mississauga-bathroom-renovation",
+        "slug": "bathroom-renovation-mississauga",
         "title": "Mississauga Bathroom Renovation",
         "kind": "city",
         "service": "Bathroom Renovation"

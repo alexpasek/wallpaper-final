@@ -11,7 +11,7 @@ export const metadata = {
 
 const keywordLinks = [
   { href: "/locations/toronto-bathroom-renovation/", label: "Toronto Bathroom Renovation" },
-  { href: "/locations/mississauga-bathroom-renovation/", label: "Mississauga Bathroom Renovation" },
+  { href: "/locations/bathroom-renovation-mississauga/", label: "Mississauga Bathroom Renovation" },
   { href: "/locations/oakville-bathroom-renovation/", label: "Oakville Bathroom Renovation" },
   { href: "/locations/burlington-bathroom-renovation/", label: "Burlington Bathroom Renovation" },
   { href: "/locations/hamilton-bathroom-renovation/", label: "Hamilton Bathroom Renovation" },

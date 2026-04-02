@@ -71,6 +71,7 @@ const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/services/", label: "Services", children: serviceLinks },
   { href: "/before-after/", label: "Gallery" },
+  { href: "/blog/", label: "Blog" },
   { href: "/about-us/", label: "About" },
 ];
 
@@ -78,6 +79,7 @@ const mobileLinks = [
   primaryNav[0],
   primaryNav[2],
   primaryNav[3],
+  primaryNav[4],
   { href: "/contact/", label: "Contact" },
 ];
 

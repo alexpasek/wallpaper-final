@@ -6,7 +6,10 @@ export default function ProcessTimeline({ process }) {
   return (
     <div className="w-full">
       {/* Desktop Timeline */}
-      <div className="hidden md:grid md:grid-cols-5 gap-0 relative py-8">
+      <div
+        className="relative hidden gap-0 py-8 md:grid"
+        style={{ gridTemplateColumns: `repeat(${process.length}, minmax(0, 1fr))` }}
+      >
         {/* Connector Line - Enhanced with shadow and glow */}
         <div className="absolute top-[70px] left-[10%] right-[10%] h-1.5 bg-gradient-to-r from-[var(--reno-accent)] via-[var(--reno-accent-soft)] to-[var(--reno-accent)] pointer-events-none z-0 shadow-[0_0_20px_rgba(95,130,120,0.45)]" />
 

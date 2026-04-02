@@ -74,7 +74,7 @@ const gallery = [
 ];
 const keywordLinks = [
   {
-    "href": "/locations/mississauga-bathroom-renovation/",
+    "href": "/locations/bathroom-renovation-mississauga/",
     "label": "Mississauga Bathroom Renovation"
   },
   {
